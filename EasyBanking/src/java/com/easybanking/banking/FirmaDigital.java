@@ -23,14 +23,16 @@ public class FirmaDigital {
         Bank easyBank = new Bank(1, "BAC", "Costa Rica", 800800800);
         BankAccount b = new BankAccount("123", 2, 1234, Calendar.getInstance(), Calendar.getInstance());
         System.out.println(""+p.getName() + " BANK "+easyBank.getName());
-        
+        easyBank.addPersons(p);
 
      
         p.getlistOfBankAccounts().add(b);
 
         easyBank.addPersons(p);
 
-        System.out.println(p);
+        //System.out.println(p);
+        
+        System.out.println("\n #######################" + easyBank.searchedPerson("Carlos"));
 
     }
 

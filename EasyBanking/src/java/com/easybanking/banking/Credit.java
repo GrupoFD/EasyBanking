@@ -41,6 +41,11 @@ public class Credit extends BankAccount implements Interesable {
     public void setRemainingCreditAmount(double remainingCreditAmount) {
         this.remainingCreditAmount = remainingCreditAmount;
     }
+
+    @Override
+    public double getInterest() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
     

@@ -103,27 +103,31 @@ public class Bank {
     }
 
     public ArrayList<Person> searchedPerson(String name) {
-        
+
         ArrayList<Person> searchList = new ArrayList<>();
 
         for (Person p : this.listOfPersons) {
 
             if (p.getId().toLowerCase().equals(name.toLowerCase())) {
 
-                if (p.getName().toLowerCase().equals(name.toLowerCase())) {
+                searchList.add(p);
 
-                    if (p.getLastName().toLowerCase().equals(name.toLowerCase())) {
+            } else if (p.getName().toLowerCase().equals(name.toLowerCase())) {
 
-                        if (p.getEmail().toLowerCase().equals(name.toLowerCase())) {
+                searchList.add(p);
 
-                            searchList.add(p);
+            } else if (p.getLastName().toLowerCase().equals(name.toLowerCase())) {
 
-                        }
+                searchList.add(p);
 
-                    }
-                }
+            } else if (p.getEmail().toLowerCase().equals(name.toLowerCase())) {
+
+                searchList.add(p);
+
             }
+
         }
+
         return searchList;
     }
 

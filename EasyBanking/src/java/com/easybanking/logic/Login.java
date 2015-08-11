@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -30,21 +31,27 @@ public class Login extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    static User loggedUser;
     String paramId;
     String paramPass;
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
         paramId = request.getParameter("id");
         paramPass = request.getParameter("password");
+        HttpSession session = request.getSession(true);
         UserData ud = new UserData();
-        
-        Person p = new User("123", "Carlos", "Asdrubal", "Pachano", "pachano@gmail.com" ,"213", "qwdqwd", Calendar.getInstance(), "123", 2500, "TARDE");
-        Person p2 = new Person("123", "Carlos", "Solis", "Pancho", "solispancho@gmail.com" ,"456", "qwdqwd", Calendar.getInstance(), "123");
+
+        Person p = new User("123", "Carlos", "Asdrubal", "Pachano", "pachano@gmail.com", "123", "qwdqwd", Calendar.getInstance(), "123", 2500, "TARDE");
+        Person p2 = new Person("452", "Carlos", "Solis", "Pancho", "solispancho@gmail.com", "456", "qwdqwd", Calendar.getInstance(), "123");
+        Person p3 = new Person("75632", "Carlos", "Solis", "Pancho", "solispancho@gmail.com", "456", "qwdqwd", Calendar.getInstance(), "123");     
+        Person p4 = new Person("5542", "Carlos", "Solis", "Pancho", "solispancho@gmail.com", "456", "qwdqwd", Calendar.getInstance(), "123");
         ud.bank.getListOfPersons().add(p);
         ud.bank.getListOfPersons().add(p2);
+        ud.bank.getListOfPersons().add(p3);
+        ud.bank.getListOfPersons().add(p4);
 
         Person userDataFound = ud.bank.personValidation(paramId, paramPass);
 
@@ -52,7 +59,9 @@ public class Login extends HttpServlet {
 
             if (userDataFound != null) {
 
-                response.sendRedirect("loggedin.jsp?userName=" + userDataFound.getName());
+                loggedUser = (User) userDataFound;
+                session.setAttribute("USER", loggedUser);
+                response.sendRedirect("loggedin.jsp");
 
             } else {
 

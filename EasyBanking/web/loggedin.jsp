@@ -4,6 +4,8 @@
     Author     : Soler
 --%>
 
+<%@page import="com.easybanking.banking.User"%>
+<%@page import="com.easybanking.banking.Person"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Date"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -65,11 +67,15 @@
     </head>
     <body id="ebsearch">
 
-        <% Date d = new Date();%>
+        <% 
+            Date d = new Date();
+            User u = (User)session.getAttribute("USER"); 
+        %>
 
+        
         <div id="ebsearch">
 
-            <h1>Bienvenido,<br> <%= request.getParameter("userName")%>!</h1>
+            <h1>Bienvenido,<br> <%= u.getName()%>!</h1>
             Fecha de ingreso: <%=d%>
 
         </div>
@@ -84,13 +90,15 @@
         </div>
             <table border="1">
 <%
-     ArrayList<String> lst = (ArrayList<String>) session.getAttribute("RESULT_CLIENT");
-     if (lst != null) {
-     for (String str : lst) {
+     ArrayList<Person> searchResult = (ArrayList<Person>) session.getAttribute("RESULT_CLIENT");
+     
+     if (searchResult != null) {
+     for (Person p : searchResult) {
 %>
     <tr>
-        <td><%=str%></td>
-        <td><%=str%></td>
+        <td><%=p.getName()%></td>
+        <td><%=p.getId()%></td>
+        <td><a href="newClient.jsp">Ingresar</a></td>
     </tr>        
 <%
       }

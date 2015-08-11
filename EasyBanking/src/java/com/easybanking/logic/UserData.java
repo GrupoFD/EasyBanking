@@ -8,6 +8,7 @@ package com.easybanking.logic;
 import com.easybanking.banking.Bank;
 import com.easybanking.banking.Person;
 import com.easybanking.banking.User;
+import static com.easybanking.logic.Login.loggedUser;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -34,8 +35,8 @@ public class UserData extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     
-    Login login = new Login();
-    Bank bank = new Bank(1, "BAC", "Costa Rica", 800800800);
+    //Login login = new Login();
+   static Bank bank = new Bank(1, "BAC", "Costa Rica", 800800800);
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -45,12 +46,6 @@ public class UserData extends HttpServlet {
         String searchedPerson = request.getParameter("search");
         //La logica para buscar el cliente y meter los resultados en la lista a retornar
         ArrayList<Person> listofPerson = bank.searchedPerson(searchedPerson);
-        
-       
-        
-        
-        
-        
         session.setAttribute("RESULT_CLIENT", listofPerson);
         response.sendRedirect("loggedin.jsp");
         
