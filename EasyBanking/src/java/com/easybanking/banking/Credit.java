@@ -69,7 +69,7 @@ public class Credit extends BankAccount implements Interesable {
     
         public void amortizationToLoan(double paymentAmount) {
             
-            if (paymentAmount >= this.minimumMonthPayment && this.isHasPermissionToLoan() == true)) {
+            if ((paymentAmount >= this.minimumMonthPayment) && (this.isHasPermissionToLoan() == true)) {
                 this.setLoanLastBalance(this.getLoanLastBalance() - paymentAmount);
                 this.setRemainingCreditAmount(this.getRemainingCreditAmount() + paymentAmount);
             } else {
@@ -91,6 +91,17 @@ public class Credit extends BankAccount implements Interesable {
             }
             
         }
+
+    @Override
+    public double getInterestRegularAccount() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public double getInterestCreditAccount() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
             
         }
        
+
