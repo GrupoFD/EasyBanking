@@ -9,9 +9,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Easy Banking!</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Cliente ID: <%=request.getParameter("id")%> Nombre: <%=request.getParameter("name")%></h1>
+        <a></a>
     </body>
 </html>

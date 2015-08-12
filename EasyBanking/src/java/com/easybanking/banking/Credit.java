@@ -52,31 +52,31 @@ public class Credit extends BankAccount implements Interesable {
         this.remainingCreditAmount = remainingCreditAmount;
     }
 
-<<<<<<< HEAD
-    @Override
-    public double getInterest() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-=======
-    public boolean isHasPermissionToLoan() {
-        return hasPermissionToLoan;
-    }
+
+//    @Override
+//    public double getInterest() {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//
+//    public boolean isHasPermissionToLoan() {
+//        return hasPermissionToLoan;
+//    }
 
     public void setHasPermissionToLoan(boolean hasPermissionToLoan) {
         this.hasPermissionToLoan = hasPermissionToLoan;
->>>>>>> origin/master
+
     }
     
     
-        public void amortizationToLoan(double paymentAmount) {
-            
-            if ((paymentAmount >= this.minimumMonthPayment) && (this.isHasPermissionToLoan() == true)) {
-                this.setLoanLastBalance(this.getLoanLastBalance() - paymentAmount);
-                this.setRemainingCreditAmount(this.getRemainingCreditAmount() + paymentAmount);
-            } else {
-                System.out.println("Exception");
-            }
-            
-        }
+//        public void amortizationToLoan(double paymentAmount) {
+//            
+//            if ((paymentAmount >= this.minimumMonthPayment) && (this.isHasPermissionToLoan() == true)) {
+//                this.setLoanLastBalance(this.getLoanLastBalance() - paymentAmount);
+//                this.setRemainingCreditAmount(this.getRemainingCreditAmount() + paymentAmount);
+//            } else {
+//                System.out.println("Exception");
+//            }
+//            
+//        }
         
         
         

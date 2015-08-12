@@ -3,26 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/Joss/Desktop/PrograII/github/EasyBanking/EasyBanking/src/java/com/easybanking/logic/Login.java</file>
-            <file>file:/Users/Joss/Desktop/PrograII/github/EasyBanking/EasyBanking/web/index.jsp</file>
-            <file>file:/Users/Joss/Desktop/PrograII/github/EasyBanking/EasyBanking/src/java/com/easybanking/banking/Bank.java</file>
-            <file>file:/Users/Joss/Desktop/PrograII/github/EasyBanking/EasyBanking/web/newClient.jsp</file>
-            <file>file:/Users/Joss/Desktop/PrograII/github/EasyBanking/EasyBanking/web/createAccount.jsp</file>
-            <file>file:/Users/Joss/Desktop/PrograII/github/EasyBanking/EasyBanking/src/java/com/easybanking/logic/CreateAccount.java</file>
-            <file>file:/Users/Joss/Desktop/PrograII/github/EasyBanking/EasyBanking/src/java/com/easybanking/banking/Legal.java</file>
-            <file>file:/Users/Joss/Desktop/PrograII/github/EasyBanking/EasyBanking/src/java/com/easybanking/banking/Manager.java</file>
-            <file>file:/Users/Joss/Desktop/PrograII/github/EasyBanking/EasyBanking/src/java/com/easybanking/banking/Person.java</file>
-            <file>file:/Users/Joss/Desktop/PrograII/github/EasyBanking/EasyBanking/src/java/com/easybanking/logic/CreatePerons.java</file>
-            <file>file:/Users/Joss/Desktop/PrograII/github/EasyBanking/EasyBanking/web/error.jsp</file>
-            <file>file:/Users/Joss/Desktop/PrograII/github/EasyBanking/EasyBanking/src/java/com/easybanking/banking/BankAccount.java</file>
-            <file>file:/Users/Joss/Desktop/PrograII/github/EasyBanking/EasyBanking/web/loggedin.jsp</file>
-            <file>file:/Users/Joss/Desktop/PrograII/github/EasyBanking/EasyBanking/src/java/com/easybanking/banking/Deposit.java</file>
-            <file>file:/Users/Joss/Desktop/PrograII/github/EasyBanking/EasyBanking/src/java/com/easybanking/banking/Natural.java</file>
-            <file>file:/Users/Joss/Desktop/PrograII/github/EasyBanking/EasyBanking/src/java/com/easybanking/banking/Transaction.java</file>
-            <file>file:/Users/Joss/Desktop/PrograII/github/EasyBanking/EasyBanking/src/java/com/easybanking/banking/FirmaDigital.java</file>
-            <file>file:/Users/Joss/Desktop/PrograII/github/EasyBanking/EasyBanking/src/java/com/easybanking/logic/UserData.java</file>
-            <file>file:/Users/Joss/Desktop/PrograII/github/EasyBanking/EasyBanking/nbproject/build-impl.xml</file>
-            <file>file:/Users/Joss/Desktop/PrograII/github/EasyBanking/EasyBanking/web/WEB-INF/web.xml</file>
+            <file>file:/Users/Soler/Documents/EasyBanking/EasyBanking/web/banking.jsp</file>
+            <file>file:/Users/Soler/Documents/EasyBanking/EasyBanking/src/java/com/easybanking/logic/UserData.java</file>
+            <file>file:/Users/Soler/Documents/EasyBanking/EasyBanking/web/loggedin.jsp</file>
+            <file>file:/Users/Soler/Documents/EasyBanking/EasyBanking/web/index.jsp</file>
+            <file>file:/Users/Soler/Documents/EasyBanking/EasyBanking/src/java/com/easybanking/logic/ClientInfo.java</file>
+            <file>file:/Users/Soler/Documents/EasyBanking/EasyBanking/src/java/com/easybanking/logic/Login.java</file>
         </group>
     </open-files>
 </project-private>

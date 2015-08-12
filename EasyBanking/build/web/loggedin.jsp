@@ -56,23 +56,37 @@
                 background: -webkit-gradient(linear, left top, left bottom, from(#0095cc), to(#00678e));
                 background: -moz-linear-gradient(top,  #0095cc,  #00678e);
             }
-            /* Fixes submit button height problem in Firefox */
             .ebbutton::-moz-focus-inner {
                 border: 0;
             }
             .ebclear{
                 clear:both;
             }
+            .btn {
+                -webkit-border-radius: 4;
+                -moz-border-radius: 4;
+                border-radius: 4px;
+                font-family: Arial;
+                color: #ffffff;
+                font-size: 20px;
+                padding: 10px;
+                background: #1f917e;
+                text-decoration: none;
+            }
+            .btn:hover {
+                background: #11635c;
+                text-decoration: none;
+            }
         </style>
     </head>
     <body id="ebsearch">
 
-        <% 
+        <%
             Date d = new Date();
-            User u = (User)session.getAttribute("USER"); 
+            User u = (User) session.getAttribute("USER");
         %>
 
-        
+
         <div id="ebsearch">
 
             <h1>Bienvenido,<br> <%= u.getName()%>!</h1>
@@ -88,24 +102,24 @@
             <div class="ebclear"></div>
 
         </div>
-            <table border="1">
-<%
-     ArrayList<Person> searchResult = (ArrayList<Person>) session.getAttribute("RESULT_CLIENT");
-     
-     if (searchResult != null) {
-     for (Person p : searchResult) {
-%>
-    <tr>
-        <td><%=p.getName()%></td>
-        <td><%=p.getId()%></td>
-        <td><a href="newClient.jsp">Ingresar</a></td>
-    </tr>        
-<%
-      }
-     }
-     session.removeAttribute("RESULT_CLIENT");
-%>
-</table>
+        <table border="1">
+            <%
+                ArrayList<Person> searchResult = (ArrayList<Person>) session.getAttribute("RESULT_CLIENT");
+
+                if (searchResult != null) {
+                    for (Person p : searchResult) {
+            %>
+            <tr>
+                <td align="center"><%=p.getName()%></td>
+                <td align="center"><%=p.getId()%></td>
+                <td style="btn"><a href="banking.jsp?id=<%=p.getId()%>&name=<%=p.getName()%>">Ingresar</a></td>
+            </tr>        
+            <%
+                    }
+                }
+                session.removeAttribute("RESULT_CLIENT");
+            %>
+        </table>
 
         <h1>Presione en la transaccion que desea realizar</h1>
         <form action="newClient.jsp">
