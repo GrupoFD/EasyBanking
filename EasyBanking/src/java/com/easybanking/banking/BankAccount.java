@@ -15,7 +15,6 @@ import java.util.Calendar;
  */
 public class BankAccount {
 
- 
     private String id;
     private int currency;
     private double amount;
@@ -24,9 +23,8 @@ public class BankAccount {
     private Calendar expirationDate;
 
     public BankAccount() {
-    } 
-   
-   
+    }
+
     public BankAccount(String id, int currency, double amount, Calendar registeredDate, Calendar expirationDate) {
         this.id = id;
         this.currency = currency;
@@ -82,7 +80,28 @@ public class BankAccount {
     public void setExpirationDate(Calendar expirationDate) {
         this.expirationDate = expirationDate;
     }
-    
+
+    public String currencyFormat(int currency) {
+
+        String toString = "";
+
+        switch (currency) {
+
+            case 1:
+                toString = "Colones";
+                break;
+            case 2:
+                toString = "Dolares";
+                break;
+            case 3:
+                toString = "Euros";
+                break;
+
+        }
+
+        return toString;
+    }
+
     @Override
     public String toString() {
 

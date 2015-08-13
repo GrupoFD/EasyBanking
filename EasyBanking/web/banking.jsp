@@ -79,6 +79,7 @@
             <td align="center">Fecha Expiracion</td>
             <td align="center">  Monto  </td>
             <%
+
                 ArrayList<BankAccount> personBankAccount = (ArrayList<BankAccount>) session.getAttribute("BANK_ACCOUNT");
                 SimpleDateFormat sdf = new SimpleDateFormat("MM / yyyy");
 
@@ -86,12 +87,12 @@
                     for (BankAccount ba : personBankAccount) {
             %>
             <tr>
-                <td align="center" value="# Cuenta"><%=ba.getId()%></td>
-                <td align="center"><%=ba.getCurrency()%></td>
+                <td align="center"><%=ba.getId()%></td>
+                <td align="center"><%=ba.currencyFormat(ba.getCurrency())%></td>
                 <td align="center"><%=sdf.format(ba.getRegisteredDate().getTime())%></td>
                 <td align="center"><%=sdf.format(ba.getExpirationDate().getTime())%></td>
                 <td align="center"><%=ba.getAmount()%></td>
-                <td class="ebbutton"><a href="" style="color: #ffffff">Seleccionar</a></td>
+                <td style="border: 0"><button class="ebbutton" onclick="myFunction()">Seleccionar</button></td>
             </tr>        
             <%
                     }
