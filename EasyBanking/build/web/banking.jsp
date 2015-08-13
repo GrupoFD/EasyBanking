@@ -80,7 +80,7 @@
             <td align="center">  Monto  </td>
             <%
                 ArrayList<BankAccount> personBankAccount = (ArrayList<BankAccount>) session.getAttribute("BANK_ACCOUNT");
-                SimpleDateFormat sdf = new SimpleDateFormat("MMM yyyy");
+                SimpleDateFormat sdf = new SimpleDateFormat("MM / yyyy");
 
                 if (personBankAccount != null) {
                     for (BankAccount ba : personBankAccount) {
