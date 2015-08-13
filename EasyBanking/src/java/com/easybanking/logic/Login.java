@@ -6,6 +6,7 @@
 package com.easybanking.logic;
 
 import com.easybanking.banking.Bank;
+import com.easybanking.banking.BankAccount;
 import com.easybanking.banking.Person;
 import com.easybanking.banking.User;
 import java.io.IOException;
@@ -52,7 +53,13 @@ public class Login extends HttpServlet {
         ud.bank.getListOfPersons().add(p2);
         ud.bank.getListOfPersons().add(p3);
         ud.bank.getListOfPersons().add(p4);
-
+        BankAccount a = new BankAccount("123", 2, 1234, Calendar.getInstance(), Calendar.getInstance());
+        BankAccount b= new BankAccount("123", 2, 1234, Calendar.getInstance(), Calendar.getInstance());
+        BankAccount c = new BankAccount("123", 2, 1234, Calendar.getInstance(), Calendar.getInstance());
+        p.getListOfBankAccounts().add(a);
+        p.getListOfBankAccounts().add(b);
+        p.getListOfBankAccounts().add(c);
+        
         Person userDataFound = ud.bank.personValidation(paramId, paramPass);
 
         if (userDataFound instanceof User) {

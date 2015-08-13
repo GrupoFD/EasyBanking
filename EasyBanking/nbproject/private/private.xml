@@ -3,12 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/Soler/Documents/EasyBanking/EasyBanking/web/banking.jsp</file>
-            <file>file:/Users/Soler/Documents/EasyBanking/EasyBanking/src/java/com/easybanking/logic/UserData.java</file>
-            <file>file:/Users/Soler/Documents/EasyBanking/EasyBanking/web/loggedin.jsp</file>
-            <file>file:/Users/Soler/Documents/EasyBanking/EasyBanking/web/index.jsp</file>
-            <file>file:/Users/Soler/Documents/EasyBanking/EasyBanking/src/java/com/easybanking/logic/ClientInfo.java</file>
-            <file>file:/Users/Soler/Documents/EasyBanking/EasyBanking/src/java/com/easybanking/logic/Login.java</file>
+            <file>file:/C:/Users/Soler/Documents/GitHub/EasyBanking/EasyBanking/src/java/com/easybanking/logic/UserData.java</file>
+            <file>file:/C:/Users/Soler/Documents/GitHub/EasyBanking/EasyBanking/web/banking.jsp</file>
+            <file>file:/C:/Users/Soler/Documents/GitHub/EasyBanking/EasyBanking/web/loggedin.jsp</file>
+            <file>file:/C:/Users/Soler/Documents/GitHub/EasyBanking/EasyBanking/web/error.jsp</file>
+            <file>file:/C:/Users/Soler/Documents/GitHub/EasyBanking/EasyBanking/src/java/com/easybanking/banking/Person.java</file>
+            <file>file:/C:/Users/Soler/Documents/GitHub/EasyBanking/EasyBanking/src/java/com/easybanking/banking/Bank.java</file>
+            <file>file:/C:/Users/Soler/Documents/GitHub/EasyBanking/EasyBanking/src/java/com/easybanking/banking/BankAccount.java</file>
+            <file>file:/C:/Users/Soler/Documents/GitHub/EasyBanking/EasyBanking/src/java/com/easybanking/logic/ClientInfo.java</file>
+            <file>file:/C:/Users/Soler/Documents/GitHub/EasyBanking/EasyBanking/src/java/com/easybanking/banking/FirmaDigital.java</file>
+            <file>file:/C:/Users/Soler/Documents/GitHub/EasyBanking/EasyBanking/src/java/com/easybanking/logic/Login.java</file>
+            <file>file:/C:/Users/Soler/Documents/GitHub/EasyBanking/EasyBanking/web/index.jsp</file>
         </group>
     </open-files>
 </project-private>

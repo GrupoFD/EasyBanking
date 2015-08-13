@@ -17,6 +17,9 @@
         <title>EasyBanking!</title>
 
         <style type="text/css">
+            a {
+                text-decoration:none;
+            }
             #ebsearch{
                 background-color:#c3dfef;
             }
@@ -62,21 +65,6 @@
             .ebclear{
                 clear:both;
             }
-            .btn {
-                -webkit-border-radius: 4;
-                -moz-border-radius: 4;
-                border-radius: 4px;
-                font-family: Arial;
-                color: #ffffff;
-                font-size: 20px;
-                padding: 10px;
-                background: #1f917e;
-                text-decoration: none;
-            }
-            .btn:hover {
-                background: #11635c;
-                text-decoration: none;
-            }
         </style>
     </head>
     <body id="ebsearch">
@@ -107,23 +95,39 @@
                 ArrayList<Person> searchResult = (ArrayList<Person>) session.getAttribute("RESULT_CLIENT");
 
                 if (searchResult != null) {
+
+            %>
+            <td align="center">Cedula</td>
+            <td align="center">Nombre</td>
+            <td align="center">Primer Apellido</td>
+            <td align="center">Segundo Apellido</td>
+            <td align="center">Correo Electronico</td>
+            <%
+
+                if (searchResult != null) {
                     for (Person p : searchResult) {
             %>
             <tr>
-                <td align="center"><%=p.getName()%></td>
                 <td align="center"><%=p.getId()%></td>
-                <td style="btn"><a href="banking.jsp?id=<%=p.getId()%>&name=<%=p.getName()%>">Ingresar</a></td>
+                <td align="center"><%=p.getName()%></td>
+                <td align="center"><%=p.getLastName()%></td>
+                <td align="center"><%=p.getLastName2()%></td>
+                <td align="center"><%=p.getEmail()%></td>
+                <!--<td style="btn"><a href="banking.jsp?id=<%=p.getId()%>&name=<%=p.getName()%>">Ingresar</a></td>-->
+                <td class="ebbutton"><a href="ClientInfo?id=<%=p.getId()%>&name=<%=p.getName()%>" style="color: #ffffff">Ingresar</a></td>
             </tr>        
             <%
+                        }
                     }
                 }
+
                 session.removeAttribute("RESULT_CLIENT");
             %>
         </table>
 
         <h1>Presione en la transaccion que desea realizar</h1>
         <form action="newClient.jsp">
-            <input type="submit" value="Agregar cliente" name="newClient" />    
+            <input type="submit" value="Agregar cliente" name="newClient" />     
         </form>
         <form action="createAccount.jsp">
             <input type="submit" value="Crear cuenta" name="createAccount" />
