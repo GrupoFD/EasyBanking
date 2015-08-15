@@ -1,5 +1,4 @@
 
-
 package com.easybanking.banking;
 
 import java.util.Calendar;
@@ -52,20 +51,23 @@ public class Credit extends BankAccount implements Interesable {
         this.remainingCreditAmount = remainingCreditAmount;
     }
 
-//    public boolean isHasPermissionToLoan() {
-//        return hasPermissionToLoan;
-//    }
+    public boolean isHasPermissionToLoan() {
+        return hasPermissionToLoan;
+    }
 
     public void setHasPermissionToLoan(boolean hasPermissionToLoan) {
         this.hasPermissionToLoan = hasPermissionToLoan;
-
     }
     
     
-       public void amortizationToLoan(double paymentAmount) {
-        
-            if ((paymentAmount >= this.minimumMonthPayment) && (this.isHasPermissionToLoan() == true)) {
-             this.setLoanLastBalance(this.getLoanLastBalance() - paymentAmount);
+        public void amortizationToLoan(double paymentAmount) {
+            
+            System.out.println("The amount of: " + getInterestCreditAccount() + " will be added to your bill as interests on your loan amount");
+            System.out.println("A total of " + paymentAmount+getInterestCreditAccount() + "is being sustracted from your account");
+            paymentAmount += getInterestCreditAccount();
+            
+            if (paymentAmount >= this.minimumMonthPayment) {
+                this.setLoanLastBalance(this.getLoanLastBalance() - paymentAmount);
                 this.setRemainingCreditAmount(this.getRemainingCreditAmount() + paymentAmount);
             } else {
                 System.out.println("Exception");
@@ -78,7 +80,7 @@ public class Credit extends BankAccount implements Interesable {
         
       public void loanFromLoanBalance(double loanAmount){
             
-            if (loanAmount >= this.getRemainingCreditAmount()) {
+            if ((loanAmount >= this.getRemainingCreditAmount()) && (this.isHasPermissionToLoan() == true)) {
                 this.setLoanLastBalance(this.getLoanLastBalance() + loanAmount);
                 this.setRemainingCreditAmount(this.getRemainingCreditAmount() - loanAmount);
             } else {
@@ -94,9 +96,7 @@ public class Credit extends BankAccount implements Interesable {
 
     @Override
     public double getInterestCreditAccount() {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        return this.getLoanLastBalance() * 0.05;
     }
             
         }
-       
-
