@@ -7,7 +7,7 @@ import java.util.Calendar;
 
 /**
  *
- * @author Glenn Ismael Benavides Pérez, de San Ramón de Alajuela, originario de Desamparados de San Josè Costa Rica, Amèrica Central, Continente Americano, Hemisferio Occidental de planeta Tierra.
+ * @author Glenn 
  */
  
  
@@ -52,11 +52,6 @@ public class Credit extends BankAccount implements Interesable {
         this.remainingCreditAmount = remainingCreditAmount;
     }
 
-
-    public double getInterest() {
-        return 0.5;
-    }
-
 //    public boolean isHasPermissionToLoan() {
 //        return hasPermissionToLoan;
 //    }
@@ -67,16 +62,16 @@ public class Credit extends BankAccount implements Interesable {
     }
     
     
-//        public void amortizationToLoan(double paymentAmount) {
-//            
-//            if ((paymentAmount >= this.minimumMonthPayment) && (this.isHasPermissionToLoan() == true)) {
-//                this.setLoanLastBalance(this.getLoanLastBalance() - paymentAmount);
-//                this.setRemainingCreditAmount(this.getRemainingCreditAmount() + paymentAmount);
-//            } else {
-//                System.out.println("Exception");
-//            }
-//            
-//        }
+       public void amortizationToLoan(double paymentAmount) {
+        
+            if ((paymentAmount >= this.minimumMonthPayment) && (this.isHasPermissionToLoan() == true)) {
+             this.setLoanLastBalance(this.getLoanLastBalance() - paymentAmount);
+                this.setRemainingCreditAmount(this.getRemainingCreditAmount() + paymentAmount);
+            } else {
+                System.out.println("Exception");
+            }
+            
+        }
         
         
         
@@ -94,12 +89,12 @@ public class Credit extends BankAccount implements Interesable {
 
     @Override
     public double getInterestRegularAccount() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
 
     @Override
     public double getInterestCreditAccount() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
             
         }
