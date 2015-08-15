@@ -18,10 +18,10 @@ public class BankAccount implements Interesable {
     private ArrayList<Transaction> listOfTransactions = new ArrayList<>();
     private Calendar registeredDate;
     private Calendar expirationDate;
-    private boolean lastInterestPayed;
+    private Calendar lastInterestPaymentDate;
 
     public BankAccount() {
-        this.lastInterestPayed = false;
+        this.lastInterestPaymentDate = Calendar.getInstance();
     } 
    
    
@@ -31,7 +31,8 @@ public class BankAccount implements Interesable {
         this.amount = amount;
         this.registeredDate = registeredDate;
         this.expirationDate = expirationDate;
-        this.lastInterestPayed = false;
+        this.lastInterestPaymentDate = Calendar.getInstance();
+        
     }
 
     public String getId() {
@@ -81,28 +82,7 @@ public class BankAccount implements Interesable {
     public void setExpirationDate(Calendar expirationDate) {
         this.expirationDate = expirationDate;
     }
-      
     
-    public String currencyFormat(int currency) {
-
-        String toString = "";
-
-        switch (currency) {
-
-            case 1:
-                toString = "Colones";
-                break;
-            case 2:
-                toString = "Dolares";
-                break;
-            case 3:
-                toString = "Euros";
-                break;
-
-        }
-
-        return toString;
-    }
     
     
     public String createNewAccountNumber(Bank bank, int typeOfAccount) {
@@ -145,7 +125,24 @@ public class BankAccount implements Interesable {
         return newIdNumber;
     }
 
+    public void depositsInterestInAccount() {
 
+        Calendar myCalendar = Calendar.getInstance();
+        int thisMonth = myCalendar.get(Calendar.MONTH);
+        int lastPaymentMonth = this.lastInterestPaymentDate.get(Calendar.MONTH);
+        int thisDay = myCalendar.get(Calendar.DAY_OF_MONTH);
+        int dayOfLastInterest = this.lastInterestPaymentDate.get(Calendar.DAY_OF_MONTH);
+
+        if ((thisMonth - lastPaymentMonth > 1) || (thisMonth == 1 && lastPaymentMonth == 12)) {
+            if ((thisDay - dayOfLastInterest) >= 30) {
+                System.out.println("This time interests will be deposited to you. The amount is: " + getInterestRegularAccount());
+                this.setAmount(this.getAmount() + getInterestRegularAccount());
+            }
+        }
+
+    }
+    
+    
 
     @Override
     public String toString() {
