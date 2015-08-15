@@ -185,12 +185,12 @@ public class Person {
         return encripted;
     }
 
-    public void sendEmail() {
+    public void sendEmail(String emailClient, String messageP) {
         // Recipient's email ID needs to be mentioned.
-        String to = "abcd@gmail.com";
+        String to = "easybankprogra@gmail.com";
 
         // Sender's email ID needs to be mentioned
-        String from = "web@gmail.com";
+        String from = emailClient;
 
         // Assuming you are sending email from localhost
         String host = "localhost";

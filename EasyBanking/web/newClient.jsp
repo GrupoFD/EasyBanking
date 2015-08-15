@@ -31,16 +31,12 @@
         Responsable          : <input type="text" name="responsable"/>
         <br/>
         <br/>
-
-        <input type="submit" value="Agregar" name="newClient" />
+<script type="text/javascript">
+        function showMessage() {
+                alert("El usuario ha sido creado con exito");
+        }
+    </script>
+      <input type="submit" value="Agregar" name="newClient" onclick ="showMessage()" />
         <br/>
-        <br/>
-         <br/>
-        
-    </form>
-
-</head>
-<body>
-
 </body>
 </html>

@@ -62,7 +62,7 @@ public class CreatePerson extends HttpServlet {
         ud.bank.getListOfPersons().add(client);
 
         
-        response.sendRedirect("createaccount.jsp");
+        response.sendRedirect("createAccount.jsp");
     }
 
        

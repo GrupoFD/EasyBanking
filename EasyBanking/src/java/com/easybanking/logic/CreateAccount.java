@@ -59,6 +59,7 @@ public class CreateAccount extends HttpServlet {
         
         p.getlistOfBankAccounts().add(account);
         
+        response.sendRedirect("loggedin.jsp");
         
     }
 

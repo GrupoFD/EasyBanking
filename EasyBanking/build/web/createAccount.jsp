@@ -24,8 +24,17 @@
             <option value="euro">Euro</option>
        </select><br/>
        Monto a depositar:<input type="number" name="Amount"/><br/>
-       <input type="submit" value="Crear cuenta" name="newAccount" />
+       
+       <script type="text/javascript">
+        function showMessage() {
+                alert("La cuenta ha sido creado con exito");
+        }
+    </script>
+      <input type="submit" value="Agregar" name="newClient" onclick ="showMessage()" />
+        <br/>
        <br/>
+       
+       
        <form/>
     </body>
 </html>
