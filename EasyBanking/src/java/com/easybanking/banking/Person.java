@@ -9,6 +9,21 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Properties;
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.mail.BodyPart;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Multipart;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  *
@@ -25,10 +40,12 @@ public class Person {
     private String direction;
     private Calendar birthDate;
     private String phone;
-    private ArrayList<BankAccount> listOfBankAccounts = new ArrayList<>();;
+    private ArrayList<BankAccount> listOfBankAccounts = new ArrayList<>();
+
+    ;
 
     public Person() {
-        
+
     }
 
     public Person(String id, String name, String lastName, String lastName2, String email, String password, String direction, Calendar birthDate, String phone) {
@@ -42,8 +59,6 @@ public class Person {
         this.birthDate = birthDate;
         this.phone = phone;
     }
-
-
 
     public String getId() {
         return id;
@@ -102,7 +117,7 @@ public class Person {
     }
 
     public void addAccount(BankAccount a) {
-         this.listOfBankAccounts.add(a);
+        this.listOfBankAccounts.add(a);
     }
 
     public String getLastName() {
@@ -136,7 +151,7 @@ public class Person {
     public void setListOfBankAccounts(ArrayList<BankAccount> listOfBankAccounts) {
         this.listOfBankAccounts = listOfBankAccounts;
     }
-    
+
     public String getResponsible(Person p) {
 
         String responsible = "";
@@ -165,13 +180,81 @@ public class Person {
         return returnable;
     }
 
+    public String encriptPassword(String encriptPass) {
+        String encripted = DigestUtils.md5Hex(encriptPass);
+        return encripted;
+    }
+
+    public void sendEmail() {
+        // Recipient's email ID needs to be mentioned.
+        String to = "abcd@gmail.com";
+
+        // Sender's email ID needs to be mentioned
+        String from = "web@gmail.com";
+
+        // Assuming you are sending email from localhost
+        String host = "localhost";
+
+        // Get system properties
+        Properties properties = System.getProperties();
+
+        // Setup mail server
+        properties.setProperty("mail.smtp.host", host);
+
+        // Get the default Session object.
+        Session session = Session.getDefaultInstance(properties);
+
+        try {
+            // Create a default MimeMessage object.
+            MimeMessage message = new MimeMessage(session);
+
+            // Set From: header field of the header.
+            message.setFrom(new InternetAddress(from));
+
+            // Set To: header field of the header.
+            message.addRecipient(Message.RecipientType.TO,
+                    new InternetAddress(to));
+
+            // Set Subject: header field
+            message.setSubject("Su contraseña");
+
+            // Create the message part 
+            BodyPart messageBodyPart = new MimeBodyPart();
+
+            // Fill the message
+            messageBodyPart.setText("Estimado usuario su contraseña es:");
+
+            // Create a multipar message
+            Multipart multipart = new MimeMultipart();
+
+            // Set text message part
+            multipart.addBodyPart(messageBodyPart);
+
+            // Part two is attachment
+            messageBodyPart = new MimeBodyPart();
+            String filename = "file.txt";
+            DataSource source = new FileDataSource(filename);
+            messageBodyPart.setDataHandler(new DataHandler(source));
+            messageBodyPart.setFileName(filename);
+            multipart.addBodyPart(messageBodyPart);
+
+            // Send the complete message parts
+            message.setContent(multipart);
+
+            // Send message
+            Transport.send(message);
+            System.out.println("Sent message successfully....");
+        } catch (MessagingException mex) {
+            mex.printStackTrace();
+        }
+    }
 
     public String toString() {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy MMM dd");
 
         StringBuffer sb = new StringBuffer();
-        
+
         sb.append("EASY BANK! \n");
         sb.append("Cedula: " + this.getId() + "\n");
         sb.append("Nombre: " + this.getName() + "         Telefono: " + this.getPhone() + "\n");

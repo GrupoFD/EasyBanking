@@ -34,32 +34,30 @@ public class CreateAccount extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
        String paramIdentificaTion = request.getParameter("Identification");
-       Bank easyBank = new Bank(12345, "EasyBank", "Costa Rica", 2222222);
-       Person p = easyBank.personConfirmation(paramIdentificaTion);
        
-       if (p != null) {
+       UserData ud = new UserData();
+       Person p = ud.bank.personConfirmation(paramIdentificaTion);
+       
+       //if (p != null) {
             
         String paramId= request.getParameter("Account");
         String paramCurrency= request.getParameter("Currency");
         int currency =0;
-        if(paramCurrency.equals("Dolar")){
-        currency = 1;
-        }else if(paramCurrency.equals("Colon")){
-            currency = 2;
-        }else if(paramCurrency.equals("Euro")) {
+        if(paramCurrency.equals("dolar")){
+        currency = 2;
+        }else if(paramCurrency.equals("colon")){
+            currency = 1;
+        }else if(paramCurrency.equals("euro")) {
         currency = 3;
         }
         double paramAmount = Double.parseDouble(request.getParameter("Amount"));
         //cambiar la fecha de expiración
         
         BankAccount account = new BankAccount(paramId,currency, paramAmount, Calendar.getInstance(), Calendar.getInstance());
+        
         p.getlistOfBankAccounts().add(account);
-        
-        } else {
-            response.sendError(23, "El usuario no se encuentra registrado");
-        }
-        
         
         
     }

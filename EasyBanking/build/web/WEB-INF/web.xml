@@ -6,7 +6,7 @@
     </servlet>
     <servlet>
         <servlet-name>CreatePerson</servlet-name>
-        <servlet-class>com.easybanking.logic.CreatePersons</servlet-class>
+        <servlet-class>com.easybanking.logic.CreatePerson</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CreateAccount</servlet-name>

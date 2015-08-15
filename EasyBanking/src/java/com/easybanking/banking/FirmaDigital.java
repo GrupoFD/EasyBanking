@@ -31,7 +31,6 @@ public class FirmaDigital {
         easyBank.addPersons(p);
 
         //System.out.println(p);
-        
         System.out.println("\n #######################" + easyBank.searchedPerson("Carlos"));
 
     }

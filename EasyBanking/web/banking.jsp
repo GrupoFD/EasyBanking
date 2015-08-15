@@ -16,6 +16,7 @@
     %>
 
     <style type="text/css">
+        body{background:#c3dfef}
         a {
             text-decoration:none;
         }
@@ -64,6 +65,15 @@
         .ebclear{
             clear:both;
         }
+        h1 { 
+            margin: 0 auto; 
+            width:255px;
+        }
+        table { 
+            
+            margin: 0 auto; 
+            width:250px;
+        }
     </style>
 
     <head>
@@ -72,6 +82,8 @@
     </head>
     <body>
         <h1>Cliente ID: <%=p.getId()%> Nombre: <%=p.getName()%></h1>
+        <br>
+        <br>
         <table border="1">
             <td align="center">  # Cuenta  </td>
             <td align="center">  Moneda  </td>
@@ -79,7 +91,7 @@
             <td align="center">Fecha Expiracion</td>
             <td align="center">  Monto  </td>
             <%
-
+                
                 ArrayList<BankAccount> personBankAccount = (ArrayList<BankAccount>) session.getAttribute("BANK_ACCOUNT");
                 SimpleDateFormat sdf = new SimpleDateFormat("MM / yyyy");
 
@@ -92,13 +104,18 @@
                 <td align="center"><%=sdf.format(ba.getRegisteredDate().getTime())%></td>
                 <td align="center"><%=sdf.format(ba.getExpirationDate().getTime())%></td>
                 <td align="center"><%=ba.getAmount()%></td>
-                <td style="border: 0"><button class="ebbutton" onclick="myFunction()">Seleccionar</button></td>
+                <td style="border: 1"><button type="summit" class="ebbutton" onclick="myFunction()">Deposito</button></td>
+                <td style="border: 1"><button class="ebbutton" onclick="myFunction()">Retiro</button></td>
+                <td style="border: 1"><button class="ebbutton" onclick="myFunction()">Transferencia</button></td>
+                <td style="border: 1"><button class="ebbutton" onclick="myFunction()">Historial</button></td>
             </tr>        
             <%
                     }
                 }
                 session.removeAttribute("RESULT_CLIENT");
-            %>
+            %>            
         </table>
+        
+        
     </body>
 </html>

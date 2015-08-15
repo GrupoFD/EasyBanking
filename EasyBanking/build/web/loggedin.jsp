@@ -102,9 +102,7 @@
             <td align="center">Primer Apellido</td>
             <td align="center">Segundo Apellido</td>
             <td align="center">Correo Electronico</td>
-            <%
-
-                if (searchResult != null) {
+            <%                if (searchResult != null) {
                     for (Person p : searchResult) {
             %>
             <tr>
@@ -126,12 +124,14 @@
         </table>
 
         <h1>Presione en la transaccion que desea realizar</h1>
-        <form action="newClient.jsp">
-            <input type="submit" value="Agregar cliente" name="newClient" />     
+        <form action="newclient.jsp">
+            <input type="submit" value="Agregar cliente" name="newClient" />    
         </form>
-        <form action="createAccount.jsp">
-            <input type="submit" value="Crear cuenta" name="createAccount" />
+
+        <form action="createuser.jsp">
+            <input type="submit" value="Agregar usuario" name="newUser" />
         </form>
     </body>
+
 
 </html>

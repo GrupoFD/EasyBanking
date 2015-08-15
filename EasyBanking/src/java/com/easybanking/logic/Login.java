@@ -49,13 +49,16 @@ public class Login extends HttpServlet {
         Person p2 = new Person("452", "Carlos", "Solis", "Pancho", "solispancho@gmail.com", "456", "qwdqwd", Calendar.getInstance(), "123");
         Person p3 = new Person("75632", "Carlos", "Solis", "Pancho", "solispancho@gmail.com", "456", "qwdqwd", Calendar.getInstance(), "123");     
         Person p4 = new Person("5542", "Carlos", "Solis", "Pancho", "solispancho@gmail.com", "456", "qwdqwd", Calendar.getInstance(), "123");
+        
         ud.bank.getListOfPersons().add(p);
         ud.bank.getListOfPersons().add(p2);
         ud.bank.getListOfPersons().add(p3);
         ud.bank.getListOfPersons().add(p4);
+        
         BankAccount a = new BankAccount("123", 2, 1234, Calendar.getInstance(), Calendar.getInstance());
         BankAccount b= new BankAccount("123", 2, 1234, Calendar.getInstance(), Calendar.getInstance());
         BankAccount c = new BankAccount("123", 2, 1234, Calendar.getInstance(), Calendar.getInstance());
+        
         p.getListOfBankAccounts().add(a);
         p.getListOfBankAccounts().add(b);
         p.getListOfBankAccounts().add(c);

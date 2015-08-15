@@ -53,10 +53,10 @@ public class Credit extends BankAccount implements Interesable {
     }
 
 
-//    @Override
-//    public double getInterest() {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//
+    public double getInterest() {
+        return 0.5;
+    }
+
 //    public boolean isHasPermissionToLoan() {
 //        return hasPermissionToLoan;
 //    }
