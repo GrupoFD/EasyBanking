@@ -1,36 +1,37 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
+
 package com.easybanking.banking;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
  *
- * @author Soler
+ * @author Glenn
  */
-public class BankAccount {
+public class BankAccount implements Interesable {
 
+ 
     private String id;
     private int currency;
     private double amount;
     private ArrayList<Transaction> listOfTransactions = new ArrayList<>();
     private Calendar registeredDate;
     private Calendar expirationDate;
+    private boolean lastInterestPayed;
 
     public BankAccount() {
-    }
-
+        this.lastInterestPayed = false;
+    } 
+   
+   
     public BankAccount(String id, int currency, double amount, Calendar registeredDate, Calendar expirationDate) {
         this.id = id;
         this.currency = currency;
         this.amount = amount;
         this.registeredDate = registeredDate;
         this.expirationDate = expirationDate;
+        this.lastInterestPayed = false;
     }
 
     public String getId() {
@@ -80,7 +81,8 @@ public class BankAccount {
     public void setExpirationDate(Calendar expirationDate) {
         this.expirationDate = expirationDate;
     }
-
+      
+    
     public String currencyFormat(int currency) {
 
         String toString = "";
@@ -101,12 +103,65 @@ public class BankAccount {
 
         return toString;
     }
+    
+    
+    public String createNewAccountNumber(Bank bank, int typeOfAccount) {
+
+        String newIdNumber = "";
+        String lastIdCheck = "";
+        int lastNumber = 0;
+        int lastBiggestNumber = 0;
+        
+        switch (typeOfAccount) {
+            case 1:
+                newIdNumber = "100-"; // New Colon Account
+                break;
+            case 2:
+                newIdNumber = "200-"; // New Dollar Account
+                break;
+            case 3:
+                newIdNumber = "300-"; // New Euro Account 
+                break;
+        }
+
+        for (Person p: bank.getListOfPersons()) {
+            for (BankAccount b: p.getListOfBankAccounts()) {
+                lastIdCheck = p.getId();
+                lastNumber = Integer.parseInt(lastIdCheck.substring(4, 9));
+                if (lastNumber > lastBiggestNumber) {
+                    lastBiggestNumber = lastNumber;
+                }
+            } 
+        }
+        
+        if (lastBiggestNumber < 9) {
+            newIdNumber += "00000" + String.valueOf(lastBiggestNumber + 1);
+        } else if (lastBiggestNumber >= 9 && lastBiggestNumber < 99) {
+            newIdNumber += "0000" + String.valueOf(lastBiggestNumber + 1);
+        } else if (lastBiggestNumber >= 99 && lastBiggestNumber < 1000) {
+            newIdNumber += "000" + String.valueOf(lastBiggestNumber + 1);
+        }
+         
+        return newIdNumber;
+    }
+
+
 
     @Override
     public String toString() {
 
         return "Cuenta: " + id + ", Moneda:" + currency + ", Total: " + amount + ", listOfTransactions=" + listOfTransactions + ", registeredDate=" + registeredDate + ", expirationDate=" + expirationDate + '}';
 
+    }
+
+    @Override
+    public double getInterestRegularAccount() {
+        return this.getAmount() * 0.02;
+    }
+
+    @Override
+    public double getInterestCreditAccount() {
+        throw new UnsupportedOperationException("Not supported yet.");  
     }
 
 }
