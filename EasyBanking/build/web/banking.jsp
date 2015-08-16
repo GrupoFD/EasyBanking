@@ -89,7 +89,7 @@
             <td align="center">  Moneda  </td>
             <td align="center">Fecha Creacion</td>
             <td align="center">Fecha Expiracion</td>
-            <td align="center">  Monto  </td>
+            <td align="center">Monto</td>
             <%
                 
                 ArrayList<BankAccount> personBankAccount = (ArrayList<BankAccount>) session.getAttribute("BANK_ACCOUNT");
