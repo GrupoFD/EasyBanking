@@ -125,7 +125,9 @@ public class BankAccount implements Interesable {
         return newIdNumber;
     }
 
-    public void depositsInterestInAccount() {
+    public double calculatesInterestForAccount() {
+
+        double interests = 0.0;
 
         Calendar myCalendar = Calendar.getInstance();
         int thisMonth = myCalendar.get(Calendar.MONTH);
@@ -136,11 +138,14 @@ public class BankAccount implements Interesable {
         if ((thisMonth - lastPaymentMonth > 1) || (thisMonth == 1 && lastPaymentMonth == 12)) {
             if ((thisDay - dayOfLastInterest) >= 30) {
                 System.out.println("This time interests will be deposited to you. The amount is: " + getInterestRegularAccount());
-                this.setAmount(this.getAmount() + getInterestRegularAccount());
+                interests = getInterestRegularAccount();
+
             }
         }
 
+        return interests;
     }
+    
     
     
 
