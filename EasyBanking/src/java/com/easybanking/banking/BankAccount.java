@@ -145,10 +145,29 @@ public class BankAccount implements Interesable {
 
         return interests;
     }
-    
-    
-    
 
+        public String currencyFormat(int currency) {
+
+        String c = "";
+
+        switch (currency) {
+
+            case 1:
+                c = "Colones";
+                break;
+            case 2:
+                c = "Dolares";
+                break;
+
+            case 3:
+                c = "Euros";
+                break;
+
+        }
+        return c;
+    }
+
+    
     @Override
     public String toString() {
 

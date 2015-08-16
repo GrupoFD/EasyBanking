@@ -6,6 +6,7 @@
 
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.easybanking.banking.BankAccount"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.easybanking.banking.Person"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -115,7 +116,6 @@
                 session.removeAttribute("RESULT_CLIENT");
             %>            
         </table>
-        
-        
     </body>
+    
 </html>

@@ -16,10 +16,10 @@ public class Combo4x3 {
     private BankAccount account_3;
     private BankAccount account_4;
 
-    public Combo3x4() {
+    public Combo4x3() {
     }
 
-    public Combo3x4(BankAccount account_1, BankAccount account_2, BankAccount account_3, BankAccount account_4) {
+    public Combo4x3(BankAccount account_1, BankAccount account_2, BankAccount account_3, BankAccount account_4) {
         this.account_1 = account_1;
         this.account_2 = account_2;
         this.account_3 = account_3;
