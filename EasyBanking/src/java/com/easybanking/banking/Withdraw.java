@@ -13,8 +13,8 @@ import java.util.Calendar;
  */
 public class Withdraw extends Transaction{
 
-    public Withdraw(Calendar timeStamp, double amountOfTransaction) {
-        super(timeStamp, amountOfTransaction);
+    public Withdraw(String id, Calendar timeStamp, double amountOfTransaction) {
+        super(id, timeStamp, amountOfTransaction);
     }
     
       public void withdrawAmount(Person person, BankAccount bankAccount){

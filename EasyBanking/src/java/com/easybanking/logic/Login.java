@@ -7,9 +7,13 @@ package com.easybanking.logic;
 
 import com.easybanking.banking.Bank;
 import com.easybanking.banking.BankAccount;
+import com.easybanking.banking.Deposit;
 import com.easybanking.banking.Manager;
 import com.easybanking.banking.Person;
+import com.easybanking.banking.Transaction;
+import com.easybanking.banking.Transfer;
 import com.easybanking.banking.User;
+import com.easybanking.banking.Withdraw;
 import java.io.IOException;
 import java.util.Calendar;
 import javax.servlet.ServletException;
@@ -48,25 +52,30 @@ public class Login extends HttpServlet {
 
         Person p = new Manager("123", "Carlos", "Asdrubal", "Pachano", "pachano@gmail.com", "123", "qwdqwd", Calendar.getInstance(), "123", 2500, "TARDE", 1500);
         Person p2 = new Person("456", "Carlos", "Solis", "Pancho", "solispancho@gmail.com", "456", "qwdqwd", Calendar.getInstance(), "123");
-        Person p3 = new Person("75632", "Carlos", "Solis", "Pancho", "solispancho@gmail.com", "456", "qwdqwd", Calendar.getInstance(), "123");     
+        Person p3 = new Person("75632", "Carlos", "Solis", "Pancho", "solispancho@gmail.com", "456", "qwdqwd", Calendar.getInstance(), "123");
         Person p4 = new Person("5542", "Carlos", "Solis", "Pancho", "solispancho@gmail.com", "456", "qwdqwd", Calendar.getInstance(), "123");
-        
+
         ud.bank.getListOfPersons().add(p);
         ud.bank.getListOfPersons().add(p2);
         ud.bank.getListOfPersons().add(p3);
         ud.bank.getListOfPersons().add(p4);
-        
+
         BankAccount a = new BankAccount("121233", 2, 1234, Calendar.getInstance(), Calendar.getInstance());
-        BankAccount b= new BankAccount("12354", 3, 1234, Calendar.getInstance(), Calendar.getInstance());
+        BankAccount b = new BankAccount("12354", 3, 1234, Calendar.getInstance(), Calendar.getInstance());
         BankAccount c = new BankAccount("12345", 4, 1234, Calendar.getInstance(), Calendar.getInstance());
-        
+
         p.getListOfBankAccounts().add(a);
         p.getListOfBankAccounts().add(b);
         p.getListOfBankAccounts().add(c);
+
+        Transaction t = new Deposit("1", Calendar.getInstance(), 3500);
+        Transaction t2 = new Withdraw("2", Calendar.getInstance(), 500);
+        Transaction t3 = new Transfer("3", Calendar.getInstance(), 2500, "123");
         
-        p2.getListOfBankAccounts().add(a);
-        p2.getListOfBankAccounts().add(b);
-        
+        a.getListOfTransactions().add(t);
+        a.getListOfTransactions().add(t2);
+        a.getListOfTransactions().add(t3);
+
         Person userDataFound = ud.bank.personValidation(paramId, paramPass);
 
         if (userDataFound instanceof User) {

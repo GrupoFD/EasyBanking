@@ -1,3 +1,4 @@
+<%@page import="com.easybanking.banking.Transaction"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%-- 
     Document   : banking
@@ -15,6 +16,7 @@
 <html>
     <%
         Person p = (Person) session.getAttribute("CLIENT");
+
     %>
 
     <style type="text/css">
@@ -38,9 +40,11 @@
             padding: 5px 15px;
             font-family: Arial, Helvetica, sans-serif;
             font-size:14px;
-            border:1px solid #0076a3; border-right:0px;
+            border:1px solid #0076a3;
             border-top-left-radius: 5px 5px;
             border-bottom-left-radius: 5px 5px;
+            border-top-right-radius: 5px 5px;
+            border-bottom-right-radius: 5px 5px;
         }
 
         .ebbutton {
@@ -123,11 +127,8 @@
             <td align="center">  Fecha Expiracion  </td>
             <td align="center">  Monto  </td>
             <%
-
                 String transactionType = (String) session.getAttribute("TYPE_OF_TRANSACTION");
-
                 String accountId = (String) session.getAttribute("USER_TRANSACTION");
-
                 ArrayList<BankAccount> personBankAccount = (ArrayList<BankAccount>) session.getAttribute("BANK_ACCOUNT");
                 SimpleDateFormat sdf = new SimpleDateFormat("MM / yyyy");
 
@@ -177,18 +178,77 @@
         </table>
         <% }
                 }
-            }
-
-            if (transactionType != null & accountId != null) {
-        %>
-
-        <a> TIPO TRANSACCION<%=transactionType%>  y NUMERO CUENTA<%=accountId%> </a>
-
-        <%}%> 
+            }%>
         <br>
-        <br>
-        
         <div><a href="createaccount.jsp"><button class="ebbutton" value="createaccount">Agregar cuenta</button></a></div>
+        <br>
+        <br>
+        <br>
+
+        <%
+            if (transactionType != null & accountId != null) {
+                if (transactionType.equals("deposit")) {%>
+
+        <form action="ClientTransaction" >
+            <div>
+                <a>
+                    Monto a depositar: <input type="text" name="amount" class="ebtextinput"/><br/>
+
+                    <br>               
+
+                    <input type="submit" name="execute" value="Depositar" class="ebbutton" style="width: 200px"/><br/>
+                </a>
+            </div>
+        </form>
+
+        <%
+        } else if (transactionType.equals("withdraw")) { %>
+        <form action="ClientTransaction" >
+            <div>
+                <a>
+                    Monto a retirar: <input type="text" name="amount" class="ebtextinput"/><br/>
+
+                    <br>               
+
+                    <input type="submit" name="execute" value="Retirar" class="ebbutton" style="width: 200px"/><br/>
+                </a>
+            </div>
+        </form>
+            
+        <% } else if (transactionType.equals("transfer")) {
+            
+        
+            
+        } else if (transactionType.equals("history")) {
+
+            ArrayList<Transaction> accountTransaction = (ArrayList<Transaction>) session.getAttribute("ACCOUNT_TRANSACTIONS");
+            if (accountTransaction != null) {%>
+        <table border="1">
+            <tr>
+                <td align="center">  # Transaccion  </td>
+                <td align="center">  Fecha  </td>
+                <td align="center">  Monto  </td>
+                <td align="center">  Tipo  </td>
+            </tr>
+            <%for (Transaction t : accountTransaction) {%>
+            <tr>
+                <td align="center"><%=t.getId()%></td>
+                <td align="center"><%=sdf.format(t.getTimeStamp().getTime())%></td>
+                <td align="center"><%=t.getAmountOfTransaction()%></td>
+                <td align="center"><%=t.getTypeOfTransaction(t)%></td>
+            </tr>
+
+            <%
+                }%>
+        </table>
+        <%
+
+                    }
+
+                }
+            }
+        %> 
+
 
     </body>
 </html>

@@ -13,11 +13,11 @@ import java.util.Calendar;
  */
 public class Transfer extends Transaction {
 
-    private double transferToUser;
+    private String idFromUserToTransfer;
 
-    public Transfer(double transferToUser, Calendar timeStamp, double amountOfTransaction) {
-        super(timeStamp, amountOfTransaction);
-        this.transferToUser = transferToUser;
+    public Transfer(String id, Calendar timeStamp, double amountOfTransaction, String idFromUserToTransfer) {
+        super(id, timeStamp, amountOfTransaction);
+        this.idFromUserToTransfer = idFromUserToTransfer;
     }
 
     public void transferAmount(Person person, BankAccount bankAccount, Person personToTransfer, BankAccount bankAccountTotransfer) {

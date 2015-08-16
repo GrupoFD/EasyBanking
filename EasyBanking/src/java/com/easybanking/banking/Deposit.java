@@ -13,8 +13,8 @@ import java.util.Calendar;
  */
 public class Deposit extends Transaction {
 
-    public Deposit(Calendar timeStamp, double amountOfTransaction) {
-        super(timeStamp, amountOfTransaction);
+    public Deposit(String id, Calendar timeStamp, double amountOfTransaction) {
+        super(id, timeStamp, amountOfTransaction);
     }
 
     public void depositAmount(Person person, BankAccount bankAccount) {
@@ -25,6 +25,7 @@ public class Deposit extends Transaction {
                 double finalAmount = b.getAmount() + this.getAmountOfTransaction();
                 finalAmount += bankAccount.calculatesInterestForAccount();
                 b.setAmount(finalAmount);
+                
             } else {
                 System.out.println("Exception");
             }
