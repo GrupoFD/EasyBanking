@@ -20,6 +20,10 @@
         <servlet-name>ClientInfo</servlet-name>
         <servlet-class>com.easybanking.logic.ClientInfo</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ClientTransaction</servlet-name>
+        <servlet-class>com.easybanking.logic.ClientTransaction</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>ClientInfo</servlet-name>
         <url-pattern>/ClientInfo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ClientTransaction</servlet-name>
+        <url-pattern>/ClientTransaction</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

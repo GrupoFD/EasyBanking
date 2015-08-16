@@ -5,11 +5,8 @@
  */
 package com.easybanking.logic;
 
-import com.easybanking.banking.Person;
-import static com.easybanking.logic.UserData.bank;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +17,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Soler
  */
-public class ClientInfo extends HttpServlet {
+public class ClientTransaction extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,23 +31,44 @@ public class ClientInfo extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
 
-        HttpSession session = request.getSession(true);
-        String id = request.getParameter("id");
-        String name = request.getParameter("name");
-        Person p = bank.personConfirmation(id);
-        //id viene del search  de usuario en loggedin
-        session.setAttribute("CLIENT", bank.personConfirmation(id));
-        session.setAttribute("BANK_ACCOUNT", p.getlistOfBankAccounts());
-       
-        //La logica para buscar el cliente y meter los resultados en la lista a retornar
-        //ArrayList<Person> listofPerson = bank.searchedPerson(name);
-        //session.setAttribute("RESULT_CLIENT", listofPerson);
+            HttpSession session = request.getSession(true);
 
-        response.sendRedirect("banking.jsp");
+            String deposit = request.getParameter("deposit");
+            String withdraw = request.getParameter("withdraw");
+            String transfer = request.getParameter("transfer");
+            String history = request.getParameter("history");
+
+            if (deposit != null) {
+
+                session.setAttribute("TYPE_OF_TRANSACTION", "1");
+                session.setAttribute("USER_TRANSACTION", deposit);
+
+            } else if (withdraw != null) {
+
+                session.setAttribute("TYPE_OF_TRANSACTION", "2");
+                session.setAttribute("USER_TRANSACTION", withdraw);
+
+            } else if (transfer != null) {
+
+                session.setAttribute("TYPE_OF_TRANSACTION", "3");
+                session.setAttribute("USER_TRANSACTION", transfer);
+
+            } else if (history != null) {
+
+                session.setAttribute("TYPE_OF_TRANSACTION", "4");
+                session.setAttribute("USER_TRANSACTION", history);
+
+            }
+
+            response.sendRedirect("banking.jsp");
+
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *

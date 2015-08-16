@@ -36,7 +36,7 @@ public class UserData extends HttpServlet {
      */
     
     //Login login = new Login();
-   static Bank bank = new Bank(1, "EASY BANK", "Costa Rica", 800800800);
+   public static Bank bank = new Bank(1, "EASY BANK", "Costa Rica", 800800800);
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

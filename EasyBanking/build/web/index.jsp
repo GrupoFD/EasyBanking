@@ -9,7 +9,7 @@
 <html>
     <head>
         <Style>
-            body{background:#c3dfef}
+            body{background:#c3dfef}     
             a {
                 text-decoration:none;
             }
@@ -73,11 +73,17 @@
             }
         </style>
     </style>
-    <!--<script>
-        function myFunction() {
-            alert("Hello! I am an alert box!");
+    <script type="text/javascript">
+        function changecolor()
+        {
+            var clr = prompt("Enter the color", "");
+            document.bgColor = clr;
         }
-    </script>-->
+
+        function myFunction() {
+            alert("HOLA", "Hello! I am an alert box!");
+        }
+    </script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>EASY BANKING</title>
 </head>
@@ -101,6 +107,11 @@
         <input type="submit" name="send" value="Ingresar" class="ebbutton" style="width: 200px"/><br/>
 
     </form>
+
+    <h1> <b> ventana emergente </b></h1> 
+    <br>
+    <form name = "myform"> <input type = "button" value="Agregar" onclick="changecolor()"> </form> 
+
 
 </body>
 </html>

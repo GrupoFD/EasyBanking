@@ -90,6 +90,7 @@
             <div class="ebclear"></div>
 
         </div>
+            
         <table border="1">
             <%
                 ArrayList<Person> searchResult = (ArrayList<Person>) session.getAttribute("RESULT_CLIENT");
@@ -124,7 +125,7 @@
         </table>
 
         <h1>Presione en la transaccion que desea realizar</h1>
-        <form action="newClient.jsp">
+        <form action="newclient.jsp">
             <input type="submit" value="Agregar cliente" name="newclient" />    
         </form>
 

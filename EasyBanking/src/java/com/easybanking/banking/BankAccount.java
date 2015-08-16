@@ -1,7 +1,6 @@
-
-
 package com.easybanking.banking;
 
+import com.easybanking.logic.UserData;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -11,7 +10,6 @@ import java.util.Calendar;
  */
 public class BankAccount implements Interesable {
 
- 
     private String id;
     private int currency;
     private double amount;
@@ -21,10 +19,8 @@ public class BankAccount implements Interesable {
     private Calendar lastInterestPaymentDate;
 
     public BankAccount() {
-        this.lastInterestPaymentDate = Calendar.getInstance();
-    } 
-   
-   
+    }
+
     public BankAccount(String id, int currency, double amount, Calendar registeredDate, Calendar expirationDate) {
         this.id = id;
         this.currency = currency;
@@ -32,7 +28,7 @@ public class BankAccount implements Interesable {
         this.registeredDate = registeredDate;
         this.expirationDate = expirationDate;
         this.lastInterestPaymentDate = Calendar.getInstance();
-        
+
     }
 
     public String getId() {
@@ -82,16 +78,16 @@ public class BankAccount implements Interesable {
     public void setExpirationDate(Calendar expirationDate) {
         this.expirationDate = expirationDate;
     }
-    
-    
-    
-    public String createNewAccountNumber(Bank bank, int typeOfAccount) {
 
+    public String createNewAccountNumber(int typeOfAccount) {
+
+        UserData ud = new UserData();
+        Bank bank = ud.bank;
         String newIdNumber = "";
         String lastIdCheck = "";
         int lastNumber = 0;
         int lastBiggestNumber = 0;
-        
+
         switch (typeOfAccount) {
             case 1:
                 newIdNumber = "100-"; // New Colon Account
@@ -102,18 +98,21 @@ public class BankAccount implements Interesable {
             case 3:
                 newIdNumber = "300-"; // New Euro Account 
                 break;
+            case 4:
+                newIdNumber = "400-"; // New Euro Account 
+                break;
         }
 
-        for (Person p: bank.getListOfPersons()) {
-            for (BankAccount b: p.getListOfBankAccounts()) {
+        for (Person p : bank.getListOfPersons()) {
+            for (BankAccount b : p.getListOfBankAccounts()) {
                 lastIdCheck = p.getId();
                 lastNumber = Integer.parseInt(lastIdCheck.substring(4, 9));
                 if (lastNumber > lastBiggestNumber) {
                     lastBiggestNumber = lastNumber;
                 }
-            } 
+            }
         }
-        
+
         if (lastBiggestNumber < 9) {
             newIdNumber += "00000" + String.valueOf(lastBiggestNumber + 1);
         } else if (lastBiggestNumber >= 9 && lastBiggestNumber < 99) {
@@ -121,7 +120,7 @@ public class BankAccount implements Interesable {
         } else if (lastBiggestNumber >= 99 && lastBiggestNumber < 1000) {
             newIdNumber += "000" + String.valueOf(lastBiggestNumber + 1);
         }
-         
+
         return newIdNumber;
     }
 
@@ -146,7 +145,7 @@ public class BankAccount implements Interesable {
         return interests;
     }
 
-        public String currencyFormat(int currency) {
+    public String currencyFormat(int currency) {
 
         String c = "";
 
@@ -163,11 +162,30 @@ public class BankAccount implements Interesable {
                 c = "Euros";
                 break;
 
+            case 4:
+                c = "Dolares";
+                break;
+
         }
         return c;
     }
 
-    
+    public int currencyToInt(String currencyString) {
+
+        int currencyInt = 0;
+        
+        if (currencyString.equals("dolar")) {
+            currencyInt = 2;
+        } else if (currencyString.equals("colon")) {
+            currencyInt = 1;
+        } else if (currencyString.equals("euro")) {
+            currencyInt = 3;
+        } else if (currencyString.equals("credito")) {
+            currencyInt = 4;
+        }
+        return currencyInt;
+    }
+
     @Override
     public String toString() {
 
@@ -182,7 +200,7 @@ public class BankAccount implements Interesable {
 
     @Override
     public double getInterestCreditAccount() {
-        throw new UnsupportedOperationException("Not supported yet.");  
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
 }
