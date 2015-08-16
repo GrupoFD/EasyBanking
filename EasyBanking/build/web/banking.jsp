@@ -4,6 +4,7 @@
     Author     : Soler
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.easybanking.banking.BankAccount"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.ArrayList"%>
@@ -89,7 +90,7 @@
             <td align="center">  Moneda  </td>
             <td align="center">Fecha Creacion</td>
             <td align="center">Fecha Expiracion</td>
-            <td align="center">Monto</td>
+            <td align="center">  Monto  </td>
             <%
                 
                 ArrayList<BankAccount> personBankAccount = (ArrayList<BankAccount>) session.getAttribute("BANK_ACCOUNT");
