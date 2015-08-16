@@ -9,7 +9,7 @@ import java.util.Calendar;
  */
 public class Transaction{
     
-    
+    private int id;
     private Calendar timeStamp;
     private double amountOfTransaction;
 
@@ -19,8 +19,17 @@ public class Transaction{
     public Transaction(Calendar timeStamp, double amountOfTransaction) {
              this.timeStamp = timeStamp;
           this.amountOfTransaction = amountOfTransaction;
+          this.id = 0;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public Calendar getTimeStamp() {
         return timeStamp;
     }
@@ -35,6 +44,17 @@ public class Transaction{
 
     public void setAmountOfTransaction(double amountOfTransaction) {
         this.amountOfTransaction = amountOfTransaction;
+    }
+    
+    public void createNewIdNumber(BankAccount bankAccount) {
+    
+        int newIdNumber = 0;
+            for (Transaction t: bankAccount.getListOfTransactions()) {
+                newIdNumber = t.getId();
+            } 
+        newIdNumber += 1;
+    
+        this.setId(newIdNumber);
     }
 
 }
