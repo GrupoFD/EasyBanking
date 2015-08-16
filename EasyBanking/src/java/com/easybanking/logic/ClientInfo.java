@@ -37,17 +37,30 @@ public class ClientInfo extends HttpServlet {
 
         HttpSession session = request.getSession(true);
         String id = request.getParameter("id");
-        String name = request.getParameter("name");
-        Person p = bank.personConfirmation(id);
+        String transactionId = request.getParameter("transaction");
+
         //id viene del search  de usuario en loggedin
-        session.setAttribute("CLIENT", bank.personConfirmation(id));
-        session.setAttribute("BANK_ACCOUNT", p.getlistOfBankAccounts());
-       
+        
+        
+
         //La logica para buscar el cliente y meter los resultados en la lista a retornar
         //ArrayList<Person> listofPerson = bank.searchedPerson(name);
         //session.setAttribute("RESULT_CLIENT", listofPerson);
+        if (transactionId != null) {
 
-        response.sendRedirect("banking.jsp");
+            Person p = bank.personConfirmation(transactionId);
+            session.setAttribute("TRANSFERING_TO_PERSON", bank.personConfirmation(transactionId));
+            session.setAttribute("TRANSFERING_TO_ACCOUNT", p.getlistOfBankAccounts());
+            response.sendRedirect("banking.jsp");
+            
+        } else {
+
+            Person p = bank.personConfirmation(id);
+            session.setAttribute("CLIENT", bank.personConfirmation(id));
+            session.setAttribute("BANK_ACCOUNT", p.getlistOfBankAccounts());
+            response.sendRedirect("banking.jsp");
+        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

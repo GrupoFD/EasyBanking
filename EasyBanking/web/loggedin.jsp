@@ -113,7 +113,8 @@
                 <td align="center"><%=p.getLastName2()%></td>
                 <td align="center"><%=p.getEmail()%></td>
                 <!--<td style="btn"><a href="banking.jsp?id=<%=p.getId()%>&name=<%=p.getName()%>">Ingresar</a></td>-->
-                <td class="ebbutton"><a href="ClientInfo?id=<%=p.getId()%>&name=<%=p.getName()%>" style="color: #ffffff">Ingresar</a></td>
+                <td style="border: 1"><form action="ClientInfo"><button class="ebbutton" value="<%=p.getId()%>" name="id">Ingresar</button></form></td>
+                
             </tr>        
             <%
                         }

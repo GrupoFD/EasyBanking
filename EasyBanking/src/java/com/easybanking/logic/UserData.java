@@ -34,36 +34,31 @@ public class UserData extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
     //Login login = new Login();
-   public static Bank bank = new Bank(1, "EASY BANK", "Costa Rica", 800800800);
+    public static Bank bank = new Bank(1, "EASY BANK", "Costa Rica", 800800800);
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
         HttpSession session = request.getSession(true);
+        String type = request.getParameter("type");
         String searchedPerson = request.getParameter("search");
-        //La logica para buscar el cliente y meter los resultados en la lista a retornar
-        ArrayList<Person> listofPerson = bank.searchedPerson(searchedPerson);
-        session.setAttribute("RESULT_CLIENT", listofPerson);
-        response.sendRedirect("loggedin.jsp");
-        
+        String searchTransfer = request.getParameter("searchTransfer");
 
-        //Person searched = bank.personConfirmation(searchedPerson);
-        
-        //response.sendRedirect("loggedin.jsp?report=" + searched);
-                
-//        if (userDataFound != null) {
-//
-//            response.sendRedirect("loggedin.jsp?userName=" + userDataFound.getName());
-//
-//        } else {
-//
-//            response.sendRedirect("error.jsp");
-//        }
-//
-//        String searchedUser = request.getParameter("search");
+        //La logica para buscar el cliente y meter los resultados en la lista a retornar
+        if (searchTransfer != null) {
+
+                ArrayList<Person> listofPersonToTransfer = bank.searchedPerson(searchTransfer);
+                session.setAttribute("RESULT_CLIENT2", listofPersonToTransfer);
+                response.sendRedirect("banking.jsp");
+    
+        } else {
+
+            ArrayList<Person> listofPerson = bank.searchedPerson(searchedPerson);
+            session.setAttribute("RESULT_CLIENT", listofPerson);
+            response.sendRedirect("loggedin.jsp");
+        }
 
     }
 

@@ -10,6 +10,8 @@ import com.easybanking.banking.BankAccount;
 import com.easybanking.banking.Deposit;
 import com.easybanking.banking.Person;
 import com.easybanking.banking.Transaction;
+import com.easybanking.banking.Transfer;
+import com.easybanking.banking.Withdraw;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Calendar;
@@ -79,25 +81,62 @@ public class ClientTransaction extends HttpServlet {
 
                     }
                 }
-                
+
             }
-            
-            response.sendRedirect("banking.jsp");
 
-//            switch (execute) {
-//
-//                case "deposit":
-//                    double amount = Double.parseDouble(request.getParameter("amount"));
-//                    Transaction t = new Deposit("1", Calendar.getInstance(), amount);
-//                    for (BankAccount ba : p.getListOfBankAccounts()) {
-//                        if (ba.getId().equals(deposit)) {
-//
-//                            ba.getListOfTransactions().add(t);
-//                        }
-//                    }
-//                    break;
-//            }
+            if (execute != null) {
 
+                double amount = Double.parseDouble(request.getParameter("amount"));
+
+                String id = (String) session.getAttribute("USER_TRANSACTION");
+                
+                switch (execute) {
+
+                    case "Depositar":
+
+                        Transaction d = new Deposit("1802", Calendar.getInstance(), amount);
+                        for (BankAccount ba : p.getListOfBankAccounts()) {
+                            if (ba.getId().equals(id)) {
+                                ba.getListOfTransactions().add(d);
+                                
+                            }
+                        }
+                        response.sendRedirect("banking.jsp");
+                        break;
+
+                    case "Retirar":
+
+                        Transaction w = new Withdraw("1802", Calendar.getInstance(), amount);
+                        for (BankAccount ba : p.getListOfBankAccounts()) {
+                            if (ba.getId().equals(id)) {
+
+                                ba.getListOfTransactions().add(w);
+                                session.invalidate();
+                                response.sendRedirect("banking.jsp");
+                            }
+                        }
+                        break;
+
+                    case "Transferir":
+
+                        Transaction t = new Transfer("1802", Calendar.getInstance(), amount, "123");
+                        for (BankAccount ba : p.getListOfBankAccounts()) {
+                            if (ba.getId().equals(id)) {
+
+                                ba.getListOfTransactions().add(t);
+                                session.invalidate();
+                                response.sendRedirect("banking.jsp");
+                            }
+                        }
+                        break;
+
+                }
+
+            } else {
+
+                response.sendRedirect("banking.jsp");
+
+            }
         }
 
     }
