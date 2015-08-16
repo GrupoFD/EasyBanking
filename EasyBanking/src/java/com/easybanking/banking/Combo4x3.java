@@ -9,7 +9,7 @@ package com.easybanking.banking;
  *
  * @author Glenn Benavides
  */
-public class Combo3x4 {
+public class Combo4x3 {
     
     private BankAccount account_1;
     private BankAccount account_2;
