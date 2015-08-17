@@ -9,7 +9,7 @@ package com.easybanking.banking;
  *
  * @author Glenn Benavides
  */
-public class Combo_saveYourMoney_UseCredit extends Combos {
+public class ComboSaveOnlyAndCredit extends Combos {
     
     public final double GIFT_200DOLLARS;
 
