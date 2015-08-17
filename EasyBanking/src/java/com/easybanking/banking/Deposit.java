@@ -13,25 +13,27 @@ import java.util.Calendar;
  */
 public class Deposit extends Transaction {
 
+    public Deposit() {
+    }
+
     public Deposit(String id, Calendar timeStamp, double amountOfTransaction) {
         super(id, timeStamp, amountOfTransaction);
     }
 
-    public void depositAmount(Person person, BankAccount bankAccount) {
-        
+    public boolean depositAmount(Person person, BankAccount bankAccount) {
+
         for (BankAccount b : person.getlistOfBankAccounts()) {
             if (b.equals(bankAccount)) {
                 double amount = b.getAmount();
                 double finalAmount = b.getAmount() + this.getAmountOfTransaction();
                 finalAmount += bankAccount.calculatesInterestForAccount();
                 b.setAmount(finalAmount);
-                
+                return true;
             } else {
-                System.out.println("Exception");
+                return false;
             }
         }
-        
+        return false;
     }
-
 
 }

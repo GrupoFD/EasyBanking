@@ -5,34 +5,35 @@
  */
 package com.easybanking.banking;
 
+import java.io.PrintWriter;
 import java.util.Calendar;
 
 /**
  *
  * @author Soler
  */
-public class Withdraw extends Transaction{
+public class Withdraw extends Transaction {
 
     public Withdraw(String id, Calendar timeStamp, double amountOfTransaction) {
         super(id, timeStamp, amountOfTransaction);
     }
-    
-      public void withdrawAmount(Person person, BankAccount bankAccount){
-        for (BankAccount b: person.getlistOfBankAccounts()) {
+
+    public boolean withdrawAmount(Person person, BankAccount bankAccount) {
+        for (BankAccount b : person.getlistOfBankAccounts()) {
             if (b.equals(bankAccount)) {
                 double amount = b.getAmount();
                 if (amount >= getAmountOfTransaction()) {
                     double finalAmount = b.getAmount() - this.getAmountOfTransaction();
                     b.setAmount(finalAmount);
+                    return true;
                 } else {
-                    System.out.println("EXCEPTION");
+                    return false;
                 }
 
-                
             }
-            
+
         }
-        
+        return false;
     }
-    
+
 }
