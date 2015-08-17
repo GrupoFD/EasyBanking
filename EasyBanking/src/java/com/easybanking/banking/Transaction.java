@@ -5,7 +5,7 @@ import java.util.Calendar;
 
 /**
  *
- * @author Glenn
+ * @author Glenn Benavides
  */
 public class Transaction{
     
