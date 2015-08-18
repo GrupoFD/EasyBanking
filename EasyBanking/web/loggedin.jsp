@@ -113,6 +113,7 @@
             Date d = new Date();
             User u = (User) session.getAttribute("USER");
             String passReset = request.getParameter("passReset");
+            String message = request.getParameter("MESSAGE_ERROR");
         %>
 
 
@@ -126,23 +127,30 @@
             <br>
             <br>
             <% } else {   %>
-
-            Digite su contrasena actual: <input type="text" class="ebtextinput2" name="pass" size="21" maxlength="120">
-            <br>
-            <br>
-            La nueva contrasena: <input type="text" class="ebtextinput2" name="newPass" size="21" maxlength="120">
-            <br>
-            <br>
-            Confirme la contrasena: <input type="text" class="ebtextinput2" name="confirmPass" size="21" maxlength="120">
-            <br>
-            <br>
-            <form action="ChangePass"><button class="ebbutton2" value="true" name="passReset">Cambiar</button></form>
+            <form action="ChangePass">
+                Digite su contrasena actual: <input type="text" class="ebtextinput2" name="pass" size="21" maxlength="120">
+                <br>
+                <br>
+                La nueva contrasena: <input type="text" class="ebtextinput2" name="newPass" size="21" maxlength="120">
+                <br>
+                <br>
+                Confirme la contrasena: <input type="text" class="ebtextinput2" name="confirmPass" size="21" maxlength="120">
+                <br>
+                <br>
+                <button class="ebbutton2" value="true" name="passReset">Cambiar</button></form>
             <br>
             <br>
             <a href="loggedin.jsp"><button class="ebbutton2" value="true" name="passReset">Cancelar</button></a> 
             <br>
             <br>
-            <% }%>
+
+            <% if (message != null) {%>
+
+            <a><%=message%></a>
+
+            <% }
+
+                }%>
 
             <br>
             Fecha de ingreso: <%=d%>
@@ -186,11 +194,11 @@
             </tr>        
             <%
                         }
-                    session.removeAttribute("RESULT_CLIENT");
+                        session.removeAttribute("RESULT_CLIENT");
                     }
                 }
 
-             
+
             %>
         </table>
 

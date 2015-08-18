@@ -35,37 +35,44 @@ public class CreateAccount extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        HttpSession session = request.getSession(true);
-        Person p = (Person) session.getAttribute("NEW_CLIENT");
-        String paramIdentificaTion = p.getId();
-        UserData ud = new UserData();
 
-        BankAccount ba = new BankAccount();
-        //if (p != null) {
-        String currency = request.getParameter("currency");
-        String paramId = ba.createNewAccountNumber(currency);
-        String paramCurrency = request.getParameter("currency");
+        try {
+            HttpSession session = request.getSession(true);
+            Person p = (Person) session.getAttribute("NEW_CLIENT");
+            String paramIdentificaTion = p.getId();
+            UserData ud = new UserData();
 
-        int paramCurrencyInt = ba.currencyToInt(paramCurrency);
+            BankAccount ba = new BankAccount();
+            //if (p != null) {
+            String currency = request.getParameter("currency");
+            String paramId = ba.createNewAccountNumber(currency);
+            String paramCurrency = request.getParameter("currency");
 
-        double paramAmount = 0;
-        paramAmount = Double.parseDouble(request.getParameter("amount"));
-        
-        //cambiar la fecha de expiración
-        Calendar expirationDate = ba.expirationDate();
+            int paramCurrencyInt = ba.currencyToInt(paramCurrency);
 
-        BankAccount account = new BankAccount(paramId, paramCurrencyInt, paramAmount, Calendar.getInstance(), expirationDate);
+            double paramAmount = 0;
+            paramAmount = Double.parseDouble(request.getParameter("amount"));
 
-        p.getlistOfBankAccounts().add(account);
+            //cambiar la fecha de expiración
+            Calendar expirationDate = ba.expirationDate();
 
-        session.removeAttribute("NEW_CLIENT");
-        
-        response.sendRedirect("loggedin.jsp");
+            BankAccount account = new BankAccount(paramId, paramCurrencyInt, paramAmount, Calendar.getInstance(), expirationDate);
 
+            p.getlistOfBankAccounts().add(account);
+
+            session.removeAttribute("NEW_CLIENT");
+
+            response.sendRedirect("loggedin.jsp");
+
+        } catch (NumberFormatException e) {
+
+            e.getMessage();
+
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *

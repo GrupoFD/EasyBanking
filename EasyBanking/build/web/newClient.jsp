@@ -11,6 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Nuevo cliente</title>
     <h1>Nuevo cliente </h1>
+    
     <form action="CreatePerson">
         Cedula              :<input type="text" name="id"/><br/>
         Nombre              :<input type="text" name="name"/><br/>

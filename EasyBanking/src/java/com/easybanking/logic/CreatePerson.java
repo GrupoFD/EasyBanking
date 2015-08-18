@@ -42,6 +42,7 @@ public class CreatePerson extends HttpServlet {
             throws ServletException, IOException, ParseException {
         response.setContentType("text/html;charset=UTF-8");
 
+        try{
         HttpSession session = request.getSession(true);
         UserData ud = new UserData();
         String paramId = request.getParameter("id");
@@ -72,7 +73,10 @@ public class CreatePerson extends HttpServlet {
         client.sendEmail(paramPass, paramEmail);
         response.sendRedirect("createaccount.jsp?fromBanking=false");
 
-    }
+    }catch(NullPointerException e){
+        
+        e.getMessage();
+    }}
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

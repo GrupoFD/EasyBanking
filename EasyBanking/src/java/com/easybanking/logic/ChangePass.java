@@ -32,25 +32,36 @@ public class ChangePass extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        HttpSession session = request.getSession(true);
-        
-          Person p = (Person) session.getAttribute("USER");
-        
-          String actualPass = request.getParameter("pass");
-          String newPass = request.getParameter("newPass"); 
-          String confirmPass = request.getParameter("confirmPass");
-          
-          if (actualPass.equals(p.getPassword())) {
-              if (newPass.equals(confirmPass)) {
-                  
-                  p.setPassword(newPass);
-   
-              } 
-        }else{
-          
-              session.setAttribute("MESSAGE_ERROR", "Contrasena no coincide.");
-          }
+
+        try {
+            HttpSession session = request.getSession(true);
+
+            Person p = (Person) session.getAttribute("USER");
+
+            String actualPass = request.getParameter("pass");
+            String newPass = request.getParameter("newPass");
+            String confirmPass = request.getParameter("confirmPass");
+
+            if (actualPass.equals(p.getPassword())) {
+                if (newPass.equals(confirmPass)) {
+
+                    p.setPassword(newPass);
+                    session.setAttribute("MESSAGE_ERROR", "Contrasena cambiada con exito");
+                    response.sendRedirect("loggedin.jsp");
+                }
+            } else {
+
+                session.setAttribute("MESSAGE_ERROR", "Contrasena no coincide.");
+                response.sendRedirect("loggedin.jsp");
+            }
+
+            response.sendRedirect("loggedin.jsp");
+
+        } catch (NullPointerException e) {
+
+            e.getMessage();
+
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

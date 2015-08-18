@@ -37,37 +37,43 @@ public class CreateUser extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ParseException {
-         response.setContentType("text/html;charset=UTF-8");
-         
-        UserData ud = new UserData();
-        String paramId = request.getParameter("id");
-        String paramName = request.getParameter("name");
-        String paramLastname = request.getParameter("lastname");
-        String paramLastname02 = request.getParameter("lastname02");
-        String paramEmail = request.getParameter("email");
-        //Investigar como recibir este parametro
-        String paramBirtdate = request.getParameter("birthdate");
-        DateFormat formatter = new SimpleDateFormat("MM/dd/yy");
-        Date date = formatter.parse(paramBirtdate);
-        Calendar birtdate = Calendar.getInstance();
-        birtdate.setTime(date);
-        String paramAddress = request.getParameter("address");
-        String paramPhone = request.getParameter("phone");
-        int paramSalary = Integer.parseInt(request.getParameter("salary"));
-        String paramworkShift = request.getParameter("workShift");
+        response.setContentType("text/html;charset=UTF-8");
 
-        Person user = new Person();
-        String paramPass = user.encriptPassword(paramName);
+        try {
+            UserData ud = new UserData();
+            String paramId = request.getParameter("id");
+            String paramName = request.getParameter("name");
+            String paramLastname = request.getParameter("lastname");
+            String paramLastname02 = request.getParameter("lastname02");
+            String paramEmail = request.getParameter("email");
+            //Investigar como recibir este parametro
+            String paramBirtdate = request.getParameter("birthdate");
+            DateFormat formatter = new SimpleDateFormat("MM/dd/yy");
+            Date date = formatter.parse(paramBirtdate);
+            Calendar birtdate = Calendar.getInstance();
+            birtdate.setTime(date);
+            String paramAddress = request.getParameter("address");
+            String paramPhone = request.getParameter("phone");
+            int paramSalary = Integer.parseInt(request.getParameter("salary"));
+            String paramworkShift = request.getParameter("workShift");
 
-        user = new User(paramId, paramName, paramLastname, paramLastname02, paramEmail, paramPass, paramAddress, birtdate, paramPhone, paramSalary, paramworkShift);
+            Person user = new Person();
+            String paramPass = user.encriptPassword(paramName);
 
-        ud.bank.getListOfPersons().add(user);
-        user.sendEmail(paramPass, paramEmail);
-        response.sendRedirect("loggedin.jsp");
+            user = new User(paramId, paramName, paramLastname, paramLastname02, paramEmail, paramPass, paramAddress, birtdate, paramPhone, paramSalary, paramworkShift);
 
+            ud.bank.getListOfPersons().add(user);
+            user.sendEmail(paramPass, paramEmail);
+            response.sendRedirect("loggedin.jsp");
+
+        } catch (NullPointerException e) {
+
+            e.getMessage();
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *

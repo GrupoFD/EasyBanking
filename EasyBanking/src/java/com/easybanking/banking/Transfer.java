@@ -20,6 +20,10 @@ public class Transfer extends Transaction {
         this.beneficiaryOfTransaction = beneficiaryOfTransaction;
     }
 
+    public Transfer() {
+        
+    }
+
     public String getBeneficiaryOfTransaction() {
         return this.beneficiaryOfTransaction;
     }
