@@ -5,12 +5,9 @@
  */
 package com.easybanking.logic;
 
-import com.easybanking.banking.Bank;
-import com.easybanking.banking.BankAccount;
 import com.easybanking.banking.Person;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Calendar;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,9 +16,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Joss
+ * @author Soler
  */
-public class CreateAccount extends HttpServlet {
+public class ChangePass extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,32 +34,23 @@ public class CreateAccount extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         HttpSession session = request.getSession(true);
-        Person p = (Person) session.getAttribute("NEW_CLIENT");
-        String paramIdentificaTion = p.getId();
-        UserData ud = new UserData();
-
-        BankAccount ba = new BankAccount();
-        //if (p != null) {
-        String currency = request.getParameter("currency");
-        String paramId = ba.createNewAccountNumber(currency);
-        String paramCurrency = request.getParameter("currency");
-
-        int paramCurrencyInt = ba.currencyToInt(paramCurrency);
-
-        double paramAmount = 0;
-        paramAmount = Double.parseDouble(request.getParameter("amount"));
         
-        //cambiar la fecha de expiración
-        Calendar expirationDate = ba.expirationDate();
-
-        BankAccount account = new BankAccount(paramId, paramCurrencyInt, paramAmount, Calendar.getInstance(), expirationDate);
-
-        p.getlistOfBankAccounts().add(account);
-
-        session.removeAttribute("NEW_CLIENT");
+          Person p = (Person) session.getAttribute("USER");
         
-        response.sendRedirect("loggedin.jsp");
-
+          String actualPass = request.getParameter("pass");
+          String newPass = request.getParameter("newPass"); 
+          String confirmPass = request.getParameter("confirmPass");
+          
+          if (actualPass.equals(p.getPassword())) {
+              if (newPass.equals(confirmPass)) {
+                  
+                  p.setPassword(newPass);
+   
+              } 
+        }else{
+          
+              session.setAttribute("MESSAGE_ERROR", "Contrasena no coincide.");
+          }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -1,9 +1,8 @@
 <%-- 
-    Document   : createAccount
-    Created on : 10-ago-2015, 5:01:39
-    Author     : Joss
+    Document   : createaccount
+    Created on : Aug 17, 2015, 11:29:48 PM
+    Author     : Soler
 --%>
-
 <%@page import="com.easybanking.banking.BankAccount"%>
 <%@page import="com.easybanking.banking.Person"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -16,6 +15,7 @@
         if (param.equals("true")) {
 
             Person p = (Person) session.getAttribute("CLIENT");
+            session.setAttribute("NEW_CLIENT", p);
     %>
 
     <head>
@@ -37,7 +37,7 @@
                 <option value="credito">Credito Dolares</option>
             </select><br/>
 
-            Monto a depositar:<input type="number" name="amount"/><br/>
+            Monto a depositar:<input type="text" name="amount"/><br/>
             <br>
 
             <script type="text/javascript">
@@ -85,7 +85,7 @@
                 <option value="credito">Credito Dolares</option>
             </select><br/>
 
-            Monto a depositar:<input type="number" name="amount"/><br/>
+            Monto a depositar:<input type="text" name="amount"/><br/>
             <br>
 
             <script type="text/javascript">
@@ -106,4 +106,3 @@
     %>
 
 </html>
-

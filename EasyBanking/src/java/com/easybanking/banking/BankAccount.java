@@ -172,6 +172,21 @@ public class BankAccount implements Interesable {
         return c;
     }
 
+        public Calendar expirationDate() {
+
+        Calendar myCalendar = Calendar.getInstance();
+
+        int thisMonth = myCalendar.get(Calendar.MONTH);
+        int thisDay = myCalendar.get(Calendar.DAY_OF_MONTH);
+        int yearAgo = myCalendar.get(Calendar.YEAR);
+        int expirationYear = yearAgo + 2;
+
+        myCalendar.set(expirationYear, thisMonth, thisDay);
+
+        return myCalendar;
+    }
+
+    
     public int currencyToInt(String currencyString) {
 
         int currencyInt = 0;
@@ -186,20 +201,6 @@ public class BankAccount implements Interesable {
             currencyInt = 4;
         }
         return currencyInt;
-    }
-
-    public Calendar expirationDate() {
-
-        Calendar myCalendar = Calendar.getInstance();
-
-        int thisMonth = myCalendar.get(Calendar.MONTH);
-        int thisDay = myCalendar.get(Calendar.DAY_OF_MONTH);
-        int yearAgo = myCalendar.get(Calendar.YEAR);
-        int expirationYear = yearAgo + 2;
-
-        myCalendar.set(expirationYear, thisMonth, thisDay);
-
-        return myCalendar;
     }
 
     @Override

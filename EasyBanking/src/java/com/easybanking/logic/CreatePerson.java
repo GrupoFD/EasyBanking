@@ -71,6 +71,7 @@ public class CreatePerson extends HttpServlet {
         ud.bank.getListOfPersons().add(client);
         client.sendEmail(paramPass, paramEmail);
         response.sendRedirect("createaccount.jsp?fromBanking=false");
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

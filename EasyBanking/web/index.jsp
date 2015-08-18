@@ -81,6 +81,14 @@
     <br>
 
     <br>
+    
+    <%  
+        String logOut = request.getParameter("logOut");
+        
+        if (logOut != null) {         
+            session.invalidate();
+        }
+    %>
 
     <h1>Ingreso al Banco</h1>
 

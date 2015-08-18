@@ -36,6 +36,17 @@
                 border-top-left-radius: 5px 5px;
                 border-bottom-left-radius: 5px 5px;
             }
+            .ebtextinput2{
+                margin: 0;
+                padding: 5px 15px;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size:14px;
+                border:1px solid #0076a3;
+                border-top-left-radius: 5px 5px;
+                border-bottom-left-radius: 5px 5px;
+                border-top-right-radius: 5px 5px;
+                border-bottom-right-radius: 5px 5px;
+            }
             .ebbutton {
                 margin: 0;
                 padding: 5px 15px;
@@ -65,6 +76,35 @@
             .ebclear{
                 clear:both;
             }
+            .ebbutton2 {
+                margin: 0;
+                padding: 5px 15px;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size:14px;
+                outline: none;
+                cursor: pointer;
+                text-align: center;
+                text-decoration: none;
+                color: #ffffff;
+                border: solid 1px #0076a3;
+                background: #0095cd;
+                background: -webkit-gradient(linear, left top, left bottom, from(#00adee), to(#0078a5));
+                background: -moz-linear-gradient(top,  #00adee,  #0078a5);
+                border-top-right-radius: 5px 5px;
+                border-bottom-right-radius: 5px 5px;
+                border-top-left-radius: 5px 5px;
+                border-bottom-left-radius: 5px 5px;
+            }
+            .ebbutton2:hover {
+                text-decoration: none;
+                background: #007ead;
+                background: -webkit-gradient(linear, left top, left bottom, from(#0095cc), to(#00678e));
+                background: -moz-linear-gradient(top,  #0095cc,  #00678e);
+            }
+            .ebbutton2::-moz-focus-inner {
+                border: 0;
+            }
+
         </style>
     </head>
     <body id="ebsearch">
@@ -72,12 +112,39 @@
         <%
             Date d = new Date();
             User u = (User) session.getAttribute("USER");
+            String passReset = request.getParameter("passReset");
         %>
 
 
         <div id="ebsearch">
 
-            <h1>Bienvenido,<br> <%= u.getName()%>!</h1>
+            <h1>Bienvenido, <%= u.getName()%>!</h1> 
+            <%  if (passReset == null) {
+            %>
+
+            <a href="loggedin.jsp?passReset=true"><button class="ebbutton2" value="true" name="passReset">Cambiar Contrasena</button></a>
+            <br>
+            <br>
+            <% } else {   %>
+
+            Digite su contrasena actual: <input type="text" class="ebtextinput2" name="pass" size="21" maxlength="120">
+            <br>
+            <br>
+            La nueva contrasena: <input type="text" class="ebtextinput2" name="newPass" size="21" maxlength="120">
+            <br>
+            <br>
+            Confirme la contrasena: <input type="text" class="ebtextinput2" name="confirmPass" size="21" maxlength="120">
+            <br>
+            <br>
+            <form action="ChangePass"><button class="ebbutton2" value="true" name="passReset">Cambiar</button></form>
+            <br>
+            <br>
+            <a href="loggedin.jsp"><button class="ebbutton2" value="true" name="passReset">Cancelar</button></a> 
+            <br>
+            <br>
+            <% }%>
+
+            <br>
             Fecha de ingreso: <%=d%>
 
         </div>
@@ -90,8 +157,9 @@
             <div class="ebclear"></div>
 
         </div>
-            
+
         <table border="1">
+
             <%
                 ArrayList<Person> searchResult = (ArrayList<Person>) session.getAttribute("RESULT_CLIENT");
 
@@ -114,25 +182,28 @@
                 <td align="center"><%=p.getEmail()%></td>
                 <!--<td style="btn"><a href="banking.jsp?id=<%=p.getId()%>&name=<%=p.getName()%>">Ingresar</a></td>-->
                 <td style="border: 1"><form action="ClientInfo"><button class="ebbutton" value="<%=p.getId()%>" name="id">Ingresar</button></form></td>
-                
+
             </tr>        
             <%
                         }
+                    session.removeAttribute("RESULT_CLIENT");
                     }
                 }
 
-                session.removeAttribute("RESULT_CLIENT");
+             
             %>
         </table>
 
         <h1>Presione en la transaccion que desea realizar</h1>
         <form action="newclient.jsp">
-            <input type="submit" value="Agregar cliente" name="newclient" />    
+            <input type="submit" class="ebbutton2" value="Agregar cliente" name="newclient" />    
         </form>
-
+        <br>
         <form action="createuser.jsp">
-            <input type="submit" value="Agregar usuario" name="newUser" />
+            <input type="submit" class="ebbutton2" value="Agregar usuario" name="newUser" />
         </form>
+        <br>
+        <a href="index.jsp?logOut=true"><input type="submit" class="ebbutton2" value="Salir" name="logOut"/></a>
     </body>
 
 

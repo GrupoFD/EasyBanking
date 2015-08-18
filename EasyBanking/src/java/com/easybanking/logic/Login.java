@@ -5,7 +5,6 @@
  */
 package com.easybanking.logic;
 
-import com.easybanking.banking.Bank;
 import com.easybanking.banking.BankAccount;
 import com.easybanking.banking.Deposit;
 import com.easybanking.banking.Manager;
@@ -47,6 +46,7 @@ public class Login extends HttpServlet {
 
         paramId = request.getParameter("id");
         paramPass = request.getParameter("password");
+        
         HttpSession session = request.getSession(true);
         UserData ud = new UserData();
 
@@ -62,7 +62,7 @@ public class Login extends HttpServlet {
         
         BankAccount date = new BankAccount();
 
-        BankAccount a = new BankAccount("200-000001", 2, 1234, Calendar.getInstance(),date.expirationDate());
+        BankAccount a = new BankAccount("200-000001", 2, 1234, Calendar.getInstance(), date.expirationDate());
         BankAccount b = new BankAccount("300-000002", 3, 1234, Calendar.getInstance(), date.expirationDate());
         BankAccount c = new BankAccount("400-000003", 4, 1234, Calendar.getInstance(), date.expirationDate());
         

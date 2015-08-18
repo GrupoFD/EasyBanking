@@ -38,6 +38,7 @@ public class CreateUser extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ParseException {
          response.setContentType("text/html;charset=UTF-8");
+         
         UserData ud = new UserData();
         String paramId = request.getParameter("id");
         String paramName = request.getParameter("name");

@@ -180,7 +180,7 @@
                 }
             }%>
         <br>
-        <div><a href="createaccount.jsp?fromBanking=true"><button class="ebbutton" value="true" name="fromBanking">Agregar cuenta</button></a></div>
+        <div><a href="createaccount.jsp?fromBanking=true"><button class="ebbutton" value="true" name="fromBanking">Agregar cuenta</button></a></div><div><a href="loggedin.jsp"><button class="ebbutton" value="true" name="fromBanking">Regresar</button></a></div>
         <br>
         <br>
         <br>

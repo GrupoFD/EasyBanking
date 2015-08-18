@@ -28,6 +28,10 @@
         <servlet-name>ClientTransaction</servlet-name>
         <servlet-class>com.easybanking.logic.ClientTransaction</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ChangePass</servlet-name>
+        <servlet-class>com.easybanking.logic.ChangePass</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -36,7 +40,7 @@
         <servlet-name>CreatePerson</servlet-name>
         <url-pattern>/CreatePerson</url-pattern>
     </servlet-mapping>
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>CreateUser</servlet-name>
         <url-pattern>/CreateUser</url-pattern>
     </servlet-mapping>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>ClientTransaction</servlet-name>
         <url-pattern>/ClientTransaction</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangePass</servlet-name>
+        <url-pattern>/ChangePass</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
