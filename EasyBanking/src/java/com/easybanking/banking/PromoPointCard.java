@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package promostester;
+package com.easybanking.banking;
 
 /**
  *
@@ -48,7 +48,7 @@ public class PromoPointCard extends Promos {
 
         if (hasPayed2dollarsToBank(bankAccount)) {
             for (Transaction t : bankAccount.getListOfTransactions()) {
-                totalAmountOfTransactions += getAmountOfTransaction();
+                totalAmountOfTransactions += t.getAmountOfTransaction();
             }
         } else {
             System.out.println("You have not paid the promo fee to Bank");
