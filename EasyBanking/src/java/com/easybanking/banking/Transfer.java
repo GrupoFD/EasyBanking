@@ -26,14 +26,18 @@ public class Transfer extends Transaction {
     }
 
     public void transferAmount(Person person, BankAccount bankAccount, Person personToTransfer, BankAccount bankAccountTotransfer) {
-
+        
         for (BankAccount b : person.getlistOfBankAccounts()) {
             while (b.equals(bankAccount)) {
                 if (this.verifyPersonToTransferAccount(personToTransfer, bankAccountTotransfer)) {
                     if (this.verifyAccountCurrency(bankAccount, bankAccountTotransfer)) {
                         double amount = b.getAmount();
-                        if (amount >= getAmountOfTransaction()) {
-
+                        if (amount >= getAmountOfTransaction()) { 
+                            for (BankAccount b2 : personToTransfer.getListOfBankAccounts()) {
+                                if (b2.equals(bankAccountTotransfer)) {
+                                    b2.setAmount(b2.getAmount() + getAmountOfTransaction());
+                                }
+                            }
                             double finalAmount = amount - this.getAmountOfTransaction();
                             b.setAmount(finalAmount);
                             this.beneficiaryOfTransaction = personToTransfer.getName();
@@ -45,6 +49,7 @@ public class Transfer extends Transaction {
                 }
             }
         }
+        
     }
 
 
