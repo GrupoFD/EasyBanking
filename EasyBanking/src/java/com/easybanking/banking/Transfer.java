@@ -13,61 +13,52 @@ import java.util.Calendar;
  */
 public class Transfer extends Transaction {
 
-    private String idFromUserToTransfer;
+    private String beneficiaryOfTransaction;
 
-    public Transfer(String id, Calendar timeStamp, double amountOfTransaction, String idFromUserToTransfer) {
+    public Transfer(String id, Calendar timeStamp, double amountOfTransaction, String beneficiaryOfTransaction) {
         super(id, timeStamp, amountOfTransaction);
-        this.idFromUserToTransfer = idFromUserToTransfer;
+        this.beneficiaryOfTransaction = beneficiaryOfTransaction;
     }
 
-    public void transferAmount(Person person, BankAccount bankAccount, Person personToTransfer, BankAccount bankAccountTotransfer) {
+    public String getBeneficiaryOfTransaction() {
+        return this.beneficiaryOfTransaction;
+    }
+
+    public boolean transferAmount(Person person, BankAccount bankAccount, Person personToTransfer, BankAccount bankAccountTotransfer) {
 
         for (BankAccount b : person.getlistOfBankAccounts()) {
-
             while (b.equals(bankAccount)) {
-
                 if (this.verifyPersonToTransferAccount(personToTransfer, bankAccountTotransfer)) {
-
                     if (this.verifyAccountCurrency(bankAccount, bankAccountTotransfer)) {
-
                         double amount = b.getAmount();
-
                         if (amount >= getAmountOfTransaction()) {
-
-                            double finalAmount = amount - this.getAmountOfTransaction();
-                            b.setAmount(finalAmount);
-
-                            double finalAmount2 = bankAccountTotransfer.getAmount() + this.getAmountOfTransaction();
-                            bankAccountTotransfer.setAmount(finalAmount2);
-                            
+                            for (BankAccount b2 : personToTransfer.getListOfBankAccounts()) {
+                                if (b2.equals(bankAccountTotransfer)) {
+                                    b2.setAmount(b2.getAmount() + getAmountOfTransaction());
+                                    double finalAmount = amount - this.getAmountOfTransaction();
+                                    b.setAmount(finalAmount);
+                                    this.beneficiaryOfTransaction = personToTransfer.getName();
+                                    return true;
+                                }
+                            }
                         } else {
-
-                            System.out.println("EXCEPTION");
-
+                            return false;
                         }
-
                     }
-
                 }
-
             }
         }
+        return false;
     }
 
     public boolean verifyPersonToTransferAccount(Person personToTransfer, BankAccount bankAccountTotransfer) {
 
         for (BankAccount b : personToTransfer.getlistOfBankAccounts()) {
-
             if (b.equals(bankAccountTotransfer)) {
-
                 return true;
-
             } else {
-
                 System.out.println("EXEPTION");
-
             }
-
         }
         return false;
     }
@@ -75,12 +66,11 @@ public class Transfer extends Transaction {
     public boolean verifyAccountCurrency(BankAccount bankAccount, BankAccount bankAccountTotransfer) {
 
         if (bankAccount.getCurrency() == bankAccountTotransfer.getCurrency()) {
-
             return true;
         } else {
-
             System.out.println("EXCEPTION");
             return false;
         }
     }
+
 }

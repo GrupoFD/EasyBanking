@@ -223,106 +223,111 @@
 
             if (pToTransfer != null) {%>
 
-            <h2>Transfiriendo a <%=pToTransfer.getName()%> <br> # de cedula: <%=pToTransfer.getId()%></h2>    
+        <h2>Transfiriendo a <%=pToTransfer.getName()%> <br> # de cedula: <%=pToTransfer.getId()%></h2>    
 
         <table border="1">
             <tr>
                 <td align="center">  # Cuenta  </td>
                 <td align="center">  Moneda  </td>
+                <td align="center">  Monto  </td>
             </tr> 
             <%  for (BankAccount ba : pToTransfer.getListOfBankAccounts()) {%>
 
             <tr>
-                <td align="center"><%=ba.getId()%></td>
+            <form action="ClientTransaction">
+                <td style="border: 1"><input type="text" value="<%=ba.getId()%>" name="beneficiaryAccountId"></td>
                 <td align="center"><%=ba.currencyFormat(ba.getCurrency())%></td>
-            </tr>    
-
-            <%}
-            %>
-        </table> 
-
-        <%
-        } else if (searchResult2 != null) {
-
-        %>
-        <div><h1> Listado de personas a transferir </h1></div>
-        <table border="1">
-            <tr>
-                <td align="center">Cedula</td>
-                <td align="center">Nombre</td>
-                <td align="center">Primer Apellido</td>
-                <td align="center">Segundo Apellido</td>
-                <td align="center">Correo Electronico</td>
-            </tr>
-            <%                if (searchResult2 != null) {
-                    for (Person s : searchResult2) {
-            %>
-            <tr>
-                <td align="center"><%=s.getId()%></td>
-                <td align="center"><%=s.getName()%></td>
-                <td align="center"><%=s.getLastName()%></td>
-                <td align="center"><%=s.getLastName2()%></td>
-                <td align="center"><%=s.getEmail()%></td>
-                <td style="border: 1"><form action="ClientInfo"><button class="ebbutton"  value="<%=s.getId()%>" name="transaction">Ver cuentas</button></form></td>
-            </tr> 
-
-            <%
-                    }
-                }
-                session.removeAttribute("RESULT_CLIENT2");
-            } else { %>
-        </table>
-        <div><h1> Ingrese persona a transferir </h1></div>
-        <div id="ebsearch">
-            <form id="ebnewsearch" method="get" action="UserData">
-                <input type="text" class="ebtextinput" name="searchTransfer" size="21" maxlength="120"><input type="submit" value="Buscar" class="ebbutton">
+                <td style="border: 1"><input type="text" name="amount"/></td>
+                <td style="border: 1"><input type="submit" name="execute" value="Transferir" class="ebbutton" style="width: 200px"/></td>
             </form>
-            <div class="ebclear"></div>
+        </tr>    
 
-        </div>
+        <%}
+        %>
+    </table> 
 
-        <table border="1">
+    <%
+    } else if (searchResult2 != null) {
 
+    %>
+    <div><h1> Listado de personas a transferir </h1></div>
+    <table border="1">
+        <tr>
+            <td align="center">Cedula</td>
+            <td align="center">Nombre</td>
+            <td align="center">Primer Apellido</td>
+            <td align="center">Segundo Apellido</td>
+            <td align="center">Correo Electronico</td>
+        </tr>
+        <%                if (searchResult2 != null) {
+                for (Person s : searchResult2) {
+        %>
+        <tr>
+            <td align="center"><%=s.getId()%></td>
+            <td align="center"><%=s.getName()%></td>
+            <td align="center"><%=s.getLastName()%></td>
+            <td align="center"><%=s.getLastName2()%></td>
+            <td align="center"><%=s.getEmail()%></td>
+            <td style="border: 1"><form action="ClientInfo"><button class="ebbutton"  value="<%=s.getId()%>" name="transaction">Ver cuentas</button></form></td>
+        </tr> 
 
-            <% }
-
-            %>
-        </table>
-
-
-
-        <%} else if (transactionType.equals("history")) {
-
-            ArrayList<Transaction> accountTransaction = (ArrayList<Transaction>) session.getAttribute("ACCOUNT_TRANSACTIONS");
-            if (accountTransaction != null) {%>
-            <h2>Historial de transacciones</h2>
-            <br>
-        <table border="1">
-            <tr>
-                <td align="center">  # Transaccion  </td>
-                <td align="center">  Fecha  </td>
-                <td align="center">  Monto  </td>
-                <td align="center">  Tipo  </td>
-            </tr>
-            <%for (Transaction t : accountTransaction) {%>
-            <tr>
-                <td align="center"><%=t.getId()%></td>
-                <td align="center"><%=sdf.format(t.getTimeStamp().getTime())%></td>
-                <td align="center"><%=t.getAmountOfTransaction()%></td>
-                <td align="center"><%=t.getTypeOfTransaction(t)%></td>
-            </tr>
-
-            <%
-                }%>
-        </table>
         <%
-
-                    }
-
                 }
             }
-        %> 
+            session.removeAttribute("RESULT_CLIENT2");
+        } else { %>
+
+    </table>
+    <div><h1> Ingrese persona a transferir </h1></div>
+    <div id="ebsearch">
+        <form id="ebnewsearch" method="get" action="UserData">
+            <input type="text" class="ebtextinput" name="searchTransfer" size="21" maxlength="120"><input type="submit" value="Buscar" class="ebbutton">
+        </form>
+        <div class="ebclear"></div>
+
+    </div>
 
 
-    </body>
+
+
+    <% }
+
+    %>
+
+    <div><a href="banking.jsp?cancelTransaction=true"><button class="ebbutton" value="true" name="cancelTransaction">Cancelar</button></a></div>
+
+    <%} else if (transactionType.equals("history")) {
+
+        ArrayList<Transaction> accountTransaction = (ArrayList<Transaction>) session.getAttribute("ACCOUNT_TRANSACTIONS");
+        if (accountTransaction != null) {%>
+    <h2>Historial de transacciones</h2>
+    <br>
+    <table border="1">
+        <tr>
+            <td align="center">  # Transaccion  </td>
+            <td align="center">  Fecha  </td>
+            <td align="center">  Monto  </td>
+            <td align="center">  Tipo  </td>
+        </tr>
+        <%for (Transaction t : accountTransaction) {%>
+        <tr>
+            <td align="center"><%=t.getId()%></td>
+            <td align="center"><%=sdf.format(t.getTimeStamp().getTime())%></td>
+            <td align="center"><%=t.getAmountOfTransaction()%></td>
+            <td align="center"><%=t.getTypeOfTransaction(t)%></td>
+        </tr>
+
+        <%
+                }%>
+    </table>
+    <%
+
+                }
+
+            }
+        }
+    %> 
+
+
+</body>
 </html>

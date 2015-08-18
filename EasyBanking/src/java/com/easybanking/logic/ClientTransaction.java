@@ -20,7 +20,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 /**
  *
  * @author Soler
@@ -51,6 +50,7 @@ public class ClientTransaction extends HttpServlet {
         String withdraw = request.getParameter("withdraw");
         String transfer = request.getParameter("transfer");
         String history = request.getParameter("history");
+        String cancelTransaction = request.getParameter("cancelTransaction");
 
         if (deposit != null) {
 
@@ -65,13 +65,14 @@ public class ClientTransaction extends HttpServlet {
         } else if (transfer != null) {
 
             session.setAttribute("TYPE_OF_TRANSACTION", "transfer");
+
+            //cuenta del que transfiere.
             session.setAttribute("USER_TRANSACTION", transfer);
 
         } else if (history != null) {
 
             session.setAttribute("TYPE_OF_TRANSACTION", "history");
             session.setAttribute("USER_TRANSACTION", history);
-
             for (BankAccount ba : p.getListOfBankAccounts()) {
                 if (ba.getId().equals(history)) {
 
@@ -79,6 +80,11 @@ public class ClientTransaction extends HttpServlet {
 
                 }
             }
+
+        } else if (cancelTransaction != null) {
+
+            session.setAttribute("TYPE_OF_TRANSACTION", null);
+            session.setAttribute("USER_TRANSACTION", null);
 
         }
 
@@ -88,7 +94,11 @@ public class ClientTransaction extends HttpServlet {
 
             Transaction ta = new Deposit();
 
-            String id = (String) session.getAttribute("USER_TRANSACTION");
+            String transferrerAccountId = (String) session.getAttribute("USER_TRANSACTION");
+
+            Person beneficiary = (Person) session.getAttribute("TRANSFERING_TO_PERSON");
+
+            String beneficiaryAccountId = request.getParameter("beneficiaryAccountId");
 
             switch (execute) {
 
@@ -96,37 +106,35 @@ public class ClientTransaction extends HttpServlet {
 
                     try {
                         for (BankAccount ba : p.getListOfBankAccounts()) {
-                            if (ba.getId().equals(id)) {
+                            if (ba.getId().equals(transferrerAccountId)) {
                                 String idTransaction = "" + ta.createNewIdNumber(ba);
                                 Deposit d = new Deposit(idTransaction, Calendar.getInstance(), amount);
                                 if (d.depositAmount(p, ba)) {
-                                  ba.getListOfTransactions().add(d);  
-                                }else{
-                                
+                                    ba.getListOfTransactions().add(d);
+                                } else {
+
                                     response.sendRedirect("index.jsp");
                                 }
 
-                                
                             }
                         }
                         response.sendRedirect("banking.jsp");
                     } catch (NullPointerException e) {
 
-                        
                     }
                     break;
 
                 case "Retirar":
 
                     for (BankAccount ba : p.getListOfBankAccounts()) {
-                        if (ba.getId().equals(id)) {
+                        if (ba.getId().equals(transferrerAccountId)) {
                             String idTransaction = "" + ta.createNewIdNumber(ba);
                             Withdraw w = new Withdraw(idTransaction, Calendar.getInstance(), amount);
                             if (w.withdrawAmount(p, ba)) {
                                 ba.getListOfTransactions().add(w);
                             } else {
 
-                                response.sendRedirect("index.jsp"); 
+                                response.sendRedirect("index.jsp");
                             }
 
                         }
@@ -136,15 +144,23 @@ public class ClientTransaction extends HttpServlet {
 
                 case "Transferir":
 
-                    Transaction t = new Transfer("1802", Calendar.getInstance(), amount, "123");
                     for (BankAccount ba : p.getListOfBankAccounts()) {
-                        if (ba.getId().equals(id)) {
-
-                            ba.getListOfTransactions().add(t);
-                            session.invalidate();
-                            response.sendRedirect("banking.jsp");
+                        if (ba.getId().equals(transferrerAccountId)) {
+                            for (BankAccount bba : beneficiary.getListOfBankAccounts()) {
+                                if (bba.getId().equals(beneficiaryAccountId)) {
+                                    String idTransaction = "" + ta.createNewIdNumber(ba);
+                                    Transfer t = new Transfer(idTransaction, Calendar.getInstance(), amount, beneficiary.getName());
+                                    if (t.transferAmount(p, ba, beneficiary, bba)) {
+                                        ba.getListOfTransactions().add(t);
+                                    } else {
+                                        response.sendRedirect("index.jsp");
+                                        System.out.println("EXCEPTION");
+                                    }
+                                }
+                            }
                         }
                     }
+                    response.sendRedirect("banking.jsp");
                     break;
 
             }
