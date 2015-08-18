@@ -3,11 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Soler/Documents/GitHub/EasyBanking/EasyBanking/web/banking.jsp</file>
-            <file>file:/C:/Users/Soler/Documents/GitHub/EasyBanking/EasyBanking/web/loggedin.jsp</file>
-            <file>file:/C:/Users/Soler/Documents/GitHub/EasyBanking/EasyBanking/src/java/com/easybanking/logic/ClientTransaction.java</file>
-            <file>file:/C:/Users/Soler/Documents/GitHub/EasyBanking/EasyBanking/src/java/com/easybanking/logic/Login.java</file>
-            <file>file:/C:/Users/Soler/Documents/GitHub/EasyBanking/EasyBanking/src/java/com/easybanking/banking/Transaction.java</file>
+            <file>file:/C:/Users/Soler/Documents/GitHub/EasyBanking/EasyBanking/src/java/com/easybanking/logic/CreateUser.java</file>
+            <file>file:/C:/Users/Soler/Documents/GitHub/EasyBanking/EasyBanking/web/index.jsp</file>
         </group>
     </open-files>
 </project-private>

@@ -15,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -34,23 +35,26 @@ public class CreateAccount extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-        String paramIdentificaTion = request.getParameter("identification");
-
-        UserData ud = new UserData();
-        Person p = ud.bank.personConfirmation(paramIdentificaTion);
-        BankAccount ba = new BankAccount();
-       //if (p != null) {
-
-        String paramId = request.getParameter("account");
-        String paramCurrency = request.getParameter("currency");
         
+        HttpSession session = request.getSession(true);
+        Person p = (Person) session.getAttribute("NEW_CLIENT");
+        String paramIdentificaTion = p.getId();
+        UserData ud = new UserData();
+
+        BankAccount ba = new BankAccount();
+        //if (p != null) {
+        String currency = request.getParameter("currency");
+        String paramId = ba.createNewAccountNumber(currency);
+        String paramCurrency = request.getParameter("currency");
+
         int paramCurrencyInt = ba.currencyToInt(paramCurrency);
 
-        double paramAmount = Double.parseDouble(request.getParameter("amount"));
+        double paramAmount = 0;
+        paramAmount = Double.parseDouble(request.getParameter("amount"));
         //cambiar la fecha de expiración
+        Calendar expirationDate = ba.expirationDate();
 
-        BankAccount account = new BankAccount(paramId, paramCurrencyInt, paramAmount, Calendar.getInstance(), Calendar.getInstance());
+        BankAccount account = new BankAccount(paramId, paramCurrencyInt, paramAmount, Calendar.getInstance(), expirationDate);
 
         p.getlistOfBankAccounts().add(account);
 

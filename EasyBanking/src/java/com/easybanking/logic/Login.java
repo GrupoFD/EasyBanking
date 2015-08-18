@@ -59,11 +59,13 @@ public class Login extends HttpServlet {
         ud.bank.getListOfPersons().add(p2);
         ud.bank.getListOfPersons().add(p3);
         ud.bank.getListOfPersons().add(p4);
+        
+        BankAccount date = new BankAccount();
 
-        BankAccount a = new BankAccount("121233", 2, 1234, Calendar.getInstance(), Calendar.getInstance());
-        BankAccount b = new BankAccount("12354", 3, 1234, Calendar.getInstance(), Calendar.getInstance());
-        BankAccount c = new BankAccount("12345", 4, 1234, Calendar.getInstance(), Calendar.getInstance());
-
+        BankAccount a = new BankAccount("200-000001", 2, 1234, Calendar.getInstance(),date.expirationDate());
+        BankAccount b = new BankAccount("300-000002", 3, 1234, Calendar.getInstance(), date.expirationDate());
+        BankAccount c = new BankAccount("400-000003", 4, 1234, Calendar.getInstance(), date.expirationDate());
+        
         p.getListOfBankAccounts().add(a);
         p.getListOfBankAccounts().add(b);
         p.getListOfBankAccounts().add(c);

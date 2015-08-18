@@ -79,36 +79,38 @@ public class BankAccount implements Interesable {
         this.expirationDate = expirationDate;
     }
 
-    public String createNewAccountNumber(int typeOfAccount) {
+    public String createNewAccountNumber(String typeOfAccount) {
 
         UserData ud = new UserData();
         Bank bank = ud.bank;
         String newIdNumber = "";
         String lastIdCheck = "";
-        int lastNumber = 0;
+        String lastNumberString = "";
+        int lastNumberInt = 0;
         int lastBiggestNumber = 0;
 
         switch (typeOfAccount) {
-            case 1:
+            case "colon":
                 newIdNumber = "100-"; // New Colon Account
                 break;
-            case 2:
+            case "dolar":
                 newIdNumber = "200-"; // New Dollar Account
                 break;
-            case 3:
+            case "euro":
                 newIdNumber = "300-"; // New Euro Account 
                 break;
-            case 4:
-                newIdNumber = "400-"; // New Euro Account 
+            case "credito":
+                newIdNumber = "400-"; // New Dollar Account 
                 break;
         }
 
         for (Person p : bank.getListOfPersons()) {
             for (BankAccount b : p.getListOfBankAccounts()) {
-                lastIdCheck = p.getId();
-                lastNumber = Integer.parseInt(lastIdCheck.substring(4, 9));
-                if (lastNumber > lastBiggestNumber) {
-                    lastBiggestNumber = lastNumber;
+                lastIdCheck = b.getId();
+                lastNumberString = lastIdCheck.substring(4, 10);
+                lastNumberInt = Integer.parseInt(lastNumberString);
+                if (lastNumberInt > lastBiggestNumber) {
+                    lastBiggestNumber = lastNumberInt;
                 }
             }
         }
@@ -173,7 +175,7 @@ public class BankAccount implements Interesable {
     public int currencyToInt(String currencyString) {
 
         int currencyInt = 0;
-        
+
         if (currencyString.equals("dolar")) {
             currencyInt = 2;
         } else if (currencyString.equals("colon")) {
@@ -185,8 +187,21 @@ public class BankAccount implements Interesable {
         }
         return currencyInt;
     }
-    
-    
+
+    public Calendar expirationDate() {
+
+        Calendar myCalendar = Calendar.getInstance();
+
+        int thisMonth = myCalendar.get(Calendar.MONTH);
+        int thisDay = myCalendar.get(Calendar.DAY_OF_MONTH);
+        int yearAgo = myCalendar.get(Calendar.YEAR);
+        int expirationYear = yearAgo + 2;
+
+        myCalendar.set(expirationYear, thisMonth, thisDay);
+
+        return myCalendar;
+    }
+
     @Override
     public String toString() {
 

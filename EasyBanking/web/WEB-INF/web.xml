@@ -13,6 +13,10 @@
         <servlet-class>com.easybanking.logic.CreateAccount</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>CreateUser</servlet-name>
+        <servlet-class>com.easybanking.logic.CreateUser</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>UserData</servlet-name>
         <servlet-class>com.easybanking.logic.UserData</servlet-class>
     </servlet>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>CreatePerson</servlet-name>
         <url-pattern>/CreatePerson</url-pattern>
+    </servlet-mapping>
+     <servlet-mapping>
+        <servlet-name>CreateUser</servlet-name>
+        <url-pattern>/CreateUser</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CreateAccount</servlet-name>

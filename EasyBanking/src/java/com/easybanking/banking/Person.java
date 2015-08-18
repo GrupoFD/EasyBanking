@@ -17,6 +17,7 @@ import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
+import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
@@ -180,72 +181,47 @@ public class Person {
         return returnable;
     }
 
+
     public String encriptPassword(String encriptPass) {
         String encripted = DigestUtils.md5Hex(encriptPass);
         return encripted;
     }
 
-    public void sendEmail(String emailClient, String messageP) {
-        // Recipient's email ID needs to be mentioned.
-        String to = "easybankprogra@gmail.com";
+    public void sendEmail(String password, String email) {
 
-        // Sender's email ID needs to be mentioned
-        String from = emailClient;
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
 
-        // Assuming you are sending email from localhost
-        String host = "localhost";
+//        props.put("mail.smtp.host", "smtp.gmail.com");
+//        props.put("mail.smtp.socketFactory.port", "465");
+//        props.put("mail.smtp.socketFactory.class",
+//                "javax.net.ssl.SSLSocketFactory");
+//        props.put("mail.smtp.auth", "true");
+//        props.put("mail.smtp.port", "465");
 
-        // Get system properties
-        Properties properties = System.getProperties();
-
-        // Setup mail server
-        properties.setProperty("mail.smtp.host", host);
-
-        // Get the default Session object.
-        Session session = Session.getDefaultInstance(properties);
+        Session session = Session.getInstance(props,
+                new javax.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication("easybankprogra@gmail.com", "easybank506");
+                    }
+                });
 
         try {
-            // Create a default MimeMessage object.
-            MimeMessage message = new MimeMessage(session);
 
-            // Set From: header field of the header.
-            message.setFrom(new InternetAddress(from));
-
-            // Set To: header field of the header.
-            message.addRecipient(Message.RecipientType.TO,
-                    new InternetAddress(to));
-
-            // Set Subject: header field
-            message.setSubject("Su contraseña");
-
-            // Create the message part 
-            BodyPart messageBodyPart = new MimeBodyPart();
-
-            // Fill the message
-            messageBodyPart.setText("Estimado usuario su contraseña es:");
-
-            // Create a multipar message
-            Multipart multipart = new MimeMultipart();
-
-            // Set text message part
-            multipart.addBodyPart(messageBodyPart);
-
-            // Part two is attachment
-            messageBodyPart = new MimeBodyPart();
-            String filename = "file.txt";
-            DataSource source = new FileDataSource(filename);
-            messageBodyPart.setDataHandler(new DataHandler(source));
-            messageBodyPart.setFileName(filename);
-            multipart.addBodyPart(messageBodyPart);
-
-            // Send the complete message parts
-            message.setContent(multipart);
-
-            // Send message
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress("easybankprogra@gmail.com"));
+            message.setRecipients(Message.RecipientType.TO,
+                    InternetAddress.parse(email));
+            message.setSubject("EasyBanking constraseña");
+            message.setText("Su contraseña es: \n" + password);
             Transport.send(message);
-            System.out.println("Sent message successfully....");
-        } catch (MessagingException mex) {
-            mex.printStackTrace();
+
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
         }
     }
 
