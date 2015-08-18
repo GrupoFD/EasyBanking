@@ -12,6 +12,7 @@ public class Transaction{
     private int id;
     private Calendar timeStamp;
     private double amountOfTransaction;
+    private String beneficiaryOfTransaction;
 
     public Transaction() {
     }
@@ -29,6 +30,15 @@ public class Transaction{
     public void setId(int id) {
         this.id = id;
     }
+
+    public String getBeneficiaryOfTransaction() {
+        return beneficiaryOfTransaction;
+    }
+
+    public void setBeneficiaryOfTransaction(String beneficiaryOfTransaction) {
+        this.beneficiaryOfTransaction = beneficiaryOfTransaction;
+    }
+    
     
     public Calendar getTimeStamp() {
         return timeStamp;
