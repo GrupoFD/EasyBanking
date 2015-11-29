@@ -5,7 +5,7 @@
  */
 package com.easybanking.logic;
 
-import com.easybanking.banking.Person;
+import com.easybanking.entity.Person;
 import static com.easybanking.logic.UserData.bank;
 import java.io.IOException;
 import java.io.PrintWriter;

@@ -5,6 +5,7 @@
  */
 package com.easybanking.banking;
 
+import com.easybanking.entity.Person;
 import java.util.Calendar;
 
 /**

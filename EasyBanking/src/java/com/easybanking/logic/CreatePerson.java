@@ -5,9 +5,9 @@
  */
 package com.easybanking.logic;
 
-import com.easybanking.banking.Legal;
-import com.easybanking.banking.Natural;
-import com.easybanking.banking.Person;
+import com.easybanking.entity.Legal;
+import com.easybanking.entity.Natural;
+import com.easybanking.entity.Person;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DateFormat;

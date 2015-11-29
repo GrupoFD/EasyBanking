@@ -19,7 +19,7 @@
              Cedula              :<input type="text" name="id"/><br/>
              Nombre              :<input type="text" name="name"/><br/>
              Primer apellido      :<input type="text" name="Lastname"/><br/>
-             Segundo apellido     :<input type="text" name="Lastname"/><br/>
+             Segundo apellido     :<input type="text" name="Lastname2"/><br/>
              E-mail              :<input type="text" name="email" value="@"/><br/>
              Feacha de nacimiento:<input type="text" name="birthdate" value="00/00/0000"><br/>
              Direccion           :<input type="text" name="address"/><br/>

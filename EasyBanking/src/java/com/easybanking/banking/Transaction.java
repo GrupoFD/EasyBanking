@@ -1,5 +1,6 @@
 package com.easybanking.banking;
 
+import com.easybanking.entity.BankAccount;
 import java.util.Calendar;
 
 /**

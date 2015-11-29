@@ -5,9 +5,9 @@
  */
 package com.easybanking.logic;
 
-import com.easybanking.banking.Bank;
-import com.easybanking.banking.BankAccount;
-import com.easybanking.banking.Person;
+import com.easybanking.entity.Bank;
+import com.easybanking.entity.BankAccount;
+import com.easybanking.entity.Person;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Calendar;

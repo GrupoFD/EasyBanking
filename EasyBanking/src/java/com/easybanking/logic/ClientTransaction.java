@@ -7,7 +7,7 @@ package com.easybanking.logic;
 
 import com.easybanking.banking.BankAccount;
 import com.easybanking.banking.Deposit;
-import com.easybanking.banking.Person;
+import com.easybanking.entity.Person;
 import com.easybanking.banking.Transaction;
 import com.easybanking.banking.Transfer;
 import com.easybanking.banking.Withdraw;
