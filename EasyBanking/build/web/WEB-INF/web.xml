@@ -1,72 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-    <servlet>
-        <servlet-name>Login</servlet-name>
-        <servlet-class>com.easybanking.logic.Login</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>CreatePerson</servlet-name>
-        <servlet-class>com.easybanking.logic.CreatePerson</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>CreateAccount</servlet-name>
-        <servlet-class>com.easybanking.logic.CreateAccount</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>CreateUser</servlet-name>
-        <servlet-class>com.easybanking.logic.CreateUser</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>UserData</servlet-name>
-        <servlet-class>com.easybanking.logic.UserData</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ClientInfo</servlet-name>
-        <servlet-class>com.easybanking.logic.ClientInfo</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ClientTransaction</servlet-name>
-        <servlet-class>com.easybanking.logic.ClientTransaction</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ChangePass</servlet-name>
-        <servlet-class>com.easybanking.logic.ChangePass</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Login</servlet-name>
-        <url-pattern>/Login</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>CreatePerson</servlet-name>
-        <url-pattern>/CreatePerson</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>CreateUser</servlet-name>
-        <url-pattern>/CreateUser</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>CreateAccount</servlet-name>
-        <url-pattern>/CreateAccount</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>UserData</servlet-name>
-        <url-pattern>/UserData</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ClientInfo</servlet-name>
-        <url-pattern>/ClientInfo</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ClientTransaction</servlet-name>
-        <url-pattern>/ClientTransaction</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ChangePass</servlet-name>
-        <url-pattern>/ChangePass</url-pattern>
-    </servlet-mapping>
+    <context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Development</param-value>
+    </context-param>      
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    <welcome-file-list>
+        <welcome-file>faces/login.xhtml</welcome-file>
+    </welcome-file-list>
 </web-app>

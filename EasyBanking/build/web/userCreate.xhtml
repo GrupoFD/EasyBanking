@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Nuevo Usuario</title>
+    </h:head>
+    <h:body style="padding-top: 60px">
+        <b:navBar brand="inicio" brandHref="index" inverse="true" fixed="top">
+        </b:navBar>
+
+        <b:container fluid="true">
+            <b:row>
+                <b:column col-sm="3" col-md="2" styleClass="sidebar">
+                    <b:listLinks>
+                        <b:navLink header="Usuario" />
+                        <b:navLink header="#{class.x}" />
+                    </b:listLinks>
+                    <b:listLinks>
+                        <b:navLink href="index.xhtml" value="Salir"/>
+                    </b:listLinks>
+                    <b:listLinks>
+                        <b:navLink href="#" value="Crear Cuenta"/>
+                    </b:listLinks>
+                </b:column>
+                <hr/>
+                <b:column col-sm="9" offset-sm="3" col-md="10" offset="2" styleClass="main">
+                    Ingrese los datos para crear una nueva cuenta:
+                    <hr/>
+                    <h:form>
+                        <h:panelGrid id="formulary" columns="2" cellpadding="5">
+
+                            <h:outputLabel value="Id: " />
+                            <b:inputText size="15"  id="id" value=""/>
+
+                            <h:outputLabel value="Nombre:" />
+                            <b:inputText size="15"  id="nombre" value=""/>
+
+                            <h:outputLabel value="1er Apellido:" />
+                            <b:inputText size="15"  id="apellido1" value=""/>
+
+                            <h:outputLabel value="e-mail:" />
+                            <b:inputText size="15"  id="email" value=""/>
+
+                            <h:outputLabel value="Contraseña:" />
+                            <b:inputText size="15"  id="contraseña" value=""/>
+
+                            <h:outputLabel value="Direccion:" />
+                            <h:inputTextarea  id="direccion" value=""/>
+
+                            <h:outputLabel value="Telefono:" />
+                            <b:inputText size="15"  id="telefono" value=""/> 
+
+                            <h:outputLabel value="Nacimiento: " />
+                            <input id="nacimiento" type="date" name="nacimiento" value=""/>
+                            
+                            <h:outputLabel value="Responsable " />
+                            <b:inputText size="15"  id="responsable" value=""/>
+
+                            <h:outputLabel value="Persona Juridica:" />
+                            <b:selectBooleanCheckbox value="# {bean.attrib}" /><!--Sets bool attribute from selected bean-->
+                        </h:panelGrid>
+                        <br />
+                        <br />
+                        <b:commandButton value="Crear" action="#{NewUser.create()}" />
+
+                    </h:form>
+                </b:column>
+            </b:row>
+        </b:container>
+    </h:body>
+</html>
+

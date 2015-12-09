@@ -20,7 +20,8 @@ public class Bank implements AvailableCurrencies{
     private int phone;
     private ArrayList<BankBranch> listOfBranches = new ArrayList<>();
     private ArrayList<Person> listOfPersons = new ArrayList<>();
-
+    
+    
     public Bank() {
     }
 

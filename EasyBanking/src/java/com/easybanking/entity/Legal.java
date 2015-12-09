@@ -13,21 +13,26 @@ import java.util.Calendar;
  */
 public class Legal extends Person{
     
-    private String responsible;
+    private Natural responsible;
+    
+    public Legal(){}
 
-    public Legal(String id, String name, String email, String address, String phone, String responsible) {
+    public Legal(String id, String name, String email, String address, String phone, Natural responsible) {
         super(id, name, email, address, phone);
         this.responsible = responsible;
     }
-
-
  
-    public String getResponsible() {
+    public Natural getResponsible() {
         return responsible;
     }
 
-    public void setResponsible(String responsible) {
+    public void setResponsible(Natural responsible) {
         this.responsible = responsible;
+    }
+
+    @Override
+    public String toString() {
+        return ""+ responsible.getName();
     }
     
     
