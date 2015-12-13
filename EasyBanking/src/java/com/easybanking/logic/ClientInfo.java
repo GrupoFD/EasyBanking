@@ -5,8 +5,7 @@
  */
 package com.easybanking.logic;
 
-
-import com.easybanking.banking.Person;
+import com.easybanking.entity.Person;
 import static com.easybanking.logic.UserData.bank;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -35,19 +34,33 @@ public class ClientInfo extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         HttpSession session = request.getSession(true);
         String id = request.getParameter("id");
-        String name = request.getParameter("name");
-        Person p = bank.personConfirmation(id);
-        session.setAttribute("CLIENT",bank.personConfirmation(id));
-        session.setAttribute("BANK_ACCOUNT",p.getlistOfBankAccounts());
+        String transactionId = request.getParameter("transaction");
+
+        //id viene del search  de usuario en loggedin
+        
+        
+
         //La logica para buscar el cliente y meter los resultados en la lista a retornar
         //ArrayList<Person> listofPerson = bank.searchedPerson(name);
         //session.setAttribute("RESULT_CLIENT", listofPerson);
-        
-        
-        response.sendRedirect("banking.jsp");
+        if (transactionId != null) {
+
+            Person p = bank.personConfirmation(transactionId);
+            session.setAttribute("TRANSFERING_TO_PERSON", bank.personConfirmation(transactionId));
+            session.setAttribute("TRANSFERING_TO_ACCOUNT", p.getlistOfBankAccounts());
+            response.sendRedirect("banking.jsp");
+            
+        } else {
+
+            Person p = bank.personConfirmation(id);
+            session.setAttribute("CLIENT", bank.personConfirmation(id));
+            session.setAttribute("BANK_ACCOUNT", p.getlistOfBankAccounts());
+            response.sendRedirect("banking.jsp");
+        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

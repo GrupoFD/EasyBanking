@@ -5,18 +5,23 @@
  */
 package com.easybanking.logic;
 
-import com.easybanking.banking.Bank;
-import com.easybanking.banking.Legal;
-import com.easybanking.banking.Natural;
-import com.easybanking.banking.Person;
+import com.easybanking.entity.Legal;
+import com.easybanking.entity.Natural;
+import com.easybanking.entity.Person;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.ws.rs.core.Response;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -34,38 +39,45 @@ public class CreatePerson extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, ParseException {
         response.setContentType("text/html;charset=UTF-8");
 
-        
+        try{
+        HttpSession session = request.getSession(true);
         UserData ud = new UserData();
         String paramId = request.getParameter("id");
         String paramName = request.getParameter("name");
         String paramLastname = request.getParameter("lastname");
         String paramLastname02 = request.getParameter("lastname02");
         String paramEmail = request.getParameter("email");
-        //Investigar como recibir este parametro
         String paramBirtdate = request.getParameter("birthdate");
+        DateFormat formatter = new SimpleDateFormat("MM/dd/yy");
+        Date date = formatter.parse(paramBirtdate);
+        Calendar birtdate = Calendar.getInstance();
+        birtdate.setTime(date);
         String paramAddress = request.getParameter("address");
         String paramPhone = request.getParameter("phone");
-        //String paramPass = request.getParameter("password");
         String paramResposable = request.getParameter("responsable");
 
         Person client = new Person();
         String paramPass = client.encriptPassword(paramName);
         if (request.getParameter("clientType").equals("juridico")) {
-            client = new Legal(paramId, paramName, paramLastname, paramLastname02, paramEmail, paramPass, paramAddress, Calendar.getInstance(), paramPhone, paramResposable);
+            client = new Legal(paramId, paramName, paramLastname, paramLastname02, paramEmail, paramPass, paramAddress, birtdate, paramPhone, paramResposable);
+            session.setAttribute("NEW_CLIENT", client);
         } else if (request.getParameter("clientType").equals("fisico")) {
-            client = new Natural(paramId, paramName, paramLastname, paramLastname02, paramEmail, paramPass, paramAddress, Calendar.getInstance(), paramPhone);
+            client = new Natural(paramId, paramName, paramLastname, paramLastname02, paramEmail, paramPass, paramAddress, birtdate, paramPhone);
+            session.setAttribute("NEW_CLIENT", client);
         }
-        
+
         ud.bank.getListOfPersons().add(client);
+        client.sendEmail(paramPass, paramEmail);
+        response.sendRedirect("createaccount.jsp?fromBanking=false");
 
+    }catch(NullPointerException e){
         
-        response.sendRedirect("createAccount.jsp");
-    }
+        e.getMessage();
+    }}
 
-       
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -78,7 +90,11 @@ public class CreatePerson extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ParseException ex) {
+            Logger.getLogger(CreatePerson.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -92,7 +108,11 @@ public class CreatePerson extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ParseException ex) {
+            Logger.getLogger(CreatePerson.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
