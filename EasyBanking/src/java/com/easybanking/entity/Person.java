@@ -22,8 +22,6 @@ public class Person {
     private String phone;
     private ArrayList<BankAccount> listOfBankAccounts = new ArrayList<>();
 
-    ;
-
     public Person() {
 
     }
@@ -102,7 +100,7 @@ public class Person {
 
         if (p instanceof Legal) {
 
-            responsible = ((Legal) p).getResponsible();
+            responsible = ((Legal)p).getResponsible().toString();
 
         } else {
 

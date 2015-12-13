@@ -14,7 +14,7 @@ public class BankBranch extends Legal{
     private Bank bankOwner;
     private String idBranch;
     
-    public BankBranch(Bank bankOwner, String id, String name, String email, String address, String phone, String responsible, String idBranch) {
+    public BankBranch(Bank bankOwner, String id, String name, String email, String address, String phone, Natural responsible, String idBranch) {
         super(id, name, email, address, phone, responsible);
         this.bankOwner = bankOwner;
         this.idBranch = idBranch;

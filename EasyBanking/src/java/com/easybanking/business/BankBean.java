@@ -47,23 +47,23 @@ public class BankBean {
     }
 
 
-    
-    
     public void getClientFromId(){
     
     PersonData pd = new PersonData();
+    
+    Person searchIdClient = pd.readClient(searchId);
         
-        if (pd.readClient(searchId) instanceof Client) {
+        if (searchIdClient instanceof Client) {
             
-            client = (Client)pd.readClient(searchId);
+            client = (Client)searchIdClient;
             
-        }else if(pd.readClient(searchId) instanceof LegalClient) {
+        }else if(searchIdClient instanceof LegalClient) {
             
-            legalClient = (LegalClient)pd.readClient(searchId);
+            legalClient = (LegalClient)searchIdClient;
         
-        }else if(pd.readClient(searchId) instanceof Administrator) {
+        }else if(searchIdClient instanceof Administrator) {
         
-             admin = (Administrator)pd.readClient(searchId);
+             admin = (Administrator)searchIdClient;
             
         }
     }

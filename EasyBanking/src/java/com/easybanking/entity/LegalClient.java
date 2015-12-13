@@ -13,10 +13,13 @@ import java.util.Calendar;
  */
 public class LegalClient extends Legal{
 
-    public LegalClient(String id, String name, String email, String address, String phone, String responsible) {
+    public LegalClient(String id, String name, String email, String address, String phone, Natural responsible) {
         super(id, name, email, address, phone, responsible);
     }
 
-   
+    public LegalClient() {
+        
+    }
+
     
 }
