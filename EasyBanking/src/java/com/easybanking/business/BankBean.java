@@ -18,6 +18,7 @@ import javax.faces.bean.RequestScoped;
  *
  * @author Soler
  */
+
 @ManagedBean(name = "BANKBEAN")
 @RequestScoped
 public class BankBean {
@@ -47,23 +48,23 @@ public class BankBean {
     }
 
 
+    
+    
     public void getClientFromId(){
     
     PersonData pd = new PersonData();
-    
-    Person searchIdClient = pd.readClient(searchId);
         
-        if (searchIdClient instanceof Client) {
+        if (pd.readClient(searchId) instanceof Client) {
             
-            client = (Client)searchIdClient;
+            client = (Client)pd.readClient(searchId);
             
-        }else if(searchIdClient instanceof LegalClient) {
+        }else if(pd.readClient(searchId) instanceof LegalClient) {
             
-            legalClient = (LegalClient)searchIdClient;
+            legalClient = (LegalClient)pd.readClient(searchId);
         
-        }else if(searchIdClient instanceof Administrator) {
+        }else if(pd.readClient(searchId) instanceof Administrator) {
         
-             admin = (Administrator)searchIdClient;
+             admin = (Administrator)pd.readClient(searchId);
             
         }
     }

@@ -22,6 +22,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 public class LoginBean {
 
     private Administrator admin = new Administrator();
+    private String msgError = "";
 
     private Administrator loggedAdmin = new Administrator();
 
@@ -37,6 +38,14 @@ public class LoginBean {
         this.admin = admin;
     }
 
+    public String getMsgError() {
+        return msgError;
+    }
+
+    public void setMsgError(String msgError) {
+        this.msgError = msgError;
+    }
+    
     public Administrator getLoggedAdmin() {
         return loggedAdmin;
     }
@@ -66,23 +75,25 @@ public class LoginBean {
             if (encriptedPass.equals(loggedAdmin.getPassword())) {
                 
                 url = "/home.xhtml";
-                
+                msgError = "";
             }else{
             
                 //password incorrecto
-            url = "/login.xhtml?ERROR";
-                
+            url = "/login.xhtml";
+              msgError = "ERROR 1";  
             }
           
         }else{
     
             //el usuario no existe
-           url = "/login.xhtml?faces-redirect=true";
-            
+           url = "/login.xhtml";
+             msgError = "ERROR 2";
         }
-
+        
         return url;
 
     }
 
+    
+    //Invalidate session
 }
