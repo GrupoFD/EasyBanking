@@ -7,6 +7,8 @@ package com.easybanking.business;
 
 import com.easybanking.data.BankData;
 import com.easybanking.entity.BankBranch;
+import com.easybanking.entity.Legal;
+import com.easybanking.entity.Natural;
 import com.easybanking.entity.Person;
 import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
@@ -30,6 +32,8 @@ public class BankBean {
     private ArrayList<BankBranch> listOfBranches = new ArrayList<>();
 
     private ArrayList<Person> listOfPersons = new ArrayList<>();
+    
+    private Person selectedClient;
 
     public BankBean() {
 
@@ -68,15 +72,18 @@ public class BankBean {
         this.listOfPersons = listOfPersons;
     }
 
-    public ArrayList<Person> getAllPersonsFromBank() {
-        LoginBean lb = new LoginBean();
-        BankData bd = new BankData();
-        this.listOfPersons = bd.getListOfPersons(lb.getSelectedBank());
-        return listOfPersons;
+    public Person getSelectedClient() {
+        return selectedClient;
     }
 
+    public void setSelectedClient(Person selectedClient) {
+        this.selectedClient = selectedClient;
+    }
+   
     public void loadTable() {
 
+        listOfPersons.clear();
+        
         BankData bd = new BankData();
         ArrayList<Person> resultList = bd.getListOfPersons(login.getSelectedBank());
 
@@ -87,6 +94,24 @@ public class BankBean {
                 listOfPersons.add(p);
             }
         }
+    }
+    
+    public String goToClient(Person p) {
+
+       String url = "";
+       
+       this.selectedClient = p;
+       
+        if (p instanceof Natural) {
+            
+            url = "naturalinfo.xhtml";
+            
+        }else if (p instanceof Legal) {
+            
+            url = "legalinfo.xhtml";
+        }
+       
+       return url;
     }
 
 }

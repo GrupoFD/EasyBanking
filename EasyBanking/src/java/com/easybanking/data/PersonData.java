@@ -51,20 +51,19 @@ public class PersonData implements InterfaceCRUD<Person> {
 
                 date.setTime(res.getDate(7));
                 
-                if (res.getInt(9) == 1) {
+                if (res.getInt(9) != 3) {
 
-                    client = new Administrator(res.getString(11), res.getString(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getString(6), date, res.getString(8));
+                    client = new Client(res.getString(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getString(6), date, res.getString(8));
 
-                } else if (res.getInt(9) == 2) {
-
-                    client = new Client(res.getString(1),res.getString(2),res.getString(3),res.getString(4), res.getString(5), res.getString(6), date, res.getString(8));
-                    
                 } else if (res.getInt(9) == 3) {
                     
+                    //LEGAL
                     Natural c = new Natural();
                     
                     c.setId(res.getString(9));
 
+                    c = (Natural)read(c);
+                    
                    client = new LegalClient(res.getString(1),res.getString(2),res.getString(5), res.getString(6), res.getString(8), c); 
                     
                 }

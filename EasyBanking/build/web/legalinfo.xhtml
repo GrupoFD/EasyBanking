@@ -102,40 +102,27 @@
                     <br/>
                     <b:row styleClass="placeholders">
                         <b:column col-xs="6" col-sm="3" styleClass="placeholder">
-                            <img data-src="holder.js/200x200/sky" class="img-responsive" alt="Generic placeholder thumbnail"/>
-                            <h4>Combo #1</h4>
+                            <h4>#{BANKBEAN.selectedClient.name}</h4>
+                            <span class="text-muted">LEGAL CLIENT</span>
+                        </b:column>
+                        <b:column col-xs="6" col-sm="3" styleClass="placeholder">
+                            <h4>#{BANKBEAN.selectedClient.id}</h4>
                             <span class="text-muted">Detalles Combo</span>
                         </b:column>
                         <b:column col-xs="6" col-sm="3" styleClass="placeholder">
-                            <img data-src="holder.js/200x200/vine" class="img-responsive" alt="Generic placeholder thumbnail"/>
-                            <h4>Combo #2</h4>
-                            <span class="text-muted">Detalles Combo</span>
-                        </b:column>
-                        <b:column col-xs="6" col-sm="3" styleClass="placeholder">
-                            <img data-src="holder.js/200x200/sky" class="img-responsive" alt="Generic placeholder thumbnail"/>
                             <h4>Promo #1</h4>
                             <span class="text-muted">Detalles Promo</span>
                         </b:column>
                         <b:column col-xs="6" col-sm="3" styleClass="placeholder">
-                            <img data-src="holder.js/200x200/vine" class="img-responsive" alt="Generic placeholder thumbnail"/>
                             <h4>Promo #2</h4>
                             <span class="text-muted">Detalles Promo</span>
                         </b:column>
                     </b:row>                   
-                    <h:form class="main">
-                        <h1>Buscar personas</h1>
-                        <b:inputText placeholder="Buscar..." fieldSize="lg" value="#{BANKBEAN.searchId}">
-                            <f:facet name="append">
-                                <b:commandButton type="submit" class="btn-lg btn-primary" value="" icon="glyphicon glyphicon-search" action="#{BANKBEAN.loadTable()}"></b:commandButton>
-                            </f:facet>
-                        </b:inputText>
-                    </h:form>
+                  
+                    <h2>Cuentas </h2>
                     <hr/>
                     <b:row styleClass="table-responsive">
                         <h:dataTable styleClass="table table-striped" value="#{BANKBEAN.listOfPersons}" var="personVar" rows="15">
-                            <f:facet name="header">
-                                Resultados de la busqueda:
-                            </f:facet>
                             <h:column>
                                 <f:facet name="header"><h:outputText value="Cedula" /></f:facet>
                                 <h:outputText value="#{personVar.id}" />
@@ -149,9 +136,8 @@
                                 <h:outputText value="#{personVar.email}" />
                             </h:column>
                             <h:column>
-                                <h:form>
-                                    <b:commandButton class="btn-primary" look="info" value="Ver Cliente" action="#{BANKBEAN.goToClient(personVar)}"></b:commandButton> 
-                                </h:form>
+                                <f:facet name="header"><h:outputText value="Accion" /></f:facet>
+                                <h:outputText value="#{personVar.phone}" />
                             </h:column>
                         </h:dataTable>
                     </b:row>

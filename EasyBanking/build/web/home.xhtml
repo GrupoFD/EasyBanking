@@ -78,7 +78,7 @@
     </style>
     <h:body style="padding-top: 60px">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.5.2/holder.min.js"></script>
-        <b:navBar brand="#{LOGINBEAN.selectedBank.name}" brandHref="home.xhtml" inverse="true" fixed="top" fluid="true">         
+        <b:navBar brand="#{BANKBEAN.login.selectedBank.name}" brandHref="home.xhtml" inverse="true" fixed="top" fluid="true">         
             <b:navbarLinks pull="right">
                 <b:navLink value="Sucursal: " href="login.xhtml" icon="glyphicon glyphicon-map-marker"></b:navLink>
             </b:navbarLinks>
@@ -130,10 +130,12 @@
                             </f:facet>
                         </b:inputText>
                     </h:form>
-                    <h2>Resultados: </h2>
                     <hr/>
                     <b:row styleClass="table-responsive">
-                        <h:dataTable styleClass="table table-striped" value="#{BANKBEAN.allPersonsFromBank}" var="personVar" rows="15">
+                        <h:dataTable styleClass="table table-striped" value="#{BANKBEAN.listOfPersons}" var="personVar" rows="15">
+                            <f:facet name="header">
+                                Resultados de la busqueda:
+                            </f:facet>
                             <h:column>
                                 <f:facet name="header"><h:outputText value="Cedula" /></f:facet>
                                 <h:outputText value="#{personVar.id}" />
@@ -147,8 +149,9 @@
                                 <h:outputText value="#{personVar.email}" />
                             </h:column>
                             <h:column>
-                                <f:facet name="header"><h:outputText value="Accion" /></f:facet>
-                                <h:outputText value="#{personVar.phone}" />
+                                <h:form>
+                                    <b:commandButton class="btn-primary" look="info" value="Ver Cliente" action="#{BANKBEAN.goToClient(personVar)}"></b:commandButton> 
+                                </h:form>
                             </h:column>
                         </h:dataTable>
                     </b:row>
