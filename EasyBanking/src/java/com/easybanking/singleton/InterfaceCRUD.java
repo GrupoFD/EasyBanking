@@ -5,7 +5,7 @@
  */
 package com.easybanking.singleton;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
@@ -19,5 +19,5 @@ public interface InterfaceCRUD<GenericObject>{
    public boolean delete(GenericObject c);
    public boolean update(GenericObject c );
    public GenericObject read(GenericObject c);
-   public List<GenericObject> readAll();
+   public ArrayList<GenericObject> readAll();
 }

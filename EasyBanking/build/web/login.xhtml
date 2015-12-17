@@ -15,24 +15,29 @@
             }
         </style>
     </h:head>
-    <h:body style="padding-top: 60px; background-color: #add;">
+    <h:body style="padding-top: 60px; background-color: #428bca;">
         <b:container>
-            <h:form styleClass="form-signin" prependId="false" >
-                <b:label text="#{LOGINADMIN.msgError}"/>
+            <h:form styleClass="form-signin" prependId="false" >                
                 <h2 class="form-signin-heading">Ingrese aqui!</h2>
-                <b:inputText id="id" placeholder="Cedula" value="#{LOGINADMIN.admin.id}" >               
+                <b:inputText id="id" placeholder="Cedula" value="#{LOGINBEAN.admin.id}" >               
                     <f:facet name="prepend">
                         <b:icon name="user" />
                     </f:facet>
                 </b:inputText>
-                <b:inputText id="password" placeholder="Contrasena" type="password" value="#{LOGINADMIN.admin.password}">
+                <b:inputText id="password" placeholder="Contrasena" type="password" value="#{LOGINBEAN.admin.password}">
                     <f:facet name="prepend">
                         <b:iconAwesome name="key" />
                     </f:facet>
-                </b:inputText>
+                </b:inputText>               
+                <b:selectOneMenu value="#{LOGINBEAN.selectedBank}" id="bankId">
+                    <f:selectItem itemLabel="Seleccione el Banco" itemValue=""/>
+                    <f:selectItems value="#{LOGINBEAN.getListOfBanks()}" var="bankVar" itemValue="#{bankVar}"
+                                   itemLabel="#{bankVar.name}" />
+                </b:selectOneMenu>.
                 <b:selectBooleanCheckbox value="true" caption="Recuerdeme"/>
-                <br/>             
-                <b:commandButton type="submit" look="primary btn-block" value="Ingresar" icon="log-in" size="lg" action="#{LOGINADMIN.verifyAdmin()}"/>                
+                <b:alert severity="danger" title="ERROR!" rendered="#{LOGINBEAN.msg}">#{LOGINBEAN.msgError}</b:alert>
+                <br/>
+                <b:commandButton type="submit" look="primary btn-block" value="Ingresar" icon="log-in" size="lg" action="#{LOGINBEAN.verifyAdmin()}"/>                
                 <br/>                
             </h:form>
         </b:container>

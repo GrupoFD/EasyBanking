@@ -11,25 +11,27 @@ import java.util.ArrayList;
  *
  * @author Soler
  */
-
-public class Bank implements AvailableCurrencies{
+public class Bank implements AvailableCurrencies {
 
     private int id;
     private String name;
     private String country;
-    private int phone;
+    private String phone;
     private ArrayList<BankBranch> listOfBranches = new ArrayList<>();
     private ArrayList<Person> listOfPersons = new ArrayList<>();
-    
-    
+
     public Bank() {
     }
 
-    public Bank(int id, String name, String country, int phone) {
+    public Bank(int id, String name, String country, String phone) {
         this.id = id;
         this.name = name;
         this.country = country;
         this.phone = phone;
+    }
+
+    public Bank(int id) {
+        this.id = id;
     }
 
     public int getId() {
@@ -56,11 +58,11 @@ public class Bank implements AvailableCurrencies{
         this.country = country;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
@@ -82,65 +84,6 @@ public class Bank implements AvailableCurrencies{
 
     public void setListOfBranches(ArrayList<BankBranch> listOfBranches) {
         this.listOfBranches = listOfBranches;
-    }
-
-//    public Person personValidation(String id, String password) {
-//
-//        for (Person p : this.listOfPersons) {
-//
-//            if (p.getId().equals(id)) {
-//
-//                if (p.getPassword().equals(password)) {
-//
-//                    return p;
-//                }
-//            }
-//
-//        }
-//
-//        return null;
-//    }
-
-    public Person personConfirmation(String id) {
-
-        for (Person p : this.listOfPersons) {
-
-            if (p.getId().equals(id)) {
-
-                return p;
-            }
-        }
-        
-        return null;
-    }
-
-    public ArrayList<Person> searchedPerson(String name) {
-
-        ArrayList<Person> searchList = new ArrayList<>();
-
-        for (Person p : this.listOfPersons) {
-
-            if (p.getId().toLowerCase().equals(name.toLowerCase())) {
-
-                searchList.add(p);
-
-//            } else if (p.getName().toLowerCase().equals(name.toLowerCase())) {
-//
-//                searchList.add(p);
-//
-//            } else if (p.getLastName().toLowerCase().equals(name.toLowerCase())) {
-//
-//                searchList.add(p);
-
-            } else if (p.getEmail().toLowerCase().equals(name.toLowerCase())) {
-
-                searchList.add(p);
-
-            }
-
-        }
-
-        return searchList;
     }
 
     @Override

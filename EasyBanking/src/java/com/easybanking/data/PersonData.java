@@ -14,8 +14,8 @@ import com.easybanking.singleton.InterfaceCRUD;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -41,7 +41,7 @@ public class PersonData implements InterfaceCRUD<Person> {
         
         try {
 
-            ps = this.con.getCon().prepareStatement("SELECT * FROM Person WHERE IdNumber = ?");
+            ps = this.con.getCon().prepareStatement("SELECT * FROM Person WHERE PersonId = ?");
 
             ps.setString(1, key.toString());
 
@@ -49,23 +49,23 @@ public class PersonData implements InterfaceCRUD<Person> {
             
             while (res.next()) {
 
-                date.setTime(res.getDate(8));
+                date.setTime(res.getDate(7));
                 
-                if (res.getInt(10) == 1) {
+                if (res.getInt(9) == 1) {
 
-                    client = new Administrator(res.getString(12), res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getString(6), res.getString(7), date, res.getString(9));
+                    client = new Administrator(res.getString(11), res.getString(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getString(6), date, res.getString(8));
 
-                } else if (res.getInt(10) == 2) {
+                } else if (res.getInt(9) == 2) {
 
-                    client = new Client(res.getString(2),res.getString(3),res.getString(4),res.getString(5), res.getString(6), res.getString(7), date, res.getString(9));
+                    client = new Client(res.getString(1),res.getString(2),res.getString(3),res.getString(4), res.getString(5), res.getString(6), date, res.getString(8));
                     
-                } else if (res.getInt(10) == 3) {
+                } else if (res.getInt(9) == 3) {
                     
                     Natural c = new Natural();
                     
-                    c.setId(res.getString(11));
+                    c.setId(res.getString(9));
 
-                   client = new LegalClient(res.getString(2),res.getString(3),res.getString(6), res.getString(7), res.getString(9), c); 
+                   client = new LegalClient(res.getString(1),res.getString(2),res.getString(5), res.getString(6), res.getString(8), c); 
                     
                 }
 
@@ -107,7 +107,7 @@ public class PersonData implements InterfaceCRUD<Person> {
             Calendar date = Calendar.getInstance();
 
             ps = this.con.getCon().prepareStatement("SELECT *"
-                    + " FROM Person WHERE IdNumber = ?");
+                    + " FROM Person WHERE PersonId = ?");
 
             ps.setString(1, c.getId());
 
@@ -115,11 +115,11 @@ public class PersonData implements InterfaceCRUD<Person> {
 
             while (res.next()) {
 
-                date.setTime(res.getDate(8));
+                date.setTime(res.getDate(7));
 
-                if (res.getInt(10) == 1) {
+                if (res.getInt(9) == 1) {
 
-                    admin = new Administrator(res.getString(12), res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getString(6), res.getString(7), date, res.getString(9));
+                    admin = new Administrator(res.getString(11), res.getString(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getString(6), date, res.getString(8));
 
                 } else {
 
@@ -140,7 +140,7 @@ public class PersonData implements InterfaceCRUD<Person> {
     }
 
     @Override
-    public List<Person> readAll() {
+    public ArrayList<Person> readAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

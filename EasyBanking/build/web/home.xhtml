@@ -78,7 +78,7 @@
     </style>
     <h:body style="padding-top: 60px">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.5.2/holder.min.js"></script>
-        <b:navBar brand="Easy Bank" brandHref="home.xhtml" inverse="true" fixed="top" fluid="true">         
+        <b:navBar brand="#{LOGINBEAN.selectedBank.name}" brandHref="home.xhtml" inverse="true" fixed="top" fluid="true">         
             <b:navbarLinks pull="right">
                 <b:navLink value="Sucursal: " href="login.xhtml" icon="glyphicon glyphicon-map-marker"></b:navLink>
             </b:navbarLinks>
@@ -87,7 +87,7 @@
             <b:row>
                 <b:column col-sm="3" col-md="2" styleClass="sidebar">
                     <b:listLinks>
-                        <h2><b:navLink header= "Bienvenid@" /></h2>
+                        <h2><b:navLink header= "Bienvenid@ " /></h2>
                         <b:navLink header= "#{LOGINADMIN.loggedAdmin.name}" />
                         <hr/>
                         <b:navLink href="home.xhtml" value=" Inicio" icon="glyphicon glyphicon-home" active="true"/>
@@ -123,32 +123,32 @@
                         </b:column>
                     </b:row>                   
                     <h:form class="main">
-                        <h1>Buscador de personas</h1>
-                        <b:inputText placeholder="Buscar..." fieldSize="lg" value="">
+                        <h1>Buscar personas</h1>
+                        <b:inputText placeholder="Buscar..." fieldSize="lg" value="#{BANKBEAN.searchId}">
                             <f:facet name="append">
-                                <b:commandButton class="btn-lg btn-primary" value="" icon="glyphicon glyphicon-search" action="#{BANKBEAN.searchId}"></b:commandButton>
+                                <b:commandButton type="submit" class="btn-lg btn-primary" value="" icon="glyphicon glyphicon-search" action="#{BANKBEAN.loadTable()}"></b:commandButton>
                             </f:facet>
                         </b:inputText>
                     </h:form>
                     <h2>Resultados: </h2>
                     <hr/>
                     <b:row styleClass="table-responsive">
-                        <h:dataTable styleClass="table table-striped" value="#{BANKBEAN.searchId}" var="item" rows="15">
+                        <h:dataTable styleClass="table table-striped" value="#{BANKBEAN.allPersonsFromBank}" var="personVar" rows="15">
                             <h:column>
                                 <f:facet name="header"><h:outputText value="Cedula" /></f:facet>
-                                <h:outputText value="#{LOGINADMIN.loggedAdmin.id}" />
+                                <h:outputText value="#{personVar.id}" />
                             </h:column>
                             <h:column>
                                 <f:facet name="header"><h:outputText value="Nombre" /></f:facet>
-                                <h:outputText value="#{LOGINADMIN.loggedAdmin.name}" />
+                                <h:outputText value="#{personVar.name}" />
                             </h:column>
                             <h:column>
-                                <f:facet name="header"><h:outputText value="Apellidos / Responsable" /></f:facet>
-                                <h:outputText value="#{LOGINADMIN.loggedAdmin.lastName}" />
+                                <f:facet name="header"><h:outputText value="Correo Electronico" /></f:facet>
+                                <h:outputText value="#{personVar.email}" />
                             </h:column>
                             <h:column>
                                 <f:facet name="header"><h:outputText value="Accion" /></f:facet>
-                                <h:outputText value="#{LOGINADMIN.loggedAdmin.phone}" />
+                                <h:outputText value="#{personVar.phone}" />
                             </h:column>
                         </h:dataTable>
                     </b:row>

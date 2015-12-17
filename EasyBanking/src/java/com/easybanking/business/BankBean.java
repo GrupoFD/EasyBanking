@@ -5,40 +5,44 @@
  */
 package com.easybanking.business;
 
-import com.easybanking.data.PersonData;
-import com.easybanking.entity.Administrator;
-import com.easybanking.entity.Client;
-import com.easybanking.entity.LegalClient;
+import com.easybanking.data.BankData;
+import com.easybanking.entity.BankBranch;
 import com.easybanking.entity.Person;
 import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 
 /**
  *
  * @author Soler
  */
-
 @ManagedBean(name = "BANKBEAN")
-@RequestScoped
-public class BankBean {
+@SessionScoped
 
-    /**
-     * Creates a new instance of BankBean
-     */
-    private String searchId = ""; 
-           
-    private LegalClient legalClient = new LegalClient();
+public class BankBean {
     
-    private Client client = new Client();
+    @ManagedProperty(value="#{LOGINBEAN}")
+    private LoginBean login;
     
-    private Administrator admin = new Administrator();
-    
+    private String searchId = "";
+
+    private ArrayList<BankBranch> listOfBranches = new ArrayList<>();
+
+    private ArrayList<Person> listOfPersons = new ArrayList<>();
+
     public BankBean() {
-        
-        
+
     }
 
+    public LoginBean getLogin() {
+        return login;
+    }
+
+    public void setLogin(LoginBean login) {
+        this.login = login;
+    }  
+    
     public String getSearchId() {
         return searchId;
     }
@@ -47,25 +51,41 @@ public class BankBean {
         this.searchId = searchId;
     }
 
+    public ArrayList<BankBranch> getListOfBranches() {
+        return listOfBranches;
+    }
 
-    
-    
-    public void getClientFromId(){
-    
-    PersonData pd = new PersonData();
-        
-        if (pd.readClient(searchId) instanceof Client) {
+    public void setListOfBranches(ArrayList<BankBranch> listOfBranches) {
+        this.listOfBranches = listOfBranches;
+    }
+
+    public ArrayList<Person> getListOfPersons() {
+        return listOfPersons;
+    }
+
+    public void setListOfPersons(ArrayList<Person> listOfPersons) {
+
+        this.listOfPersons = listOfPersons;
+    }
+
+    public ArrayList<Person> getAllPersonsFromBank() {
+        LoginBean lb = new LoginBean();
+        BankData bd = new BankData();
+        this.listOfPersons = bd.getListOfPersons(lb.getSelectedBank());
+        return listOfPersons;
+    }
+
+    public void loadTable() {
+
+        BankData bd = new BankData();
+        ArrayList<Person> resultList = bd.getListOfPersons(login.getSelectedBank());
+
+        for (Person p : resultList) {
             
-            client = (Client)pd.readClient(searchId);
-            
-        }else if(pd.readClient(searchId) instanceof LegalClient) {
-            
-            legalClient = (LegalClient)pd.readClient(searchId);
-        
-        }else if(pd.readClient(searchId) instanceof Administrator) {
-        
-             admin = (Administrator)pd.readClient(searchId);
-            
+            if (p.getId().equals(searchId)) {
+                
+                listOfPersons.add(p);
+            }
         }
     }
 

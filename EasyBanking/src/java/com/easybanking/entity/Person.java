@@ -8,7 +8,6 @@ package com.easybanking.entity;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-
 /**
  *
  * @author Soler
@@ -100,7 +99,7 @@ public class Person {
 
         if (p instanceof Legal) {
 
-            responsible = ((Legal)p).getResponsible().toString();
+            responsible = ((Legal) p).getResponsible().toString();
 
         } else {
 
@@ -159,7 +158,6 @@ public class Person {
 //            throw new RuntimeException(e);
 //        }
 //    }
-
     public String toString() {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy MMM dd");
@@ -169,7 +167,7 @@ public class Person {
         sb.append("EASY BANK! \n");
         sb.append("Cedula: " + this.getId() + "\n");
         sb.append("Nombre: " + this.getName() + "         Telefono: " + this.getPhone() + "\n");
-        sb.append("Dirección: " + this.getAddress()+ "    \n");
+        sb.append("Dirección: " + this.getAddress() + "    \n");
         sb.append("Responsable: " + this.getResponsible(this) + "\n");
         sb.append("------------------------------------------------------------------------ \n");
         sb.append("-------------------------- Cuentas Bancarias --------------------------- \n");

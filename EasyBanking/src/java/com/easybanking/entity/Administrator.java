@@ -20,8 +20,8 @@ public class Administrator extends Natural {
 
     }
 
-    public Administrator(String password) {
-        this.password = password;
+    public Administrator(int id) {
+
     }
 
     public Administrator(String password, String id, String name, String lastName, String lastName2, String email, String adress, Calendar birthDate, String phone) {

@@ -5,7 +5,12 @@
  */
 package com.easybanking.data;
 
+import com.easybanking.business.BankBean;
+import com.easybanking.business.LoginBean;
+import com.easybanking.entity.Bank;
+import com.easybanking.entity.Person;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import org.apache.commons.codec.digest.DigestUtils;
 
 /**
@@ -22,13 +27,31 @@ public class tester {
         
         String pass = "123";
         String newPass = encriptPassword(pass);
-
+        Bank bank = new Bank();
+        bank.setId(1);
         System.out.println(newPass);
+        
+        BankBean bb = new BankBean();
+        LoginBean lb = new LoginBean();
+        lb.setSelectedBank(bank);
+        BankData bd = new BankData();
+        ArrayList<Person> resultList = bd.getListOfPersons(lb.getSelectedBank());
+         
+         for (Person p : resultList) {
+            
+            if (p.getId().equals(123)) {
+                
+                System.out.println("debug "+p.getName());
+               
+            }
+        }
+        bb.loadTable();
     }
     
         public static String encriptPassword(String encriptPass) {
         String encripted = DigestUtils.md5Hex(encriptPass);
         return encripted;
+        
     }
-   
+       
 }

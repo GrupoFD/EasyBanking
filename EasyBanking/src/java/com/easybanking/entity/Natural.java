@@ -21,7 +21,7 @@ public class Natural extends Person {
     public Natural() {
     }
 
-    public Natural( String id, String name, String lastName, String lastName2, String email, String address, Calendar birthDate, String phone) {
+    public Natural(String id, String name, String lastName, String lastName2, String email, String address, Calendar birthDate, String phone) {
         super(id, name, email, address, phone);
         this.birthDate = birthDate;
         this.lastName = lastName;
