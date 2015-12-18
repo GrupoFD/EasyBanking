@@ -11,25 +11,29 @@ import javax.transaction.Transaction;
 public class BankAccount implements AvailableCurrencies {
 
     private String id;
-    private Currency currency;
+    private Bank issuer;
     private double amountBalance;
-    private ArrayList<Transaction> listOfTransactions = new ArrayList<>();
-    private int giftPoints;
+    private Currency currency;
+    private Person owner;
     private Calendar creationDate;
     private Calendar expirationDate;
+    private int giftPoints;
+    private ArrayList<Transaction> listOfTransactions = new ArrayList<>();
 
     public BankAccount() {
     }
 
-    public BankAccount(String id, Currency currency, double amountBalance, Calendar creationDate, Calendar expirationDate) {
+    public BankAccount(String id, Bank issuer, double amountBalance, Currency currency, Person owner, Calendar creationDate, Calendar expirationDate, int giftPoints) {
         this.id = id;
-        this.currency = currency;
+        this.issuer = issuer;
         this.amountBalance = amountBalance;
+        this.currency = currency;
+        this.owner = owner;
         this.creationDate = creationDate;
         this.expirationDate = expirationDate;
-
+        this.giftPoints = giftPoints;
     }
-
+    
     public String getId() {
         return id;
     }
@@ -46,20 +50,12 @@ public class BankAccount implements AvailableCurrencies {
         this.currency = currency;
     }
 
-    public double getAmount() {
+    public double getAmountBalance() {
         return amountBalance;
     }
 
-    public void setAmount(double amountBalance) {
+    public void setAmountBalance(double amountBalance) {
         this.amountBalance = amountBalance;
-    }
-
-    public ArrayList<Transaction> getListOfTransactions() {
-        return listOfTransactions;
-    }
-
-    public void setListOfTransactions(ArrayList<Transaction> listOfTransactions) {
-        this.listOfTransactions = listOfTransactions;
     }
 
     public Calendar getCreationDate() {
@@ -77,6 +73,40 @@ public class BankAccount implements AvailableCurrencies {
     public void setExpirationDate(Calendar expirationDate) {
         this.expirationDate = expirationDate;
     }
+
+    public Bank getIssuer() {
+        return issuer;
+    }
+
+    public void setIssuer(Bank bank) {
+        this.issuer = bank;
+    }
+
+    public Person getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Person owner) {
+        this.owner = owner;
+    }
+
+    public int getGiftPoints() {
+        return giftPoints;
+    }
+
+    public void setGiftPoints(int giftPoints) {
+        this.giftPoints = giftPoints;
+    }
+
+    public ArrayList<Transaction> getListOfTransactions() {
+        return listOfTransactions;
+    }
+
+    public void setListOfTransactions(ArrayList<Transaction> listOfTransactions) {
+        this.listOfTransactions = listOfTransactions;
+    }
+
+   
 
 //    public String createNewAccountNumber(String typeOfAccount) {
 //
@@ -124,7 +154,6 @@ public class BankAccount implements AvailableCurrencies {
 //
 //        return newIdNumber;
 //    }
-
     public String currencyFormat(int currency) {
 
         String c = "";
@@ -150,7 +179,7 @@ public class BankAccount implements AvailableCurrencies {
         return c;
     }
 
-        public Calendar expirationDate() {
+    public Calendar expirationDate() {
 
         Calendar myCalendar = Calendar.getInstance();
 
@@ -164,7 +193,6 @@ public class BankAccount implements AvailableCurrencies {
         return myCalendar;
     }
 
-    
     public int currencyToInt(String currencyString) {
 
         int currencyInt = 0;

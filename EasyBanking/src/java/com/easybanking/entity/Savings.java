@@ -16,13 +16,12 @@ public class Savings extends BankAccount{
     private double interest;
     private boolean isActive; //?????????????
 
-    public Savings(double interest, boolean isActive) {
-        this.interest = interest;
-        this.isActive = isActive;
+    public Savings() {
+        
     }
 
-    public Savings(double interest, boolean isActive, String id, Currency currency, double amountBalance, Calendar creationDate, Calendar expirationDate) {
-        super(id, currency, amountBalance, creationDate, expirationDate);
+    public Savings(String id, Bank issuer, double amountBalance, Currency currency, Person owner, Calendar creationDate, Calendar expirationDate, int giftPoints, double interest, boolean isActive) {
+        super(id, issuer, amountBalance, currency, owner, creationDate, expirationDate, giftPoints);
         this.interest = interest;
         this.isActive = isActive;
     }

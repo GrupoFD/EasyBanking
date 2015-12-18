@@ -16,23 +16,20 @@ public class Credit extends BankAccount{
     private double maxCredit;
     private double minPayment;
     private double lastBalance;
-    private Calendar expirationDate;
     private boolean isGoodForLoan;
 
-    public Credit(double maxCredit, double minPayment, double lastBalance, Calendar expirationDate, boolean isGoodForLoan) {
-        this.maxCredit = maxCredit;
-        this.minPayment = minPayment;
-        this.lastBalance = lastBalance;
-        this.isGoodForLoan = isGoodForLoan;
+    public Credit() {
     }
 
-    public Credit(double maxCredit, double minPayment, double lastBalance, Calendar expirationDate, boolean isGoodForLoan, String id, Currency currency, double amountBalance, Calendar creationDate) {
-        super(id, currency, amountBalance, creationDate, expirationDate);
+    public Credit(double maxCredit, double minPayment, double lastBalance, boolean isGoodForLoan, String id, Bank issuer, double amountBalance, Currency currency, Person owner, Calendar creationDate, Calendar expirationDate, int giftPoints) {
+        super(id, issuer, amountBalance, currency, owner, creationDate, expirationDate, giftPoints);
         this.maxCredit = maxCredit;
         this.minPayment = minPayment;
         this.lastBalance = lastBalance;
         this.isGoodForLoan = isGoodForLoan;
     }
+    
+    
 
     public double getMaxCredit() {
         return maxCredit;
