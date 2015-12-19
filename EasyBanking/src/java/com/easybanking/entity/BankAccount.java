@@ -107,53 +107,58 @@ public class BankAccount implements AvailableCurrencies {
     }
 
    
+    public String createAccountNumber(int typeOfAccount){
+	
+        String newIdNumber = "";
+        String lastIdCheck = "";
+        String lastNumberString = "";
+        int lastNumberInt = 0;
+        int lastBiggestNumber = 0;
 
-//    public String createNewAccountNumber(String typeOfAccount) {
-//
-//        UserData ud = new UserData();
-//        Bank bank = ud.bank;
-//        String newIdNumber = "";
-//        String lastIdCheck = "";
-//        String lastNumberString = "";
-//        int lastNumberInt = 0;
-//        int lastBiggestNumber = 0;
-//
-//        switch (typeOfAccount) {
-//            case "colon":
-//                newIdNumber = "100-"; // New Colon Account
-//                break;
-//            case "dolar":
-//                newIdNumber = "200-"; // New Dollar Account
-//                break;
-//            case "euro":
-//                newIdNumber = "300-"; // New Euro Account 
-//                break;
-//            case "credito":
-//                newIdNumber = "400-"; // New Dollar Account 
-//                break;
-//        }
-//
-//        for (Person p : bank.getListOfPersons()) {
-//            for (BankAccount b : p.getListOfBankAccounts()) {
-//                lastIdCheck = b.getId();
-//                lastNumberString = lastIdCheck.substring(4, 10);
-//                lastNumberInt = Integer.parseInt(lastNumberString);
-//                if (lastNumberInt > lastBiggestNumber) {
-//                    lastBiggestNumber = lastNumberInt;
-//                }
-//            }
-//        }
-//
-//        if (lastBiggestNumber < 9) {
-//            newIdNumber += "00000" + String.valueOf(lastBiggestNumber + 1);
-//        } else if (lastBiggestNumber >= 9 && lastBiggestNumber < 99) {
-//            newIdNumber += "0000" + String.valueOf(lastBiggestNumber + 1);
-//        } else if (lastBiggestNumber >= 99 && lastBiggestNumber < 1000) {
-//            newIdNumber += "000" + String.valueOf(lastBiggestNumber + 1);
-//        }
-//
-//        return newIdNumber;
-//    }
+        switch (typeOfAccount) {
+            case 1:
+                newIdNumber = "100-"; // New Colon Savings-Account
+                break;
+            case 2:
+                newIdNumber = "200-"; // New Dollar Savings-Account
+                break;
+            case 3:
+                newIdNumber = "300-"; // New Euro Savings-Account 
+                break;
+            case 4:
+                newIdNumber = "400-"; // New Colon Credit-Account 
+                break;
+            case 5:
+                newIdNumber = "500-"; // New Dollar Credit-Account 
+                break;
+            case 6:
+                newIdNumber = "600-"; // New Euro Credit-Account 
+                break;
+        }
+
+        for (Person p : getIssuer().getListOfPersons()) {
+            for (BankAccount b : p.getListOfBankAccounts()) {
+                lastIdCheck = b.getId();
+                lastNumberString = lastIdCheck.substring(4, 10);
+                lastNumberInt = Integer.parseInt(lastNumberString);
+                if (lastNumberInt > lastBiggestNumber) {
+                    lastBiggestNumber = lastNumberInt;
+                }
+            }
+        }
+
+        if (lastBiggestNumber < 9) {
+            newIdNumber += "00000" + String.valueOf(lastBiggestNumber + 1);
+        } else if (lastBiggestNumber >= 9 && lastBiggestNumber < 99) {
+            newIdNumber += "0000" + String.valueOf(lastBiggestNumber + 1);
+        } else if (lastBiggestNumber >= 99 && lastBiggestNumber < 1000) {
+            newIdNumber += "000" + String.valueOf(lastBiggestNumber + 1);
+        }
+
+        return newIdNumber;
+}
+
+
     public String currencyFormat(int currency) {
 
         String c = "";
