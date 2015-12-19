@@ -24,6 +24,10 @@ public class Currency {
     public Currency() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    public Currency(String name) {
+        this.name = name;
+    }
 
     public int getId() {
         return id;
