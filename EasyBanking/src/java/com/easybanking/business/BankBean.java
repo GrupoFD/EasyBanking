@@ -24,20 +24,22 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 
 public class BankBean {
-    
-    @ManagedProperty(value="#{LOGINBEAN}")
+
+    @ManagedProperty(value = "#{LOGINBEAN}")
     private LoginBean login;
-    
+
     @ManagedProperty(value = "#{ACCOUNTBEAN}")
     private BankAccountsBean accountBankBean;
-    
+
     private String searchId = "";
 
     private ArrayList<BankBranch> listOfBranches = new ArrayList<>();
 
     private ArrayList<Person> listOfPersons = new ArrayList<>();
-    
-    private Person selectedClient;
+
+    private Natural selectedNaturalClient;
+
+    private Legal selectedLegalClient;
 
     public BankBean() {
 
@@ -49,8 +51,8 @@ public class BankBean {
 
     public void setLogin(LoginBean login) {
         this.login = login;
-    }  
-    
+    }
+
     public String getSearchId() {
         return searchId;
     }
@@ -76,12 +78,20 @@ public class BankBean {
         this.listOfPersons = listOfPersons;
     }
 
-    public Person getSelectedClient() {
-        return selectedClient;
+    public Natural getSelectedNaturtalClient() {
+        return selectedNaturalClient;
     }
 
-    public void setSelectedClient(Person selectedClient) {
-        this.selectedClient = selectedClient;
+    public void setSelectedNaturtalClient(Natural selectedNaturtalClient) {
+        this.selectedNaturalClient = selectedNaturtalClient;
+    }
+
+    public Legal getSelectedLegalClient() {
+        return selectedLegalClient;
+    }
+
+    public void setSelectedLegalClient(Legal selectedLegalClient) {
+        this.selectedLegalClient = selectedLegalClient;
     }
 
     public BankAccountsBean getAccountBankBean() {
@@ -91,48 +101,44 @@ public class BankBean {
     public void setAccountBankBean(BankAccountsBean accountBankBean) {
         this.accountBankBean = accountBankBean;
     }
-    
-    
-   
+
     public void loadTable() {
 
         listOfPersons.clear();
-        
+
         BankData bd = new BankData();
         ArrayList<Person> resultList = bd.getListOfPersons(login.getSelectedBank());
 
         for (Person p : resultList) {
-            
+
             if (p.getId().equals(searchId)) {
-                
+
                 listOfPersons.add(p);
             }
         }
     }
-    
+
     public String goToClient(Person p) {
 
-       BankAccountData bad = new BankAccountData();
-        
-       String url = "";
-       
-       this.selectedClient = p;
-       
+        BankAccountData bad = new BankAccountData();
+
+        String url = "";
+
         if (p instanceof Natural) {
-            
+
+            this.selectedNaturalClient = (Natural) p;
             accountBankBean.getListOfAccounts().clear();
-            accountBankBean.setListOfAccounts(bad.getListOfAccounts(login.getSelectedBank(),getSelectedClient()));
+            accountBankBean.setListOfAccounts(bad.getListOfAccounts(login.getSelectedBank(), p));
             url = "naturalinfo.xhtml";
-            
-        }else if (p instanceof Legal) {
-            
+
+        } else if (p instanceof Legal) {
+
+            this.selectedLegalClient = (Legal) p;
             accountBankBean.getListOfAccounts().clear();
-            accountBankBean.setListOfAccounts(bad.getListOfAccounts(login.getSelectedBank(),getSelectedClient()));
+            accountBankBean.setListOfAccounts(bad.getListOfAccounts(login.getSelectedBank(), p));
             url = "legalinfo.xhtml";
         }
-       
-       return url;
-    }
 
-    
+        return url;
+    }
 }

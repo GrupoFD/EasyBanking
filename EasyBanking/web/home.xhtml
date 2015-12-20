@@ -6,7 +6,7 @@
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:head>
-        <title>Easy Banking</title>
+        <title>#{BANKBEAN.login.selectedBank.name}</title>
 
     </h:head>
     <style type="text/css">
@@ -80,7 +80,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.5.2/holder.min.js"></script>
         <b:navBar brand="#{BANKBEAN.login.selectedBank.name}" brandHref="home.xhtml" inverse="true" fixed="top" fluid="true">         
             <b:navbarLinks pull="right">
-                <b:navLink value="Sucursal: " href="login.xhtml" icon="glyphicon glyphicon-map-marker"></b:navLink>
+                <b:navLink value="Sucursal: San Jose" href="login.xhtml" icon="glyphicon glyphicon-map-marker"></b:navLink>
             </b:navbarLinks>
         </b:navBar>
         <b:container fluid="true">
@@ -88,14 +88,14 @@
                 <b:column col-sm="3" col-md="2" styleClass="sidebar">
                     <b:listLinks>
                         <h2><b:navLink header= "Bienvenid@ " /></h2>
-                        <b:navLink header= "#{LOGINADMIN.loggedAdmin.name}" />
+                        <b:navLink header= "#{LOGINBEAN.loggedAdmin.name}" />
                         <hr/>
                         <b:navLink href="home.xhtml" value=" Inicio" icon="glyphicon glyphicon-home" active="true"/>
-                        <b:navLink href="accountCreate.xhtml" icon="glyphicon glyphicon-credit-card" value=" Crear Cuenta"/>
-                        <b:dropMenu value=" Crear Usuario">
-                            <b:navLink icon="glyphicon glyphicon-user" value="Persona Fisica" href="userCreate.xhtml"></b:navLink>
-                            <b:navLink icon="glyphicon glyphicon-user" value="Persona Legal" href="#"></b:navLink>                           
+                          <b:dropMenu value=" Crear Usuario">
+                            <b:navLink icon="glyphicon glyphicon-user" value="Persona Fisica" href="createnatural.xhtml"></b:navLink>
+                            <b:navLink icon="glyphicon glyphicon-user" value="Persona Legal" href="createlegal.xhtml"></b:navLink>                           
                         </b:dropMenu>
+                        <b:navLink href="accountCreate.xhtml" icon="glyphicon glyphicon-credit-card" value=" Crear Cuenta"/>
                         <b:navLink href="#" icon="glyphicon glyphicon-scissors" value=" Promociones" />
                         <b:navLink href="#" icon="glyphicon glyphicon-usd" value=" Combos" />
                         <b:navLink value=" Salir" href="login.xhtml" icon="glyphicon glyphicon-log-out"/>

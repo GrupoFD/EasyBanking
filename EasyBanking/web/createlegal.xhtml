@@ -6,8 +6,7 @@
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:head>
-        <title>Easy Banking</title>
-
+        <title>Nuevo Usuario</title>
     </h:head>
     <style type="text/css">
         .sub-header {
@@ -51,7 +50,6 @@
         .main {
             padding: 20px;
         }
-        //redondos
         @media (min-width: 768px) {
             .main {
                 padding-left: 40px;
@@ -87,56 +85,56 @@
             <b:row>
                 <b:column col-sm="3" col-md="2" styleClass="sidebar">
                     <b:listLinks>
-                        <h2><b:navLink header= "Bienvenid@ " /></h2>
-                        <b:navLink header= "#{LOGINADMIN.loggedAdmin.name}" />
+                        <b:navLink header= "#{LOGINBEAN.loggedAdmin.name}" />
                         <hr/>
                         <b:navLink href="home.xhtml" value=" Inicio" icon="glyphicon glyphicon-home" active="true"/>
+                          <b:dropMenu value=" Crear Usuario">
+                            <b:navLink icon="glyphicon glyphicon-user" value="Persona Fisica" href="createnatural.xhtml"></b:navLink>
+                            <b:navLink icon="glyphicon glyphicon-user" value="Persona Legal" href="createlegal.xhtml"></b:navLink>                           
+                        </b:dropMenu>
                         <b:navLink href="accountCreate.xhtml" icon="glyphicon glyphicon-credit-card" value=" Crear Cuenta"/>
-                        <b:navLink href="userCreate.xhtml" icon="glyphicon glyphicon-user" value=" Crear Usuario" />
                         <b:navLink href="#" icon="glyphicon glyphicon-scissors" value=" Promociones" />
                         <b:navLink href="#" icon="glyphicon glyphicon-usd" value=" Combos" />
                         <b:navLink value=" Salir" href="login.xhtml" icon="glyphicon glyphicon-log-out"/>
                     </b:listLinks>
                 </b:column>
+    
+        <b:navBar brand="inicio" brandHref="index" inverse="true" fixed="top">
+        </b:navBar>
+
                 <b:column col-sm="9" offset-sm="3" col-md="10" offset="2" styleClass="main">
-                    <br/>
-                    <b:row styleClass="placeholders">
-                        <b:column col-xs="6" col-sm="3" styleClass="placeholder">
-                            <img data-src="holder.js/200x200/sky" class="img-responsive" alt="Generic placeholder thumbnail"/>
-                            <h4>Combo #1</h4>
-                            <span class="text-muted">Detalles Combo</span>
-                        </b:column>
-                        <b:column col-xs="6" col-sm="3" styleClass="placeholder">
-                            <img data-src="holder.js/200x200/vine" class="img-responsive" alt="Generic placeholder thumbnail"/>
-                            <h4>Combo #2</h4>
-                            <span class="text-muted">Detalles Combo</span>
-                        </b:column>
-                        <b:column col-xs="6" col-sm="3" styleClass="placeholder">
-                            <img data-src="holder.js/200x200/sky" class="img-responsive" alt="Generic placeholder thumbnail"/>
-                            <h4>Promo #1</h4>
-                            <span class="text-muted">Detalles Promo</span>
-                        </b:column>
-                        <b:column col-xs="6" col-sm="3" styleClass="placeholder">
-                            <img data-src="holder.js/200x200/vine" class="img-responsive" alt="Generic placeholder thumbnail"/>
-                            <h4>Promo #2</h4>
-                            <span class="text-muted">Detalles Promo</span>
-                        </b:column>
-                    </b:row>                   
-                    
+                        Ingrese los datos del usuario para crear una nueva cuenta:
+                    <hr/>
                     <h:form>
-                        <b:selectOneMenu value="#{LOGINBEAN.selectedBank}" id="bankId">
-                            <f:selectItem itemLabel="Seleccione el Banco" itemValue=""/>
-                            <f:selectItems value="#{LOGINBEAN.getListOfBanks()}" var="bankVar" itemValue="#{bankVar}"
-                                           itemLabel="#{bankVar.name}" />
-                        </b:selectOneMenu>.
-                        <b:selectBooleanCheckbox value="true" caption="Recuerdeme"/>
-                        <b:alert severity="danger" title="ERROR!" rendered="#{LOGINBEAN.msg}">#{LOGINBEAN.msgError}</b:alert>
-                        <br/>
-                        <b:commandButton type="submit" look="primary btn-block" value="Ingresar" icon="log-in" size="lg" action="#{LOGINBEAN.verifyAdmin()}"/>                
-                        <br/>  
+                        <h:panelGrid id="formulary" columns="2" cellpadding="5">
+
+                            <h:outputLabel value="Id: " />
+                            <b:inputText size="15"  id="id" value=""/>
+
+                            <h:outputLabel value="Nombre:" />
+                            <b:inputText size="15"  id="nombre" value=""/>
+
+                            <h:outputLabel value="Responsable" />
+                            <b:inputText size="15"  id="responsable" value=""/>
+                            
+                            <h:outputLabel value="e-mail:" />
+                            <b:inputText size="15"  id="email" value=""/>
+  
+                            <h:outputLabel value="Direccion:" />
+                            <h:inputTextarea  id="direccion" value=""/>
+
+                            <h:outputLabel value="Telefono:" />
+                            <b:inputText size="15"  id="telefono" value=""/> 
+
+                        </h:panelGrid>
+                        <br />
+                        <br />
+                        <b:commandButton value="Crear" action="#" />
+
                     </h:form>
                 </b:column>
             </b:row>
-        </b:container>                
+        </b:container>
     </h:body>
 </html>
+

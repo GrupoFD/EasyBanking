@@ -88,11 +88,14 @@
                 <b:column col-sm="3" col-md="2" styleClass="sidebar">
                     <b:listLinks>
                         <h2><b:navLink header= "Bienvenid@ " /></h2>
-                        <b:navLink header= "#{LOGINADMIN.loggedAdmin.name}" />
+                        <b:navLink header= "#{LOGINBEAN.loggedAdmin.name}" />
                         <hr/>
                         <b:navLink href="home.xhtml" value=" Inicio" icon="glyphicon glyphicon-home" active="true"/>
+                        <b:dropMenu value=" Crear Usuario">
+                            <b:navLink icon="glyphicon glyphicon-user" value="Persona Fisica" href="createnatural.xhtml"></b:navLink>
+                            <b:navLink icon="glyphicon glyphicon-user" value="Persona Legal" href="createlegal.xhtml"></b:navLink>                           
+                        </b:dropMenu>
                         <b:navLink href="accountCreate.xhtml" icon="glyphicon glyphicon-credit-card" value=" Crear Cuenta"/>
-                        <b:navLink href="userCreate.xhtml" icon="glyphicon glyphicon-user" value=" Crear Usuario" />
                         <b:navLink href="#" icon="glyphicon glyphicon-scissors" value=" Promociones" />
                         <b:navLink href="#" icon="glyphicon glyphicon-usd" value=" Combos" />
                         <b:navLink value=" Salir" href="login.xhtml" icon="glyphicon glyphicon-log-out"/>
@@ -100,24 +103,36 @@
                 </b:column>
                 <b:column col-sm="9" offset-sm="3" col-md="10" offset="2" styleClass="main">
                     <br/>
-                    <b:row styleClass="placeholders">
-                        <b:column col-xs="6" col-sm="3" styleClass="placeholder">
-                            <h4>#{BANKBEAN.selectedClient.name}</h4>
-                            <span class="text-muted">Detalles Combo</span>
-                        </b:column>
-                        <b:column col-xs="6" col-sm="3" styleClass="placeholder">
-                            <h4>#{BANKBEAN.selectedClient.id}</h4>
-                            <span class="text-muted">Detalles Combo</span>
-                        </b:column>
-                        <b:column col-xs="6" col-sm="3" styleClass="placeholder">
-                            <h4>Promo #1</h4>
-                            <span class="text-muted">Detalles Promo</span>
-                        </b:column>
-                        <b:column col-xs="6" col-sm="3" styleClass="placeholder">
-                            <h4>Promo #2</h4>
-                            <span class="text-muted">Detalles Promo</span>
-                        </b:column>
-                    </b:row>    
+                    <h:panelGrid id="formulary" columns="2" cellpadding="5">
+                        <h:form>
+                            <h:outputLabel value="Id: " />
+                            <b:inputText size="15"  id="id" value="#{BANKBEAN.selectedNaturtalClient.id}"/>
+
+                            <h:outputLabel value="Nombre:" />
+                            <b:inputText size="15"  id="nombre" value="#{BANKBEAN.selectedNaturtalClient.name}"/>
+
+                            <h:outputLabel value="1er Apellido:" />
+                            <b:inputText size="15"  id="apellido1" value="#{BANKBEAN.selectedNaturtalClient.name}"/>
+
+                            <h:outputLabel value="2ndo Apellido: " />
+                            <b:inputText size="15"  id="apellido2" value="#{BANKBEAN.selectedNaturtalClient.lastName2}"/>
+
+                            <h:outputLabel value="Correo:" />
+                            <b:inputText size="15"  id="email" value="#{BANKBEAN.selectedNaturtalClient.email}"/>
+
+                            <h:outputLabel value="Direccion:" />
+                            <b:inputText size="15"  id="direccion" value="#{BANKBEAN.selectedNaturtalClient.address}"/>
+
+                            <h:outputLabel value="Telefono:" />
+                            <b:inputText size="15"  id="telefono" value="#{BANKBEAN.selectedNaturtalClient.phone}"/> 
+
+                            <h:outputLabel value="Nacimiento: " />
+                            <b:inputText size="15" id="nacimiento" type="date" value="#{BANKBEAN.selectedNaturtalClient.birthDate}"/>
+
+                            <b:commandButton class="btn-primary" look="info" value="Actualizar" action="#{BANKBEAN.goToClient(personVar)}"></b:commandButton> 
+                        </h:form>
+                    </h:panelGrid>
+
                     <h2>Cuentas del usuario: </h2>
                     <hr/>
                     <b:row styleClass="table-responsive">
@@ -135,8 +150,12 @@
                                 <h:outputText value="#{accountVar.amountBalance}" />
                             </h:column>
                             <h:column>
-                                <f:facet name="header"><h:outputText value="Accion" /></f:facet>
-                                <h:outputText value="#{accountVar.id}" />
+                                <h:form>
+                                    <b:commandButton class="btn-primary" look="info" value="Deposito" action="#{BANKBEAN.goToClient(personVar)}"></b:commandButton> &nbsp
+                                    <b:commandButton class="btn-primary" look="info" value="Retiro" action="#{BANKBEAN.goToClient(personVar)}"></b:commandButton> &nbsp
+                                    <b:commandButton class="btn-primary" look="info" value="Transferencia" action="#{BANKBEAN.goToClient(personVar)}"></b:commandButton>  
+                                </h:form>
+
                             </h:column>
                         </h:dataTable>
                     </b:row>
