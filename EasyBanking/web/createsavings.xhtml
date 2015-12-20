@@ -1,10 +1,13 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:b="http://bootsfaces.net/ui"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:head>
-        <title>Nuevo Usuario</title>
+        <title>#{BANKBEAN.login.selectedBank.name}</title>
+
     </h:head>
     <style type="text/css">
         .sub-header {
@@ -48,6 +51,7 @@
         .main {
             padding: 20px;
         }
+        //redondos
         @media (min-width: 768px) {
             .main {
                 padding-left: 40px;
@@ -76,69 +80,45 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.5.2/holder.min.js"></script>
         <b:navBar brand="#{BANKBEAN.login.selectedBank.name}" brandHref="home.xhtml" inverse="true" fixed="top" fluid="true">         
             <b:navbarLinks pull="right">
-                <b:navLink value="Sucursal: " href="login.xhtml" icon="glyphicon glyphicon-map-marker"></b:navLink>
+                <b:navLink value="Sucursal: San Jose" href="login.xhtml" icon="glyphicon glyphicon-map-marker"></b:navLink>
             </b:navbarLinks>
         </b:navBar>
         <b:container fluid="true">
             <b:row>
                 <b:column col-sm="3" col-md="2" styleClass="sidebar">
                     <b:listLinks>
+                        <h2><b:navLink header= "Bienvenid@ " /></h2>
                         <b:navLink header= "#{LOGINBEAN.loggedAdmin.name}" />
                         <hr/>
                         <b:navLink href="home.xhtml" value=" Inicio" icon="glyphicon glyphicon-home" active="true"/>
-                          <b:dropMenu value=" Crear Usuario">
+                        <b:dropMenu value=" Crear Usuario">
                             <b:navLink icon="glyphicon glyphicon-user" value="Persona Fisica" href="createnatural.xhtml"></b:navLink>
                             <b:navLink icon="glyphicon glyphicon-user" value="Persona Legal" href="createlegal.xhtml"></b:navLink>                           
                         </b:dropMenu>
-                        <b:navLink href="accountCreate.xhtml" icon="glyphicon glyphicon-credit-card" value=" Crear Cuenta"/>
                         <b:navLink href="#" icon="glyphicon glyphicon-scissors" value=" Promociones" />
                         <b:navLink href="#" icon="glyphicon glyphicon-usd" value=" Combos" />
                         <b:navLink value=" Salir" href="login.xhtml" icon="glyphicon glyphicon-log-out"/>
                     </b:listLinks>
                 </b:column>
-    
-        <b:navBar brand="inicio" brandHref="index" inverse="true" fixed="top">
-        </b:navBar>
-
                 <b:column col-sm="9" offset-sm="3" col-md="10" offset="2" styleClass="main">
-                    Ingrese los datos del usuario para crear una nueva cuenta:
-                    <hr/>
                     <h:form>
                         <h:panelGrid id="formulary" columns="2" cellpadding="5">
-
-                            <h:outputLabel value="Id: " />
-                            <b:inputText size="15"  id="id" value="#{CREATEUSER.natural.id}"/>
-
-                            <h:outputLabel value="Nombre:" />
-                            <b:inputText size="15"  id="nombre" value="#{CREATEUSER.natural.name}"/>
-
-                            <h:outputLabel value="1er Apellido:" />
-                            <b:inputText size="15"  id="apellido1" value="#{CREATEUSER.natural.lastName}"/>
-
-                            <h:outputLabel value="2do Apellido:" />
-                            <b:inputText size="15"  id="apellido2" value="#{CREATEUSER.natural.lastName2}"/>
-                            
-                            <h:outputLabel value="e-mail:" />
-                            <b:inputText size="15"  id="email" value="#{CREATEUSER.natural.email}"/>
-  
-                            <h:outputLabel value="Direccion:" />
-                            <h:inputTextarea  id="direccion" value="#{CREATEUSER.natural.address}"/>
-
-                            <h:outputLabel value="Telefono:" />
-                            <b:inputText size="15"  id="telefono" value="#{CREATEUSER.natural.phone}"/> 
-
-                            <h:outputLabel value="Telefono:" />
-                            <b:inputText size="15"  id="telefono" value="#{CREATEUSER.natural.phone}"/> 
-                           
+                            <h:outputLabel value="Nombre del Banco: #{LOGINBEAN.selectedBank.name}" />
+                            <br/>
+                            <br/>
+                            <h:outputLabel value="Nombre del Client: #{BANKBEAN.selectedNaturtalClient.name}" />
+                            <h:outputLabel value="Nombre del Client: #{BANKBEAN.selectedLegalClient.name}" rendered="#{ACCOUNTBEAN.isNatural}"/>
+                            <br/><br/>
+                            <h:outputLabel value="Moneda: " />
+                            <b:inputText size="15"  id="id" value="#{ACCOUNTBEAN.newBankAccount.currency.id}"/>
+                            <h:outputLabel value="Fecha Creacion: " />
+                            <b:inputText size="15"  id="creationDate" value="#{ACCOUNTBEAN.newBankAccount.creationDate}"/>
+                            <h:outputLabel value="Fecha expiracion: " />
+                            <b:inputText size="15"  id="expirationDate" value="#{ACCOUNTBEAN.newBankAccount.expirationDate}"/>
                         </h:panelGrid>
-                        <br />
-                        <br />
-                        <b:commandButton value="Crear" action="#{CREATEUSER.createUser()}" />
-
                     </h:form>
                 </b:column>
             </b:row>
-        </b:container>
+        </b:container>                
     </h:body>
-                
 </html>

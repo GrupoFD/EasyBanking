@@ -7,6 +7,7 @@ package com.easybanking.entity;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  *
@@ -53,7 +54,7 @@ public class Person {
         return address;
     }
 
-    public void setDirection(String direction) {
+    public void setAddress(String direction) {
         this.address = direction;
     }
 
@@ -121,6 +122,17 @@ public class Person {
         return returnable;
     }
 
+    public String convertCalendar(Calendar date) {
+
+        Calendar c = date.getInstance();
+
+        String dia = Integer.toString(c.get(Calendar.DATE));
+        String mes = Integer.toString(c.get(Calendar.MONTH));
+        String annio = Integer.toString(c.get(Calendar.YEAR));
+        String dateF = dia + "/" + mes + "/" + annio;
+        
+        return dateF;
+    }
 //    public void sendEmail(String password, String email) {
 //
 //        Properties props = new Properties();

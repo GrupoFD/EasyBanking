@@ -26,18 +26,22 @@
                     <hr/>
                     <h:form>
                         <h:panelGrid id="formulary" columns="2" cellpadding="5">
-                            <h:outputLabel value="Cédula:" />
-                            <a href="#"><h:outputText value="#{item.h1}" /></a>
-                            <h:outputLabel value="Cliente:" />
-                            <h:outputLabel value="#{Cliente.Nombre}" />
-                            <h:outputLabel value="Moneda" />
-                            <b:selectOneMenu value="#{Bean.curr}" id="currencies" size="7">
-                                <f:selectItem itemLabel="Euros" itemValue="1"/>
-                                <f:selectItem itemLabel="Colones" itemValue="2"/>
-                                <f:selectItem itemLabel="Dolares" itemValue="3"/>
-                            </b:selectOneMenu>
-                            <h:outputLabel value="Monto Inicial:" />
-                            <b:inputText size="15"  title="mntInic" id="#{NewUser.password}"/>
+                            
+                             <h:outputLabel value="Id: " />
+                             <b:inputText size="15"  id="id" value="#{ACCOUNTBEAN.newBankAccount.id}"/>
+                            
+                             <h:outputLabel value="Id: " />
+                            <b:inputText size="15"  id="id" value="#{CREATEUSER.natural.id}"/>
+                            
+                             <h:outputLabel value="Id: " />
+                            <b:inputText size="15"  id="id" value="#{CREATEUSER.natural.id}"/>
+                            
+                             <h:outputLabel value="Id: " />
+                            <b:inputText size="15"  id="id" value="#{CREATEUSER.natural.id}"/>
+                            
+                             <h:outputLabel value="Id: " />
+                            <b:inputText size="15"  id="id" value="#{CREATEUSER.natural.id}"/>
+                            
                         </h:panelGrid>
                         <br />
                         <br />

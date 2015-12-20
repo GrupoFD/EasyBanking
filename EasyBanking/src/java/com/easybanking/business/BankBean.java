@@ -129,6 +129,7 @@ public class BankBean {
             this.selectedNaturalClient = (Natural) p;
             accountBankBean.getListOfAccounts().clear();
             accountBankBean.setListOfAccounts(bad.getListOfAccounts(login.getSelectedBank(), p));
+            accountBankBean.setIsNatural(true);
             url = "naturalinfo.xhtml";
 
         } else if (p instanceof Legal) {
@@ -136,6 +137,7 @@ public class BankBean {
             this.selectedLegalClient = (Legal) p;
             accountBankBean.getListOfAccounts().clear();
             accountBankBean.setListOfAccounts(bad.getListOfAccounts(login.getSelectedBank(), p));
+            accountBankBean.setIsNatural(false);
             url = "legalinfo.xhtml";
         }
 

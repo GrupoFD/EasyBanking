@@ -127,9 +127,15 @@
                             <b:inputText size="15"  id="telefono" value="#{BANKBEAN.selectedNaturtalClient.phone}"/> 
 
                             <h:outputLabel value="Nacimiento: " />
-                            <b:inputText size="15" id="nacimiento" type="date" value="#{BANKBEAN.selectedNaturtalClient.birthDate}"/>
+                            <b:inputText size="15" id="nacimiento" value="#{BANKBEAN.selectedNaturtalClient.convertCalendar(BANKBEAN.selectedNaturtalClient.birthDate)}"/>
 
                             <b:commandButton class="btn-primary" look="info" value="Actualizar" action="#{BANKBEAN.goToClient(personVar)}"></b:commandButton> 
+                            <br/>
+                            <br/>
+                            <b:dropButton class="btn-primary" look="success" value="Crear Cuenta">
+                                <b:navLink value="Ahorros" href="createsavings.xhtml"></b:navLink>
+                                <b:navLink value="Credito" href="createcredit.xhtml"></b:navLink>                               
+                            </b:dropButton>
                         </h:form>
                     </h:panelGrid>
 
@@ -151,8 +157,8 @@
                             </h:column>
                             <h:column>
                                 <h:form>
-                                    <b:commandButton class="btn-primary" look="info" value="Deposito" action="#{BANKBEAN.goToClient(personVar)}"></b:commandButton> &nbsp
-                                    <b:commandButton class="btn-primary" look="info" value="Retiro" action="#{BANKBEAN.goToClient(personVar)}"></b:commandButton> &nbsp
+                                    <b:commandButton class="btn-primary" look="info" value="Deposito" action="#{BANKBEAN.goToClient(personVar)}"></b:commandButton>  
+                                    <b:commandButton class="btn-primary" look="info" value="Retiro" action="#{BANKBEAN.goToClient(personVar)}"></b:commandButton>  
                                     <b:commandButton class="btn-primary" look="info" value="Transferencia" action="#{BANKBEAN.goToClient(personVar)}"></b:commandButton>  
                                 </h:form>
 
