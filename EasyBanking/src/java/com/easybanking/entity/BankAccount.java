@@ -107,7 +107,7 @@ public class BankAccount implements AvailableCurrencies {
     }
 
    
-    public String createAccountNumber(int typeOfAccount){
+    public String createAccountNumber(Bank myBank, int typeOfAccount){
 	
         String newIdNumber = "";
         String lastIdCheck = "";
@@ -136,7 +136,7 @@ public class BankAccount implements AvailableCurrencies {
                 break;
         }
 
-        for (Person p : getIssuer().getListOfPersons()) {
+        for (Person p : myBank.getListOfPersons()) {
             for (BankAccount b : p.getListOfBankAccounts()) {
                 lastIdCheck = b.getId();
                 lastNumberString = lastIdCheck.substring(4, 10);
