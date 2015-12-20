@@ -92,7 +92,10 @@
                         <hr/>
                         <b:navLink href="home.xhtml" value=" Inicio" icon="glyphicon glyphicon-home" active="true"/>
                         <b:navLink href="accountCreate.xhtml" icon="glyphicon glyphicon-credit-card" value=" Crear Cuenta"/>
-                        <b:navLink href="userCreate.xhtml" icon="glyphicon glyphicon-user" value=" Crear Usuario" />
+                        <b:dropMenu value=" Crear Usuario">
+                            <b:navLink icon="glyphicon glyphicon-user" value="Persona Fisica" href="userCreate.xhtml"></b:navLink>
+                            <b:navLink icon="glyphicon glyphicon-user" value="Persona Legal" href="#"></b:navLink>                           
+                        </b:dropMenu>
                         <b:navLink href="#" icon="glyphicon glyphicon-scissors" value=" Promociones" />
                         <b:navLink href="#" icon="glyphicon glyphicon-usd" value=" Combos" />
                         <b:navLink value=" Salir" href="login.xhtml" icon="glyphicon glyphicon-log-out"/>

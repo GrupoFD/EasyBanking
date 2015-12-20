@@ -16,6 +16,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -37,7 +38,7 @@ public class BankAccountData implements InterfaceCRUD<BankAccount>{
         PersonData pd = new PersonData();
         Calendar date = Calendar.getInstance();
         ArrayList<BankAccount> listOfAccounts = new ArrayList<>();
-        Currency c = new Currency();
+        Currency c = new Currency(1,"Dolares",541);
         
         try {
 
@@ -51,11 +52,11 @@ public class BankAccountData implements InterfaceCRUD<BankAccount>{
             while (res.next()) {
 
                 c.setId(res.getInt(2));
-                date.setTime(res.getDate(7));
+                date.setTime(Calendar.getInstance(Locale.ENGLISH).getTime());
                 
                 if (res.getInt(2) == 1) {
                    
-                    listOfAccounts.add(new Savings(res.getString(1), b, res.getFloat(4), c, p,date,date,0,0,true));
+                    listOfAccounts.add(new Savings(res.getString(1), b, res.getFloat(4), c, p,date,date,0,0, true));
                 }
                 
                 

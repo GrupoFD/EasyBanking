@@ -5,6 +5,7 @@
  */
 package com.easybanking.business;
 
+import com.easybanking.data.BankAccountData;
 import com.easybanking.data.BankData;
 import com.easybanking.entity.BankBranch;
 import com.easybanking.entity.Legal;
@@ -26,6 +27,9 @@ public class BankBean {
     
     @ManagedProperty(value="#{LOGINBEAN}")
     private LoginBean login;
+    
+    @ManagedProperty(value = "#{ACCOUNTBEAN}")
+    private BankAccountsBean accountBankBean;
     
     private String searchId = "";
 
@@ -79,6 +83,16 @@ public class BankBean {
     public void setSelectedClient(Person selectedClient) {
         this.selectedClient = selectedClient;
     }
+
+    public BankAccountsBean getAccountBankBean() {
+        return accountBankBean;
+    }
+
+    public void setAccountBankBean(BankAccountsBean accountBankBean) {
+        this.accountBankBean = accountBankBean;
+    }
+    
+    
    
     public void loadTable() {
 
@@ -98,20 +112,27 @@ public class BankBean {
     
     public String goToClient(Person p) {
 
+       BankAccountData bad = new BankAccountData();
+        
        String url = "";
        
        this.selectedClient = p;
        
         if (p instanceof Natural) {
             
+            accountBankBean.getListOfAccounts().clear();
+            accountBankBean.setListOfAccounts(bad.getListOfAccounts(login.getSelectedBank(),getSelectedClient()));
             url = "naturalinfo.xhtml";
             
         }else if (p instanceof Legal) {
             
+            accountBankBean.getListOfAccounts().clear();
+            accountBankBean.setListOfAccounts(bad.getListOfAccounts(login.getSelectedBank(),getSelectedClient()));
             url = "legalinfo.xhtml";
         }
        
        return url;
     }
 
+    
 }

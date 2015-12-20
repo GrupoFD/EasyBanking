@@ -121,23 +121,23 @@
                   
                     <h2>Cuentas </h2>
                     <hr/>
-                    <b:row styleClass="table-responsive">
-                        <h:dataTable styleClass="table table-striped" value="#{BANKBEAN.listOfPersons}" var="personVar" rows="15">
+                     <b:row styleClass="table-responsive">
+                        <h:dataTable styleClass="table table-striped" value="#{ACCOUNTBEAN.listOfAccounts}" var="accountVar" rows="15">
                             <h:column>
                                 <f:facet name="header"><h:outputText value="Cedula" /></f:facet>
-                                <h:outputText value="#{personVar.id}" />
+                                <h:outputText value="#{accountVar.id}" />
                             </h:column>
                             <h:column>
                                 <f:facet name="header"><h:outputText value="Nombre" /></f:facet>
-                                <h:outputText value="#{personVar.name}" />
+                                <h:outputText value="#{accountVar.currency}" />
                             </h:column>
                             <h:column>
                                 <f:facet name="header"><h:outputText value="Correo Electronico" /></f:facet>
-                                <h:outputText value="#{personVar.email}" />
+                                <h:outputText value="#{accountVar.amountBalance}" />
                             </h:column>
                             <h:column>
                                 <f:facet name="header"><h:outputText value="Accion" /></f:facet>
-                                <h:outputText value="#{personVar.phone}" />
+                                <h:outputText value="#{accountVar.id}" />
                             </h:column>
                         </h:dataTable>
                     </b:row>

@@ -90,7 +90,7 @@ public class LoginBean {
 
         PersonData pd = new PersonData();
 
-        if (selectedBank != null) {
+        if (selectedBank != null) {          
 
             if (pd.read(admin) != null) {
 

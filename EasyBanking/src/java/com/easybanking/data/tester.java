@@ -8,6 +8,7 @@ package com.easybanking.data;
 import com.easybanking.business.BankBean;
 import com.easybanking.business.LoginBean;
 import com.easybanking.entity.Bank;
+import com.easybanking.entity.BankAccount;
 import com.easybanking.entity.Person;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -36,17 +37,19 @@ public class tester {
         lb.setSelectedBank(bank);
         BankData bd = new BankData();
         ArrayList<Person> resultList = bd.getListOfPersons(lb.getSelectedBank());
+        
+        BankAccountData bad = new BankAccountData();
+        Person p = new Person();
+        p.setId("321");
          
-         for (Person p : resultList) {
-            
-            if (p.getId().equals(123)) {
-                
-                System.out.println("debug "+p.getName());
-               
-            }
+         for (BankAccount ba : bad.getListOfAccounts(bank, p)) {
+          
+             System.out.println(""+ba.getId());
+             
         }
         bb.loadTable();
     }
+    
     
         public static String encriptPassword(String encriptPass) {
         String encripted = DigestUtils.md5Hex(encriptPass);
