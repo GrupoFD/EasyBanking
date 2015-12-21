@@ -27,6 +27,10 @@ public class NewPersonBean {
      */
     @ManagedProperty(value = "#{ACCOUNTBEAN}")
     private BankAccountsBean accountBankBean;
+    
+    @ManagedProperty(value = "#{BANKBEAN}")
+    private BankBean bankBean;
+
 
     private Client natural = new Client();
 
@@ -110,6 +114,7 @@ public class NewPersonBean {
 
         if (insert == true) {
 
+            bankBean.setSelectedNaturtalClient(natural);
             msgError = "El usuario se agrego con exito!";
             alertColor = "success";
             accountBankBean.setIsNatural(true);
@@ -138,6 +143,7 @@ public class NewPersonBean {
 
         if (insert == true) {
 
+            bankBean.setSelectedLegalClient(legal);
             msgError = "El usuario se agrego con exito!";
             alertColor = "success";
             msg = true;

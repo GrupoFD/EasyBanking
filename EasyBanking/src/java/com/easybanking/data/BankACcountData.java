@@ -81,7 +81,30 @@ public class BankAccountData implements InterfaceCRUD<BankAccount>{
 
     @Override
     public boolean create(BankAccount c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        try {
+            ps = this.con.getCon().prepareStatement("INSERT INTO Account (AccountNumber, AccountType, BankID, Balance, IdCurrency, PersonId, CreationDate, ExperationDate, giftPoints)"
+                    + " Values(?,?,?,?,?,?,?,?,?)");
+            ps.setString(1, c.getId());
+            ps.setInt(2, 1);
+            ps.setInt(3, c.getIssuer().getId());
+            ps.setDouble(4, c.getAmountBalance());
+            ps.setInt(5, c.getCurrency().getId());
+            ps.setInt(6,Integer.parseInt(c.getOwner().getId()));
+            Calendar s = c.getCreationDate();
+            ps.setDate(7,new java.sql.Date(s.getTimeInMillis()));
+            Calendar d = c.getExpirationDate();
+            ps.setDate(8,new java.sql.Date(d.getTimeInMillis()) );
+            ps.setInt(9, 0);
+            ps.executeUpdate();
+       return true; 
+        } catch (SQLException ex) {
+            Logger.getLogger(BankAccountData.class.getName()).log(Level.SEVERE, null, ex);
+        }finally {
+
+            con.closeCon();
+        }
+        return false;
     }
 
     @Override
@@ -104,4 +127,54 @@ public class BankAccountData implements InterfaceCRUD<BankAccount>{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    public String createAccountNumber(Bank myBank, int typeOfAccount){
+ 
+        String newIdNumber = "";
+        String lastIdCheck = "";
+        String lastNumberString = "";
+        int lastNumberInt = 0;
+        int lastBiggestNumber = 0;
+
+        switch (typeOfAccount) {
+            case 1:
+                newIdNumber = "100-"; // New Colon Savings-Account
+                break;
+            case 2:
+                newIdNumber = "200-"; // New Dollar Savings-Account
+                break;
+            case 3:
+                newIdNumber = "300-"; // New Euro Savings-Account 
+                break;
+            case 4:
+                newIdNumber = "400-"; // New Colon Credit-Account 
+                break;
+            case 5:
+                newIdNumber = "500-"; // New Dollar Credit-Account 
+                break;
+            case 6:
+                newIdNumber = "600-"; // New Euro Credit-Account 
+                break;
+        }
+
+        for (Person p : myBank.getListOfPersons()) {
+            for (BankAccount b : p.getListOfBankAccounts()) {
+                lastIdCheck = b.getId();
+                lastNumberString = lastIdCheck.substring(4, 10);
+                lastNumberInt = Integer.parseInt(lastNumberString);
+                if (lastNumberInt > lastBiggestNumber) {
+                    lastBiggestNumber = lastNumberInt;
+                }
+            }
+        }
+
+        if (lastBiggestNumber < 9) {
+            newIdNumber += "00000" + String.valueOf(lastBiggestNumber + 1);
+        } else if (lastBiggestNumber >= 9 && lastBiggestNumber < 99) {
+            newIdNumber += "0000" + String.valueOf(lastBiggestNumber + 1);
+        } else if (lastBiggestNumber >= 99 && lastBiggestNumber < 1000) {
+            newIdNumber += "000" + String.valueOf(lastBiggestNumber + 1);
+        }
+
+        return newIdNumber;
+}
 }
