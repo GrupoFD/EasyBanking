@@ -32,6 +32,8 @@ public class BankAccountsBean {
     private BankAccount newBankAccount = new BankAccount();
 
     private boolean isNatural = false;
+    
+    private boolean isLegal = false;
 
     public BankAccountsBean() {
     }
@@ -66,6 +68,14 @@ public class BankAccountsBean {
 
     public void setIsNatural(boolean isNatural) {
         this.isNatural = isNatural;
+    }
+
+    public boolean isIsLegal() {
+        return isLegal;
+    }
+
+    public void setIsLegal(boolean isLegal) {
+        this.isLegal = isLegal;
     }
     
     

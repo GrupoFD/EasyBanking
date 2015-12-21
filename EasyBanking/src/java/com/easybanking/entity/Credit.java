@@ -14,37 +14,29 @@ import java.util.Calendar;
 public class Credit extends BankAccount{
         
     private double maxCredit;
-    private double minPayment;
     private double lastBalance;
-    private boolean isGoodForLoan;
+
 
     public Credit() {
     }
 
-    public Credit(double maxCredit, double minPayment, double lastBalance, boolean isGoodForLoan, String id, Bank issuer, double amountBalance, Currency currency, Person owner, Calendar creationDate, Calendar expirationDate, int giftPoints) {
+    public Credit(double maxCredit, double lastBalance) {
+        this.maxCredit = maxCredit;
+        this.lastBalance = lastBalance;
+    }
+
+    public Credit(double maxCredit, double lastBalance, String id, Bank issuer, double amountBalance, Currency currency, Person owner, Calendar creationDate, Calendar expirationDate, int giftPoints) {
         super(id, issuer, amountBalance, currency, owner, creationDate, expirationDate, giftPoints);
         this.maxCredit = maxCredit;
-        this.minPayment = minPayment;
         this.lastBalance = lastBalance;
-        this.isGoodForLoan = isGoodForLoan;
     }
     
-    
-
     public double getMaxCredit() {
         return maxCredit;
     }
 
     public void setMaxCredit(double maxCredit) {
         this.maxCredit = maxCredit;
-    }
-
-    public double getMinPayment() {
-        return minPayment;
-    }
-
-    public void setMinPayment(double minPayment) {
-        this.minPayment = minPayment;
     }
 
     public double getLastBalance() {
@@ -54,14 +46,5 @@ public class Credit extends BankAccount{
     public void setLastBalance(double lastBalance) {
         this.lastBalance = lastBalance;
     }
-
-    public boolean isIsGoodForLoan() {
-        return isGoodForLoan;
-    }
-
-    public void setIsGoodForLoan(boolean isGoodForLoan) {
-        this.isGoodForLoan = isGoodForLoan;
-    }
-    
-    
+   
 }

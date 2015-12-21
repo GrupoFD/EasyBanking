@@ -107,34 +107,37 @@
                         <h:panelGrid id="formulary" columns="2" cellpadding="5">
 
                             <h:outputLabel value="Id: " />
-                            <b:inputText size="15"  id="id" value="#{CREATEUSER.natural.id}"/>
+                            <b:inputText size="15"  id="id" value="#{CREATEUSERBEAN.natural.id}"/>
 
                             <h:outputLabel value="Nombre:" />
-                            <b:inputText size="15"  id="nombre" value="#{CREATEUSER.natural.name}"/>
+                            <b:inputText size="15"  id="nombre" value="#{CREATEUSERBEAN.natural.name}"/>
 
                             <h:outputLabel value="1er Apellido:" />
-                            <b:inputText size="15"  id="apellido1" value="#{CREATEUSER.natural.lastName}"/>
+                            <b:inputText size="15"  id="apellido1" value="#{CREATEUSERBEAN.natural.lastName}"/>
 
                             <h:outputLabel value="2do Apellido:" />
-                            <b:inputText size="15"  id="apellido2" value="#{CREATEUSER.natural.lastName2}"/>
+                            <b:inputText size="15"  id="apellido2" value="#{CREATEUSERBEAN.natural.lastName2}"/>
                             
                             <h:outputLabel value="e-mail:" />
-                            <b:inputText size="15"  id="email" value="#{CREATEUSER.natural.email}"/>
+                            <b:inputText size="15"  id="email" value="#{CREATEUSERBEAN.natural.email}"/>
   
                             <h:outputLabel value="Direccion:" />
-                            <h:inputTextarea  id="direccion" value="#{CREATEUSER.natural.address}"/>
+                            <h:inputTextarea  id="direccion" value="#{CREATEUSERBEAN.natural.address}"/>
 
                             <h:outputLabel value="Telefono:" />
-                            <b:inputText size="15"  id="telefono" value="#{CREATEUSER.natural.phone}"/> 
-
-                            <h:outputLabel value="Telefono:" />
-                            <b:inputText size="15"  id="telefono" value="#{CREATEUSER.natural.phone}"/> 
+                            <b:inputText size="15"  id="telefono" value="#{CREATEUSERBEAN.natural.phone}"/> 
                            
                         </h:panelGrid>
                         <br />
                         <br />
-                        <b:commandButton value="Crear" action="#{CREATEUSER.createUser()}" />
+                        <b:commandButton class="btn-primary" look="primary" value="Crear" action="#{CREATEUSERBEAN.createNaturalUser()}" />
 
+                        <b:dropButton class="btn-primary" look="success" value="Crear Cuenta" >
+                                <b:navLink value="Ahorros" href="createsavings.xhtml"></b:navLink>
+                                <b:navLink value="Credito" href="createcredit.xhtml"></b:navLink>                               
+                        </b:dropButton>
+                        
+                        <b:alert severity="#{CREATEUSERBEAN.alertColor}" title="ERROR!" rendered="#{CREATEUSERBEAN.msg}" closable="true">#{CREATEUSERBEAN.msgError}</b:alert>
                     </h:form>
                 </b:column>
             </b:row>

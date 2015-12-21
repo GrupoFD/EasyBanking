@@ -129,7 +129,7 @@
                             <h:outputLabel value="Nacimiento: " />
                             <b:inputText size="15" id="nacimiento" value="#{BANKBEAN.selectedNaturtalClient.convertCalendar(BANKBEAN.selectedNaturtalClient.birthDate)}"/>
 
-                            <b:commandButton class="btn-primary" look="info" value="Actualizar" action="#{BANKBEAN.goToClient(personVar)}"></b:commandButton> 
+                            <b:commandButton class="btn-primary" look="info" value="Actualizar" action="#{BANKBEAN.updateNaturalClient()}"></b:commandButton> 
                             <br/>
                             <br/>
                             <b:dropButton class="btn-primary" look="success" value="Crear Cuenta">

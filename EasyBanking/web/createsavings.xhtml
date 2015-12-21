@@ -7,7 +7,6 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:head>
         <title>#{BANKBEAN.login.selectedBank.name}</title>
-
     </h:head>
     <style type="text/css">
         .sub-header {
@@ -103,18 +102,17 @@
                 <b:column col-sm="9" offset-sm="3" col-md="10" offset="2" styleClass="main">
                     <h:form>
                         <h:panelGrid id="formulary" columns="2" cellpadding="5">
-                            <h:outputLabel value="Nombre del Banco: #{LOGINBEAN.selectedBank.name}" />
-                            <br/>
-                            <br/>
-                            <h:outputLabel value="Nombre del Client: #{BANKBEAN.selectedNaturtalClient.name}" />
-                            <h:outputLabel value="Nombre del Client: #{BANKBEAN.selectedLegalClient.name}" rendered="#{ACCOUNTBEAN.isNatural}"/>
-                            <br/><br/>
-                            <h:outputLabel value="Moneda: " />
+                            <h:outputLabel value="Nombre del Banco: " />
+                            <b:inputText size="15"  id="bankid" value="#{LOGINBEAN.selectedBank.name}" disabled="true"/>
+                            <h:outputLabel value="Nombre del Client: " />
+                            <b:inputText size="15"  id="clientNatural" value="#{BANKBEAN.selectedLegalClient.name}" rendered="#{ACCOUNTBEAN.isLegal}" disabled="true"/>
+                            <b:inputText size="15"  id="clientLegal" value="#{BANKBEAN.selectedNaturtalClient.name}" rendered="#{ACCOUNTBEAN.isNatural}" disabled="true"/>
+                            <h:outputLabel value="Moneda: "/>
                             <b:inputText size="15"  id="id" value="#{ACCOUNTBEAN.newBankAccount.currency.id}"/>
                             <h:outputLabel value="Fecha Creacion: " />
                             <b:inputText size="15"  id="creationDate" value="#{ACCOUNTBEAN.newBankAccount.creationDate}"/>
                             <h:outputLabel value="Fecha expiracion: " />
-                            <b:inputText size="15"  id="expirationDate" value="#{ACCOUNTBEAN.newBankAccount.expirationDate}"/>
+                            <b:inputText size="15"  id="expirationDate" value="#{ACCOUNTBEAN.newBankAccount.expirationDate}"/>                           
                         </h:panelGrid>
                     </h:form>
                 </b:column>

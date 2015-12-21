@@ -88,7 +88,7 @@
                         <b:navLink header= "#{LOGINBEAN.loggedAdmin.name}" />
                         <hr/>
                         <b:navLink href="home.xhtml" value=" Inicio" icon="glyphicon glyphicon-home" active="true"/>
-                          <b:dropMenu value=" Crear Usuario">
+                        <b:dropMenu value=" Crear Usuario">
                             <b:navLink icon="glyphicon glyphicon-user" value="Persona Fisica" href="createnatural.xhtml"></b:navLink>
                             <b:navLink icon="glyphicon glyphicon-user" value="Persona Legal" href="createlegal.xhtml"></b:navLink>                           
                         </b:dropMenu>
@@ -98,38 +98,45 @@
                         <b:navLink value=" Salir" href="login.xhtml" icon="glyphicon glyphicon-log-out"/>
                     </b:listLinks>
                 </b:column>
-    
-        <b:navBar brand="inicio" brandHref="index" inverse="true" fixed="top">
-        </b:navBar>
+
+                <b:navBar brand="inicio" brandHref="index" inverse="true" fixed="top">
+                </b:navBar>
 
                 <b:column col-sm="9" offset-sm="3" col-md="10" offset="2" styleClass="main">
-                        Ingrese los datos del usuario para crear una nueva cuenta:
+                    Ingrese los datos del usuario para crear una nueva cuenta:
                     <hr/>
                     <h:form>
                         <h:panelGrid id="formulary" columns="2" cellpadding="5">
 
                             <h:outputLabel value="Id: " />
-                            <b:inputText size="15"  id="id" value=""/>
+                            <b:inputText size="15"  id="id" value="#{CREATEUSERBEAN.legal.id}"/>
 
                             <h:outputLabel value="Nombre:" />
-                            <b:inputText size="15"  id="nombre" value=""/>
+                            <b:inputText size="15"  id="nombre" value="#{CREATEUSERBEAN.legal.name}"/>
 
                             <h:outputLabel value="Responsable" />
-                            <b:inputText size="15"  id="responsable" value=""/>
-                            
-                            <h:outputLabel value="e-mail:" />
-                            <b:inputText size="15"  id="email" value=""/>
-  
+                            <b:inputText size="15"  id="responsable" value="#{CREATEUSERBEAN.responsible.id}"/>
+
+                            <h:outputLabel value="E-mail:" />
+                            <b:inputText size="15"  id="email" value="#{CREATEUSERBEAN.legal.email}"/>
+
                             <h:outputLabel value="Direccion:" />
-                            <h:inputTextarea  id="direccion" value=""/>
+                            <h:inputTextarea  id="direccion" value="#{CREATEUSERBEAN.legal.address}"/>
 
                             <h:outputLabel value="Telefono:" />
-                            <b:inputText size="15"  id="telefono" value=""/> 
+                            <b:inputText size="15"  id="telefono" value="#{CREATEUSERBEAN.legal.phone}"/> 
 
                         </h:panelGrid>
                         <br />
                         <br />
-                        <b:commandButton value="Crear" action="#" />
+                        <b:commandButton class="btn-primary" look="primary" value="Crear" action="#{CREATEUSERBEAN.createLegalUser()}" />
+
+                        <b:dropButton class="btn-primary" look="success" value="Crear Cuenta" >
+                            <b:navLink value="Ahorros" href="createsavings.xhtml"></b:navLink>
+                            <b:navLink value="Credito" href="createcredit.xhtml"></b:navLink>                               
+                        </b:dropButton>
+
+                        <b:alert severity="#{CREATEUSERBEAN.alertColor}" title="ERROR!" rendered="#{CREATEUSERBEAN.msg}" closable="true">#{CREATEUSERBEAN.msgError}</b:alert>
 
                     </h:form>
                 </b:column>

@@ -14,7 +14,6 @@ import java.util.Calendar;
 public class Savings extends BankAccount{
     
     private double interest;
-    private boolean isActive; //?????????????
 
     public Savings() {
         
@@ -22,8 +21,7 @@ public class Savings extends BankAccount{
 
     public Savings(String id, Bank issuer, double amountBalance, Currency currency, Person owner, Calendar creationDate, Calendar expirationDate, int giftPoints, double interest, boolean isActive) {
         super(id, issuer, amountBalance, currency, owner, creationDate, expirationDate, giftPoints);
-        this.interest = interest;
-        this.isActive = isActive;
+        this.interest = interest;     
     }
 
     public double getInterest() {
@@ -33,14 +31,5 @@ public class Savings extends BankAccount{
     public void setInterest(double interest) {
         this.interest = interest;
     }
-
-    public boolean isIsActive() {
-        return isActive;
-    }
-
-    public void setIsActive(boolean isActive) {
-        this.isActive = isActive;
-    }
-    
-    
+   
 }

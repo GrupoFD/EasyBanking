@@ -7,6 +7,7 @@ package com.easybanking.business;
 
 import com.easybanking.data.BankAccountData;
 import com.easybanking.data.BankData;
+import com.easybanking.data.PersonData;
 import com.easybanking.entity.BankBranch;
 import com.easybanking.entity.Legal;
 import com.easybanking.entity.Natural;
@@ -128,19 +129,40 @@ public class BankBean {
 
             this.selectedNaturalClient = (Natural) p;
             accountBankBean.getListOfAccounts().clear();
-            accountBankBean.setListOfAccounts(bad.getListOfAccounts(login.getSelectedBank(), p));
+            accountBankBean.setListOfAccounts(bad.getListOfAccounts(login.getSelectedBank(), selectedNaturalClient));
             accountBankBean.setIsNatural(true);
+            accountBankBean.setIsLegal(false);
             url = "naturalinfo.xhtml";
 
         } else if (p instanceof Legal) {
 
             this.selectedLegalClient = (Legal) p;
             accountBankBean.getListOfAccounts().clear();
-            accountBankBean.setListOfAccounts(bad.getListOfAccounts(login.getSelectedBank(), p));
+            accountBankBean.setListOfAccounts(bad.getListOfAccounts(login.getSelectedBank(), selectedLegalClient));
+            accountBankBean.setIsLegal(true);
             accountBankBean.setIsNatural(false);
             url = "legalinfo.xhtml";
         }
 
         return url;
     }
+
+    public String updateNaturalClient() {
+        String url = "";
+        PersonData pd = new PersonData();
+        if (pd.update(selectedNaturalClient)) {
+            url = "home.xhtml";
+        }
+      return url;  
+    } 
+
+    public String updateLegalClient() {
+        String url = "";
+        PersonData pd = new PersonData();
+        if (pd.update(selectedLegalClient)) {
+            url = "home.xhtml";
+        }
+        return url;
+    }
+
 }
